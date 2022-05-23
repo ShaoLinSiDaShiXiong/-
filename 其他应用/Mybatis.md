@@ -709,3 +709,193 @@ Bill [id=null, billcode=213, porductname=惠普背光124键键盘, porductunit=n
 
 ****
 
+### Collection元素
+
+**该元素用于映射数据库一对多关系**
+
+#### 具体使用方式
+
+想要使用collection来进行一对多的映射关系，首先要在对应表的实体类里面添加一个需要被映射关系的实体类且类型为集合的属性。
+
+**实体类：**
+
+```java
+public class Role extends POJOBase{
+	private Integer Id;
+	private String rolecode;
+	private String rolename;
+	private Integer creatby;
+	private String creationdate;
+	private Integer modifyby;
+	private String modifydate;
+	private Integer status;
+	
+	private List<User> user;
+}
+```
+
+**数据库结构：**
+
+![image-20220520103742144](C:\Users\SaoLinSiDaShiXiong\AppData\Roaming\Typora\typora-user-images\image-20220520103742144.png)
+
+*这里可以看到，数据库中是没有user字段的，确实因为mybatis对于一对多关系，是通过我们自己来定义的，这里在数据库中也没有设置主外键关系，我们主要通过mybatis和sql语句来进行一对多的映射。*
+
+**mapper文件：**
+
+```xml
+	<!-- 该resultMap用来映射role表和user表的一对多关系 -->
+	<resultMap type="role" id="Role_User">
+		<id property="Id" column="id"/>
+		<result property="rolecode" column="rolecode"/>
+		<result property="creatby" column="creatby"/>
+		<result property="creationdate" column="creationdate"/>
+		<result property="modifyby" column="modifyby"/>
+		<result property="modifydate" column="modifydate"/>
+		<collection property="user" javaType="ArrayList" ofType="com.dao.pojo.user.User">
+			<id property="id" column="id" javaType="int"/>
+			<result property="sum_id" column="sum_id" javaType="int"/>
+			<result property="user_code" column="user_code" javaType="String"/>
+			<result property="username" column="username" javaType="String"/>
+			<result property="userpassword" column="userpassword" javaType="String"/>
+			<result property="gender" column="gender" javaType="int"/>
+			<result property="birthday" column="birthday" javaType="String"/>
+			<result property="phone" column="phone" javaType="String"/>
+			<result property="address" column="address" javaType="String"/>
+			<!-- <result property="userrole" column="userrole" javaType="int"/> -->
+			<result property="createby" column="createby" javaType="int"/>
+			<result property="creationdate" column="creationdate" javaType="String"/>
+			<result property="modifyby" column="modifyby" javaType="int"/>
+			<result property="modifydate" column="modifydate" javaType="String"/>
+			<result property="status" column="status" javaType="int"/>
+		</collection>
+	</resultMap>
+```
+
+###### property：
+
+该属性是指定实体类中的属性。
+
+###### javaType：
+
+该属性是指定返回对象的类型，这里返回的是集合。**当然这里也可以填写返回的类型，mybatis回自动进行转换，将对象放入集合中，所以，即使不写该属性，也是成立的**
+
+###### ofType：
+
+用来指定集合中的数据类型，它用来将 JavaBean（或字段）属性的类型和集合存储的类型区分开来。
+
+**`<collection property="user" javaType="ArrayList" ofType="com.dao.pojo.user.User">`读作：**
+
+user是一个存储com.dao.pojo.user.User的ArrayList集合
+
+###### 在select元素中使用resultMap：
+
+```xml
+	<!-- 通过id查询role信息和所有对应的user信息 -->
+	<select id="findRoleAndUserByid" resultMap="Role_User">
+		SELECT r.*,u.username,u.user_code,u.gender,u.phone,u.address
+		FROM role r,user u
+		
+		WHERE r.status != 1 
+		AND u.userrole = r.id
+	</select>
+```
+
+###### 执行结果
+
+```java
+[
+	Id=1, 
+	rolecode=1234, 
+	rolename=普通员工, 
+	creatby=1, 
+	creationdate=2022-05-05 15:22:36, 
+	modifyby=null, 
+	modifydate=null, 
+	status=null, 
+	user=[
+		User [
+			id=null, 
+			sum_id=null, 
+			user_code=lzy123as, 
+			username=123, 
+			userpassword=null, 
+			gender=1, 
+			birthday=null, 
+			phone=15538902565, 
+			address=商洛, 
+			userrole=null, 
+			createby=null, 
+			creationdate=null, 
+			modifyby=null, 
+			modifydate=null
+		], User [
+			id=null, 
+			sum_id=null, 
+			user_code=lzy666, 
+			username=lzy, 
+			userpassword=null, 
+			gender=1, 
+			birthday=null,
+       		phone=15165346874651, 
+       		address=云南, 
+        	userrole=null, 
+        	createby=null, 
+        	creationdate=null, 
+        	modifyby=null, 
+        	modifydate=null
+        ], User [
+        	id=null, 
+        	sum_id=null, 
+        	user_code=123123, 
+        	username=zhangsan, 
+        	userpassword=null,
+          	gender=1, 
+          	birthday=null, 
+          	phone=12312412312, 
+          	address=陕西, 
+          	userrole=null, 
+          	createby=null, 
+          	creationdate=null, 
+          	modifyby=null, 
+          	modifydate=null
+          ]
+	]
+]
+
+```
+
+###### <font color="#F00">**注意事项**</font>
+
+**mybatis内部是通过主键id来识别多条数据是否是重复的，如果主键相同，它就会自动帮你过滤掉相同的记录，映射成一个一对多的实体，但如果你没有查询主键，那么mybatis就会视为你的所有数据都是不重复的，因此映射成多个一对多的实体，这个时候就会爆出`Expected one result (or null) to be returned by selectOne()，but found:`错误**
+
+这个时候我们只需要通过指定mybatis的id字段就可以解决该问题了。
+
+**报错代码：**
+
+```xml
+	<!-- 通过id查询role信息和所有对应的user信息 -->
+	<select id="findRoleAndUserByid" resultMap="Role_User">
+		SELECT 		r.rolecode,r.rolename,r.creatby,r.creationdate,u.username,
+        			u.user_code,u.gender,u.phone,u.address
+		FROM role r,user u
+		
+		WHERE r.status != 1 
+		AND u.userrole = #{id}
+	</select>
+```
+
+**修改后：**
+
+```xml
+	<!-- 通过id查询role信息和所有对应的user信息 -->
+	<select id="findRoleAndUserByid" resultMap="Role_User">
+		SELECT 		r.id,r.rolecode,r.rolename,r.creatby,r.creationdate,u.username,
+					u.user_code,u.gender,u.phone,u.address
+		FROM role r,user u
+		
+		WHERE r.status != 1 
+		AND u.userrole = #{id}
+	</select>
+```
+
+这里的sql加上了配置了主键信息的字段之后，就不会报错了。

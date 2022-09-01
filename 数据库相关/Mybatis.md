@@ -14,6 +14,22 @@ MyBatis 支持定制化 SQL、存储过程以及高级映射，可以在实体�
 
 想要使用MyBatis首先需要下载MyBatis和MySql的jar包。
 
+```xml
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.29</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.5.10</version>
+    </dependency>
+```
+
 
 
 ****
@@ -63,7 +79,95 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 ```
 
-在该配置文件中可以对mybatis进行一些设置，这里列出了最基本的几项设置。
+**jdbc:mysql://localhost:3306/（数据库名）?allowPublicKeyRetrieval=true&serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8**
+
+<font color="#F00">配置数据库信息的properties文件的检测是从resource文件开始检测的</font>
+
+#### mapper绑定的四种方式
+
+在进行mapper文件绑定的时候，有四种方式，一种是通过mapper接口，一种是直接加载mapper.xml文件，一种是通过绝对路径进行加载和扫描加载包内所有的mapper.xml文件。
+
+1. **resource：**
+
+   通过resource属性进行xml文件加载的时候是通过maven项目中的resource文件夹开始寻找的，我们可以将相关的所有mapper.xml文件全部直接放在resource文件夹中，或者通过maven项目加载后的相对路径来寻找需要的文件。**需要注意的是，maven项目只会加载resource文件夹中的资源文件。**
+
+   ```xml
+       <!-- 将mapper文件加入到配置文件中 -->
+       <mappers>
+           <!--通过resource文件夹进行加载-->
+           <mapper resource="dao/mapper/UserMapper.xml"/>
+   
+       </mappers>
+   ```
+
+2. **class：**
+
+   通过class进行xml文件加载的时候加载的是mapper接口，而不是xml文件，所以我们需要保证xml文件和mapper接口在一个包内，且名字一样，这样mybatis-config文件才会找到相应的mapper.xml文件，否则就会爆出找不到相关方法的错误。**注意sqlsession加载时不会报错，方法可以正常调用，但是使用时会报错。**
+
+   ```xml
+       <!-- 将mapper文件加入到配置文件中 -->
+       <mappers>
+           <!--通过映射接口的全限定类名加载-->
+           <mapper class="dao.mapper.IUserMapper"/>
+       </mappers>
+   ```
+
+   
+
+3. **url：**
+
+   通过url时，是通过绝对路径来对mapper.xml文件进行查找的，这里需要在绝对路径前面加上`file:///`，这里的file必须有三个斜线。
+
+   ```xml
+       <!-- 将mapper文件加入到配置文件中 -->
+       <mappers>
+           <!--使用完全限定资源定位符url-->
+           <mapper url="file:///E:\文件\IDEAfile\SpringMybatisDemo\src\main\java\dao\mapper\UserMapper.xml"/>
+       </mappers>
+   ```
+
+4. **< package name="">**
+
+   这种方式是通过包来查找mapper文件，mybatis会自动扫描所有的mapper接口和mapper.xml文件，并通过文件名来进行匹配。**注意mapper接口和xml文件必须要在一个包内才可以成功被检测到，否则会报出找不到相应方法的错误。**
+
+   ```xml
+       <mappers>
+           <!--通过扫描包来进行xml和接口的加载-->
+           <package name="dao.mapper"/>
+   	</mappers>
+   ```
+
+##### 让maven加载所有的xml文件
+
+**在pom.xml文件中进行配置**
+
+```xml
+<!-- 项目打包时会将java目录中的*.xml文件也进行打包 -->
+<build>
+    <resources>
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+    </resources>
+</build>
+```
+
+**在application.properties中进行配置**
+
+```properties
+#配置mapper xml文件的路径
+mybatis-plus.mapper-locations=classpath:com/yz/eduservice/mapper/xml/*.xml
+```
+
+****
+
+
+
+
 
 #### 关于propertise文件
 
@@ -138,7 +242,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from mb where id = #{id}
 	</select>
 </mapper>
-，
 ```
 
 <mapper> 元素是配置文件的根元素，它包含了 namespace 属性，该属性值通常设置为“包名+SQL映射文件名”，用于指定唯一的命名空间。
@@ -254,7 +357,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO mb (name) VALUES(#{name})
 	</insert>
 </mapper>
-
 ```
 
 **提示** **对命名空间的一点补充**
@@ -665,8 +767,18 @@ try (SqlSession session = sqlSessionFactory.openSession()) {
 
 将被注入到构造方法的一个普通结果
 
-```
-
+```xml
+	<resultMap type="user" id="_User">
+		<constructor>
+			<idArg name="id" column="id" javaType="int" />
+			<arg name="sum_id" column="sum_id" javaType="int" />
+			<arg name="user_code" column="user_code" javaType="String" />
+			<arg name="username" column="username" javaType="String" />
+			<arg name="userpassword" column="userpassword" javaType="String" />
+			<arg name="gender" column="gender" javaType="int" />
+			<arg name="birthday" column="birthday" javaType="String" />
+		</constructor>
+	</resultMap> 
 ```
 
 

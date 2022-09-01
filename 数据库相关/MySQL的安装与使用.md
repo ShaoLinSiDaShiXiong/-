@@ -1,3 +1,5 @@
+
+
 # *MySQL*的使用
 
 **在windows系统中MySQL是不区分大小写的，但是在Linux系统中只有列名和列别名不区分大小写，其他都是区分大小写的。**
@@ -33,7 +35,7 @@
   | INT(INTEGHR) | 普通大小的整数 | 4个字节  |
   |    BIGINT    |     大整数     | 8个字节  |
 
-  
+
 
 - 浮点数/定点数类型
 
@@ -61,7 +63,7 @@
   | DATETIME  | YYYY-MM-DD HH:MM:SS | 1980-01-01 00:00:00 ~9999-12-31 23:59:59          | 8个字节  |
   | TIMESTAMP | YYYY-MM-DD HH:MM:SS | 1980-01-01 00:00:01 UTC ~ 2040-01-19 03:14:07 UTC | 4个字节  |
 
-  
+
 
 - 字符串类型
 
@@ -73,7 +75,7 @@
 
 
 
-**日期类型 TIMESTAMP：**	
+**日期类型 TIMESTAMP：**
 
 - DEFAULT CURRENT_TIMESTAMP:如插入记录时未指定具体时间数据，则会插入当前时间的时间戳。
 - NO UPDATE CURRENT_TIMESTAMP:如更新记录时未指定具体的时间数据，则会插入当前时间的时间戳。
@@ -106,6 +108,21 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
 
    <font color="#900">想要在修改表时添加主键自增，需要使用change关键字进行添加。</font>
 
+  **设置主键初始值**
+
+  ```
+    ALTER TALBE testkey AUTO_INCREMENT=10001;
+  ```
+  **创建表时设置初始id**
+  ```
+  create table testkey2(
+    id int unsigned not null primary key auto_increment,#设置主键为id类型为int unsigned
+    name varchar(20) not null)
+    auto_increment = 10001;
+  ```
+
+  通过alter命令更改主键的
+
    *删除表主键约束：*
 
    **ALTER TABLE table_name**
@@ -122,7 +139,7 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
        -> id_number varchar(18)
        -> );
    Query OK, 0 rows affected (0.02 sec)
-   
+
    mysql> desc test;
    +-----------+-------------+------+-----+---------+-------+
    | Field     | Type        | Null | Key | Default | Extra |
@@ -133,12 +150,12 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
    | id_number | varchar(18) | YES  |     | NULL    |       |
    +-----------+-------------+------+-----+---------+-------+
    4 rows in set (0.01 sec)
-   
+
    mysql> alter table test
        -> drop primary key;
    Query OK, 0 rows affected (0.05 sec)
    Records: 0  Duplicates: 0  Warnings: 0
-   
+
    mysql> desc test;
    +-----------+-------------+------+-----+---------+-------+
    | Field     | Type        | Null | Key | Default | Extra |
@@ -167,7 +184,7 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
        -> change column id id int auto_increment;
    Query OK, 0 rows affected (0.04 sec)
    Records: 0  Duplicates: 0  Warnings: 0
-   
+
    mysql> desc test;
    +-----------+-------------+------+-----+---------+----------------+
    | Field     | Type        | Null | Key | Default | Extra          |
@@ -182,7 +199,7 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
 
    <font color="#900">以上操作时在是创建数据库时添加主键约束，之后进行主键约束的删除，添加和添加主键自增。</font>
 
-   
+
 
    ****
 
@@ -190,7 +207,7 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
 
    外键约束是和主键约束一起使用的，用来保证数据的一致性。可以理解为一个表的外键就是另外一个表的主键，外键可以重复，主键不可以重复。如果一个表的主键是另外一个表的外键，那么这两个表的关联性就会被加强。
 
-   
+
 
    *创建表时设置外键约束：*
 
@@ -198,15 +215,15 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
 
    **REFERENCES <主表名> 主键1[,主键2,...];**
 
-   <font color="#900">**在进行外键的定义时，CONSTRAINT并不是必须的，它存在的意义仅仅只是为了在删除外键时使用，即使不手动添加外键名执行SQL语句也不会报错，数据库在运行SQL语句时会自动添加上默认的外键名，可以通过使用 SHOW CREATE TABLE table_name 展示表结构语句来查看表中外键的默认名**</font> 
+   <font color="#900">**在进行外键的定义时，CONSTRAINT并不是必须的，它存在的意义仅仅只是为了在删除外键时使用，即使不手动添加外键名执行SQL语句也不会报错，数据库在运行SQL语句时会自动添加上默认的外键名，可以通过使用 SHOW CREATE TABLE table_name 展示表结构语句来查看表中外键的默认名**</font>
 
-   
+
 
    *删除表外键约束：*
 
    **ALTER TABLE table_name DROP FOREIGN KEY 外键约束名**
 
-   
+
 
    *在修改表时添加外键约束：*
 
@@ -220,9 +237,9 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
 
    <font color="#900">我们可以在修改表时创建外键约束，但是有一点需要特别注意，要确保添加外键约束的列的值都来自主表的主键列，且外键列不能为空。</font>
 
-   
 
-   
+
+
 
    **定义外键时，需要遵守下列规则：**
 
@@ -242,7 +259,7 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
        -> references test(id)
        -> );
    Query OK, 0 rows affected (0.05 sec)
-   
+
    mysql> show create table test2;
    +-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Table | Create Table                                                                                                                                                                                                                                    |
@@ -259,7 +276,7 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
        -> drop foreign key k;
    Query OK, 0 rows affected (0.01 sec)
    Records: 0  Duplicates: 0  Warnings: 0
-   
+
    mysql> show create table test2;
    +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Table | Create Table                                                                                                                                                               |
@@ -271,7 +288,7 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
    +-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    1 row in set (0.00 sec)
-   
+
    mysql> alter table clerk_position
        -> add constraint clerk_position_clerk
        -> foreign key (id)
@@ -290,19 +307,19 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
 
    唯一约束和主键约束类似，他们都可以确保信息唯一性，但是唯一约束可以为空，且唯一约束可以有多个。
 
-   
+
 
    *创建表时设置唯一约束语法：*
 
    **<字段名> <数据类型> UNIQUE**
 
-   
+
 
    *在修改表时添加唯一约束语法：*
 
    **ALTER TABLE <表名> ADD CONSTRAINT <唯一约束名> UNIQUE(<列名>);**
 
-   
+
 
    *删除唯一约束语法：*
 
@@ -310,14 +327,14 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
 
    <font color="#900">唯一约束的使用场景比较少，只有在表中已有主键且有字段具有唯一性的地方才需要使用，且需要注意的是唯一约束与外键约束不同，唯一约束的默认唯一约束名就是字段本身，在删除唯一约束的时候之哟啊加上**INDEX**关键字就可以删除约束了。</font>
 
-   
+
 
    ```MySQL
    mysql> alter table test
        -> add unique key(id_number);
    Query OK, 0 rows affected (0.05 sec)
    Records: 0  Duplicates: 0  Warnings: 0
-   
+
    mysql> desc test;
    +-----------+-------------+------+-----+---------+----------------+
    | Field     | Type        | Null | Key | Default | Extra          |
@@ -342,12 +359,12 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
    +-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    1 row in set (0.02 sec)
-   
+
    mysql> alter table test
        -> drop index id_number;
    Query OK, 0 rows affected (0.05 sec)
    Records: 0  Duplicates: 0  Warnings: 0
-   
+
    mysql> desc test;
    +-----------+-------------+------+-----+---------+----------------+
    | Field     | Type        | Null | Key | Default | Extra          |
@@ -370,13 +387,13 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
 
    <font color="#900">**若将CHECK约束子语句至于所有列的定义以及主键约束和外键约束定义之后，则种种约束也成为基于表的CHECK约束。该约束可以同时对表中多个列设置限定条件。**</font>
 
-   
+
 
    *创建表时设置检查约束语法：*
 
    **CHECK<布尔表达式>**
 
-   
+
 
    *在修改表时添加检查约束语法：*
 
@@ -384,7 +401,7 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
 
    <font color="#900">在修改表时添加的检查约束是可以针对表中多个列设置限制条件的。</font>
 
-   
+
 
    *删除检查约束语法：*
 
@@ -396,12 +413,12 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
        -> check(age>10);
    Query OK, 1 row affected (0.11 sec)
    Records: 1  Duplicates: 0  Warnings: 0
-   
+
    mysql> insert into test(name,age,id_numbner) values('lizanyang',1,'223');
    ERROR 1054 (42S22): Unknown column 'id_numbner' in 'field list'
    mysql> insert into test(name,age,id_number) values('lzu',11,'12313');
    Query OK, 1 row affected (0.02 sec)
-   
+
    mysql> select * from test;
    +----+------+------+-----------+
    | id | name | age  | id_number |
@@ -419,55 +436,55 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
 5. **非空约束：NOT NULL**
 
    用来约束表中字段不能为空。
-   
-   
-   
+
+
+
    *创建表时设置非空约束语法：*
-   
+
    **<字段名> <数据类型> NOT NULL**
-   
-   
-   
+
+
+
    *在修改表时添加非空约束：*
-   
+
    **ALTER TABLE <表名> CHANGE COLUMN <字段名> <字段名> <数据类型> NUT NULL**
-   
+
    <font color="#900">**需要注意的是这里在添加表时使用的关键字不是ADD而是CHANGE COLUMN关键字，所以需要注意字段名和数据类型的填入需要和本身的类型一致。**</font>
-   
-   
-   
+
+
+
    *删除表字段非空约束语法：*
-   
+
    **ALTER TABLE <表名> CHANGE COLUMN <字段名> <字段名> <数据类型> NULL**
-   
+
    <font color="#900">删除非空约束和在修改表时添加非空约束很相似，也是使用的CHANGE关键字，唯一不同的是将NOT NULL换成NULL就可以删除字段的非空约束了。</font>
-   
-   
-   
+
+
+
    ****
-   
+
 1. **默认值约束：Default Constraint**
 
    默认值约束可以在输入字段值为空时，自动添加默认的值。
-   
+
    `默认值约束通常用在已经设置了非空约束的列，这样嫩巩固防止数据表在录入数据的时候出现错误。`
-   
+
    *在创建表时设置非空约束语法：*
-   
+
    **<字段名> <数据类型> DEFAULT <默认值>**
-   
-   
-   
+
+
+
    *修改表时添加默认值约束：*
-   
+
    **ALTER TABLE <表名> CHANGE COLUMN <字段名> <数据类型> DEFAULT <默认值>**
-   
-   
-   
+
+
+
    *删除默认值约束：*
-   
+
    **ALTER TABLE <表名> CHANGE COLUMN <字段名> <字段名> <数据类型> DEFAULT NULL;**
-   
+
    <font color="#900">设置默认值约束的方法类似于设置非空约束，使用的都是CHANGE子语句，删除默认值的方法也是将默认值重新设置为NULL的过程。</font>
 
 
@@ -522,7 +539,7 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
 - TCL（事务控制语言）：
 
   事务控制语言主要用来处理数据库中的业务，比如提交交易，业务回滚。
-  
+
 
 ****
 
@@ -537,11 +554,11 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
 2. **desc table_name：**
 
    这条命令的意思是查看表结构，通过关键字desc+表名可以查看此表的详细信息与结构。
-   
+
 3. **system cls:**
 
    这条命令可以清空指令。
-   
+
 4. **create database database_name:**
 
    此指令用于创建数据库。
@@ -569,6 +586,14 @@ MySQL中主要有支持六种约束，以下六种约束，除了主键约束之
   **INSERT INTO <table_name> (column1,column2,......) VALAUES (value1,value2,......); **
 
   在使用添加语句时，需要注意列名和每列对应的值要对应一致，有些自带默认值的可以不进行添加。
+
+  添加指令可以进行简写：
+
+  ```
+  INSERT INTO <tablename> VALUES(value1,value2,value3);
+  ```
+
+  需要注意的是，这样写需要对应列的顺序。
 
 - **DELETE （删除）：**
 
@@ -693,7 +718,7 @@ mysql> select * from mb where name not like '%a%';
 
   **CHANGE**关键字也可以用来修改字段，使用方式如下：**ALTER TABLE <表名> CHANGE <旧字段名> <新字段名> [约束条件]**CHANGE关键字的使用需要注意字段名的位置。
 
-  
+
 
 - **添加字段：ALTER TABLE <表名> ADD <新字段名> <数据类型> [约束条件]**
 
@@ -701,19 +726,19 @@ mysql> select * from mb where name not like '%a%';
 
   *在表中间添加字段需要使用关键字**AFTER*** **ALTER TABLE <表名> ADD<新字段名> <数据类型> [约束条件] AFTER <已存在的字段名>**执行语句之后就会在旧的字段名之后添加新的字段。
 
-  
+
 
 - **修改表名：ALTER TABLE <旧表名> RENAME <新表名>; RENAME TABLE <旧表名> TO <新表名>;**
 
   以上两种方式都可以进行表名的修改。
 
-  
+
 
 - **删除主键约束：ALTER TABLE <表名> DROP PRIMARY KEY;**
 
   执行这段指令可以删除指定表中的主键约束。
 
-  
+
 
 **当我们需要对字段添加约束的时，可以使用修改字段的方式进行添加，也可以使用添加字段的方式进行添加，使用添加字段的方式进行添加约束的语法类似于在拆功能键表的最后一行添加约束。**
 
@@ -971,7 +996,7 @@ mysql> select age,group_concat(id) as id from test group by age having age=2;
   **FROM table1 [INNER|LEFT|RIGHT|FULL|CROSS] JOIN table2**
 
   **NO condition(column1=column2) [WHERE condition] **
-  
+
   ****
 
 ##### 交叉连接（CROSS JOIN）：
@@ -1218,6 +1243,122 @@ mysql> select t1.id,t1.name,t2.address from t1 right outer join t2 on t1.id=t2.i
 
 ****
 
+## 模糊查詢（LIKE）
+
+在日常使用和工作业务中，我们可能会经常使用模糊查询来通过某个字段和条件来进行信息的查找。
+
+**语法结构：**
+
+**SELECT * FROM < tablename > WHERE name LIKE "%value%"**
+
+LIKE的用法可以理解为代替了=而存在，我们使用LIKE关键字的时候还需要配合通配符来使用。
+
+| 通配符                    | 说明                                                         |
+| ------------------------- | ------------------------------------------------------------ |
+| 百分号（%）               | 代表零或多个任意的字符。                                     |
+| 下划线（_）               | 代表单个字符或数字                                           |
+| [charlist]                | 字符列表中的任何单一字符。可以使用连字符（-）根据 ASCII 编码指定一个字符范围，例如 :[0-9] 表示从 0 到 9 的任一数字； [a-z] 表示小写英文字母； [a-zA-Z] 表示英文字母，不区分大小写； [a-zA-Z0-9] 表示英文字母和阿拉伯数字。 |
+| [^charlist] 或[!charlist] | 不在字符列表中的任何单一字符。同上，也可以使用连字符（-）指定一个字符范围。 |
+
+**实际代码：**
+
+```mysql
+mysql> select * from mb;
++----+--------+
+| id | name   |
++----+--------+
+|  1 | lzy    |
+|  2 | 王     |
+|  4 | 张三   |
+|  5 | 张三   |
+|  7 | wang   |
+|  9 | zhang  |
+| 10 | zhang  |
+| 11 | zhang  |
++----+--------+
+8 rows in set (0.01 sec)
+mysql> SELECT * FROM mb WHERE name LIKE "%z%";
++----+-------+
+| id | name  |
++----+-------+
+|  1 | lzy   |
+|  9 | zhang |
+| 10 | zhang |
+| 11 | zhang |
++----+-------+
+4 rows in set (0.00 sec)
+```
+
+这里可以看到我们查找了姓名字段中带有z字符的所有用户信息。
+
+
+
+## 查询数据分页操作
+
+在真正的项目中，我们查询数据不可能每次都是将所有的数据查询出来，而是之只查询除一部分，当有需要的时候在进行其余数据的查询。
+
+**关键字**
+
+<font color="#F00">**LIMIT**</font>
+
+**语法结构：**
+
+**`SELECT * FROM tablename WHERE conlumn=condition LIMIT last,number;`**
+
+- **last：**
+
+  返回查询出所有内容的结果集，从中指定的第一个位置的信息，下标从0开始。
+
+- **number：**
+
+  最终返回结果集的总字段信息条数。
+
+**实际代码演示**
+
+```mysql
+mysql> select * from t
+    -> ;
++----+------+-----+
+| id | name | age |
++----+------+-----+
+|  1 | li1  |  18 |
+|  2 | li2  |  18 |
+|  3 | li3  |  18 |
+|  4 | li4  |  18 |
+|  5 | li5  |  18 |
+|  6 | li6  |  18 |
+|  7 | li7  |  18 |
+|  8 | li8  |  18 |
+|  9 | li9  |  18 |
+| 10 | li10 |  18 |
+| 11 | li11 |  18 |
+| 12 | li12 |  18 |
+| 13 | li13 |  18 |
+| 14 | li14 |  18 |
+| 15 | li15 |  18 |
+| 16 | li16 |  18 |
+| 17 | li17 |  18 |
+| 18 | li18 |  18 |
+| 19 | li19 |  18 |
++----+------+-----+
+mysql> SELECT * FROM t WHERE age=18 LIMIT 9,8;
++----+------+-----+
+| id | name | age |
++----+------+-----+
+| 10 | li10 |  18 |
+| 11 | li11 |  18 |
+| 12 | li12 |  18 |
+| 13 | li13 |  18 |
+| 14 | li14 |  18 |
+| 15 | li15 |  18 |
+| 16 | li16 |  18 |
+| 17 | li17 |  18 |
++----+------+-----+
+8 rows in set (0.00 sec)
+```
+
+**LIMIT**高效率的原理是：避免全表扫描，提高查询效率。
+
 ## 数据库设计
 
 ### E-R模型
@@ -1251,6 +1392,8 @@ mysql> select t1.id,t1.name,t2.address from t1 right outer join t2 on t1.id=t2.i
   意思就是每张表中的除主键以外的其他字段属性，不对非主键字段属性产生依赖，且要求数据库表中不包含已在其它表中 包含的非主关键字信息。例如笔记本电脑的型号，cup，核显在一个表中，这个时候核显依赖cpu存在，cpu依赖电脑型号存在，这个时候就不符合第三范式。应该单独列出一个主键为电脑型号，字段为核显的表。这样在修改和添加表的时候可以有效的减少修改和删除异常。
 
 
+
+## MySql常用函数
 
 
 

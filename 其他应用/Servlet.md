@@ -2,6 +2,12 @@
 
 # Servlet
 
+## 一个JavaWEB项目所需的完整jar包
+
+```
+
+```
+
 **Servlet是Server Applet的简称，译作“服务器端小程序”。它是一种基于Java技术的Web组件，运行在服务器端，由Servlet容器管理，用来生成动态Web内容。**
 
 ## 动态Web内容
@@ -1358,7 +1364,17 @@ javax.servlet 包中提供了一个 FilterChain 接口，该接口由容器实�
 
 
 
+## token实现用户验证
 
+token可以替代session来实现用户信息的验证，这样做大大减轻了服务器的负担。
+
+**实现原理**
+
+![image-20220527112214333](C:\Users\SaoLinSiDaShiXiong\AppData\Roaming\Typora\typora-user-images\image-20220527112214333.png)
+
+在登录请求中我们会将前端请求中的用户名和密码进行验证，如果存在在数据中，就用该信息，和指定好的失效时间通过加密来声生成一个特定的token值，之后将该值返回给前端。
+
+在进行其他操作的时候，我们会获得前端请求中的token值，然后进行验证，如果是合法用户我们就进行响应的dao操作。
 
 ****
 

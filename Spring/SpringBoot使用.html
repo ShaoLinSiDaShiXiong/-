@@ -1,0 +1,880 @@
+<!DOCTYPE html><html><head>
+      <title>SpringBoot&#x4F7F;&#x7528;</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///C:\Users\SaoLinSiDaShiXiong\.atom\packages\markdown-preview-enhanced-with-litvis\node_modules\mume-with-litvis\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="springboot%E4%BD%BF%E7%94%A8">SpringBoot&#x4F7F;&#x7528;</h1>
+
+<p><strong>SpringBoot&#x5E76;&#x4E0D;&#x662F;&#x4E00;&#x95E8;&#x6280;&#x672F;&#xFF0C;&#x800C;&#x662F;&#x6574;&#x5408;&#x4E86;&#x6211;&#x4EEC;&#x65E5;&#x5E38;&#x7ECF;&#x5E38;&#x4F7F;&#x7528;&#x7684;&#x4E00;&#x4E9B;&#x5176;&#x4ED6;&#x6280;&#x672F;&#xFF0C;&#x4ECE;&#x800C;&#x5927;&#x5927;&#x51CF;&#x5C11;&#x4E86;&#x6211;&#x4EEC;&#x5F00;&#x53D1;&#x4E2D;&#x5BF9;&#x4E8E;&#x73AF;&#x5883;&#x7684;&#x642D;&#x5EFA;</strong></p>
+<p><strong><font color="red">SpringBoot&#x9879;&#x76EE;&#x4F1A;&#x6839;&#x636E;&#x9879;&#x76EE;&#x4F9D;&#x8D56;&#x548C;&#x76F8;&#x5173;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x6765;&#x8FDB;&#x884C;&#x81EA;&#x52A8;&#x88C5;&#x914D;&#xFF0C;&#x8FD9;&#x70B9;&#x5F88;&#x65B9;&#x4FBF;&#xFF0C;&#x5927;&#x5927;&#x51CF;&#x5C11;&#x4E86;&#x6211;&#x4EEC;&#x7F16;&#x7801;&#x7684;&#x590D;&#x6742;&#x5EA6;&#x3002;&#x4F46;&#x662F;&#x9700;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x4E9B;&#x4F9D;&#x8D56;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x8D44;&#x6E90;&#x914D;&#x7F6E;&#x4F46;&#x662F;&#x6CA1;&#x6709;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#x5C31;&#x4F1A;&#x62A5;&#x9519;&#xFF0C;&#x6BD4;&#x5982;&#x6DFB;&#x52A0;&#x4E86;MySQL&#x6216;mybatis&#x4F9D;&#x8D56;&#x4F46;&#x662F;&#x6CA1;&#x6709;&#x8FDB;&#x884C;&#x8D44;&#x6E90;&#x914D;&#x7F6E;&#xFF0C;&#x90A3;&#x4E48;&#x9879;&#x76EE;&#x542F;&#x52A8;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x4F1A;&#x62A5;&#x9519;&#x3002;</font></strong></p>
+<h2 class="mume-header" id="autowired%E6%B3%A8%E8%A7%A3">@Autowired&#x6CE8;&#x89E3;</h2>
+
+<h2 class="mume-header" id="%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E5%AF%B9spring%E8%87%AA%E5%8A%A8%E8%A3%85%E8%BD%BD%E7%9A%84%E5%B1%8F%E8%94%BD">&#x4F7F;&#x7528;&#x6CE8;&#x89E3;&#x5BF9;spring&#x81EA;&#x52A8;&#x88C5;&#x8F7D;&#x7684;&#x5C4F;&#x853D;</h2>
+
+<p>&#x5728;<code>@SpringBootApplication</code>&#x6CE8;&#x89E3;&#x540E;&#x9762;&#x6DFB;&#x52A0;<code>exclude</code><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>&#x5C5E;&#x6027;&#x6765;&#x8FDB;&#x884C;&#x67D0;&#x4E9B;&#x4E0D;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x81EA;&#x52A8;&#x88C5;&#x914D;&#x7684;&#x5730;&#x65B9;&#x8FDB;&#x884C;&#x5C4F;&#x853D;</p>
+<h2 class="mume-header" id="static%E7%9B%AE%E5%BD%95%E5%92%8Ctemplates%E7%9B%AE%E5%BD%95%E7%9A%84%E5%8C%BA%E5%88%AB">static&#x76EE;&#x5F55;&#x548C;templates&#x76EE;&#x5F55;&#x7684;&#x533A;&#x522B;</h2>
+
+<p>static&#x76EE;&#x5F55;&#x4E2D;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x5B58;&#x653E;&#x9759;&#x6001;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#xFF0C;&#x6BD4;&#x5982;css&#xFF0C;js&#xFF0C;img&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x4E9B;&#x6587;&#x4EF6;&#x90FD;&#x4E0D;&#x4F1A;&#x52A8;&#x6001;&#x6539;&#x53D8;&#x3002;</p>
+<p>templates&#x76EE;&#x5F55;&#x4E2D;&#x7528;&#x4E8E;&#x5B58;&#x653E;&#x4F1A;&#x52A8;&#x6001;&#x53D8;&#x5316;&#x7684;html&#x6587;&#x4EF6;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x5728;SpringBoot&#x9879;&#x76EE;&#x4E2D;&#x6DFB;&#x52A0;&#x4E86;Thymeleaf&#x4F9D;&#x8D56;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x9879;&#x76EE;&#x542F;&#x52A8;&#x65F6;&#x53EA;&#x4F1A;&#x81EA;&#x52A8;&#x68C0;&#x6D4B;&#x8BE5;&#x76EE;&#x5F55;&#x4E2D;&#x7684;html&#x6587;&#x4EF6;&#x3002;</p>
+<p><img src="assets/SpringBoot%E4%BD%BF%E7%94%A8-83a94920.png" alt="&#x9879;&#x76EE;&#x76EE;&#x5F55;&#x7ED3;&#x6784;"></p>
+<h2 class="mume-header" id="%E4%BD%BF%E7%94%A8thymeleaf">&#x4F7F;&#x7528;Thymeleaf</h2>
+
+<p>&#x76F8;&#x5E94;&#x4F9D;&#x8D56;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre><p>&#x4F7F;&#x7528;Thymeleaf&#x9700;&#x8981;&#x5728;html&#x5934;&#x90E8;&#x8FDB;&#x884C;&#x5F15;&#x5165;&#x5E76;&#x58F0;&#x660E;&#x547D;&#x540D;&#x7A7A;&#x95F4;</p>
+<blockquote>
+<p>xmlns:th=&quot;<a href="http://www.thymeleaf.org">http://www.thymeleaf.org</a></p>
+</blockquote>
+<pre data-role="codeBlock" data-info class="language-"><code>  &lt;html lang=&quot;en&quot; xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
+</code></pre><p>&#x5F53;&#x6DFB;&#x52A0;&#x4E86;&#x8BE5;&#x4F9D;&#x8D56;&#x4E4B;&#x540E;&#xFF0C;Thymeleaf&#x4F1A;&#x4EE5;&#x9ED8;&#x8BA4;&#x7684;&#x914D;&#x7F6E;&#x5BF9;<code>resource/templates</code>&#x76EE;&#x5F55;&#x4E2D;&#x7684;html&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x6E32;&#x67D3;&#x3002;</p>
+<p>Thymeleaf&#x4E3B;&#x8981;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x5C06;html&#x4EE3;&#x7801;&#x6A21;&#x677F;&#x5316;&#x3002;</p>
+<blockquote>
+<p>&#x4E0E; Spring Boot &#x5176;&#x4ED6;&#x81EA;&#x5B9A;&#x4E49;&#x914D;&#x7F6E;&#x4E00;&#x6837;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728; application.properties/yml &#x4E2D;&#x4FEE;&#x6539;&#x4EE5; spring.thymeleaf &#x5F00;&#x59CB;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x4EE5;&#x5B9E;&#x73B0;&#x4FEE;&#x6539; Spring Boot &#x5BF9; Thymeleaf &#x7684;&#x81EA;&#x52A8;&#x914D;&#x7F6E;&#x7684;&#x76EE;&#x7684;&#x3002;</p>
+</blockquote>
+<p><strong>&#x4F7F;&#x7528;&#x62E6;&#x622A;&#x5668;&#x8FDB;&#x884C;&#x9875;&#x9762;&#x8DF3;&#x8F6C;&#xFF1A;</strong></p>
+<pre data-role="codeBlock" data-info class="language-"><code>import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
+public class LoginController {
+
+	@PostMapping(&quot;login&quot;)
+	public String login1() {
+		System.out.println(&quot;&#x8FDB;&#x5165;&#x767B;&#x5F55;&#x754C;&#x9762;&quot;);
+		return&quot;login&quot;;
+	}
+	@GetMapping(&quot;login&quot;)
+	public String login2() {
+		System.out.println(&quot;&#x8FDB;&#x5165;&#x767B;&#x5F55;&#x754C;&#x9762;&quot;);
+		return&quot;login&quot;;
+	}
+}
+
+</code></pre><blockquote>
+<p>&#x62E6;&#x622A;&#x5668;&#x4F1A;&#x81EA;&#x52A8;&#x62E6;&#x622A;&#x6240;&#x6709;&#x8BF7;&#x6C42;&#x94FE;&#x63A5;&#x4E3A;<code>login</code>&#x7684;&#x8BF7;&#x6C42;&#xFF0C;&#x4E4B;&#x540E;Thymeleaf&#x4F1A;&#x901A;&#x8FC7;&#x8FD4;&#x56DE;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x627E;&#x5230;<strong>templates</strong>&#x76EE;&#x5F55;&#x4E2D;&#x76F8;&#x540C;&#x7684;html&#x6587;&#x4EF6;&#x5E76;&#x8FDB;&#x884C;&#x8DF3;&#x8F6C;&#x3002;</p>
+</blockquote>
+<h2 class="mume-header" id="%E6%8E%A7%E5%88%B6%E5%99%A8">&#x63A7;&#x5236;&#x5668;</h2>
+
+<p><strong>&#x63A7;&#x5236;&#x5668;&#x6CE8;&#x89E3;&#x4E3B;&#x8981;&#x6709;&#x4E24;&#x79CD;&#xFF1A;</strong></p>
+<ul>
+<li>
+<p><strong>Controller&#xFF1A;</strong> &#x5C06;&#x4E00;&#x4E2A;Java&#x7C7B;&#x6807;&#x8BC6;&#x6210;&#x63A7;&#x5236;&#x5668;&#x7C7B;&#x3002;</p>
+</li>
+<li>
+<p><strong>RestController&#xFF1A;</strong> &#x5E26;&#x6709;&#x8BE5;&#x6CE8;&#x89E3;&#x7684;&#x7C7B;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x65B9;&#x6CD5;&#x90FD;&#x81EA;&#x5E26;<code>@ResponseBody</code>&#x6CE8;&#x89E3;&#x3002;</p>
+</li>
+</ul>
+<h4 class="mume-header" id="requestmapping%E6%B3%A8%E8%A7%A3">@RequestMapping&#x6CE8;&#x89E3;</h4>
+
+<p>RequestMapping&#x6CE8;&#x89E3;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x5BF9;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x8BF7;&#x6C42;&#x5730;&#x5740;&#x7684;&#x62E6;&#x622A;&#x3002;</p>
+<h4 class="mume-header" id="responsebody%E6%B3%A8%E8%A7%A3">@ResponseBody&#x6CE8;&#x89E3;</h4>
+
+<p>&#x6DFB;&#x52A0;&#x8BE5;&#x6CE8;&#x89E3;&#x4E4B;&#x540E;&#x7684;&#x65B9;&#x6CD5;&#x4F1A;&#x5C06;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x8FD4;&#x56DE;&#x7ED9;&#x5F53;&#x524D;&#x9875;&#x9762;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;Ajax&#x8BF7;&#x6C42;&#x3002;</p>
+<h2 class="mume-header" id="%E8%8E%B7%E5%BE%97%E7%9B%B8%E5%BA%94%E5%86%85%E5%AE%B9">&#x83B7;&#x5F97;&#x76F8;&#x5E94;&#x5185;&#x5BB9;</h2>
+
+<p>&#x83B7;&#x53D6;&#x76F8;&#x5E94;&#x5185;&#x5BB9;&#x6709;&#x4E09;&#x79CD;&#x65B9;&#x5F0F;</p>
+<ul>
+<li>
+<p><strong>&#x901A;&#x8FC7;<code>HttpServletRequest</code>&#x7684;parameter&#x83B7;&#x5F97;&#xFF1A;</strong></p>
+<blockquote>
+<p>localhost:8080/login?name=lzy&amp;password=123456</p>
+</blockquote>
+<pre data-role="codeBlock" data-info class="language-"><code>@RequestMapping(&quot;login&quot;)
+public String updateById(HttpServletRequest request){
+    String name = request.getParameter(&quot;name&quot;);
+    String password = request.getParameter(&quot;password&quot;);
+    return null;
+}
+</code></pre><p>&#x5728;&#x53C2;&#x6570;&#x5217;&#x8868;&#x4E2D;&#x5F15;&#x5165;<code>HttpServletRequest</code>&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x901A;&#x8FC7;&#x8BE5;&#x5BF9;&#x8C61;&#x4E2D;&#x7684;<code>getParameter</code>&#x65B9;&#x6CD5;&#x83B7;&#x5F97;&#x76F8;&#x5E94;&#x7684;&#x53C2;&#x6570;&#x3002;</p>
+</li>
+<li>
+<p><strong>&#x901A;&#x8FC7;&#x5F62;&#x53C2;&#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#xFF1A;</strong><br>
+&#x5728;&#x62E6;&#x622A;&#x5668;&#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#x5217;&#x8868;&#x4E2D;&#x5F15;&#x5165;&#x548C;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#x76F8;&#x540C;&#x7684;&#x5F62;&#x53C2;&#xFF0C;SpringMVC&#x4F1A;&#x81EA;&#x901A;&#x8FC7;&#xFF0C;&#x53C2;&#x6570;&#x540D;&#x81EA;&#x52A8;&#x5206;&#x914D;&#x503C;&#x3002;</p>
+<blockquote>
+<p>localhost:8080/login?name=lzy&amp;password=123456</p>
+</blockquote>
+<pre data-role="codeBlock" data-info class="language-"><code>@RequestMapping(&quot;login&quot;)
+public String updateById(String name,String password){
+    System.out.println(&quot;name:&quot;+name+&quot;,password:&quot;+password);
+    return null;
+}
+</code></pre></li>
+<li>
+<p><strong>&#x901A;&#x8FC7;&#x5B9E;&#x4F53;&#x7C7B;&#x5BF9;&#x8C61;&#x6765;&#x83B7;&#x53D6;&#x8BF7;&#x6C42;&#x53C2;&#x6570;&#xFF1A;</strong></p>
+<p><em><font color="red">&#x8FD9;&#x662F;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#xFF0C;&#x4E14;&#x4E0D;&#x7528;&#x8003;&#x8651;&#x5F62;&#x53C2;&#x8FC7;&#x591A;&#x7684;&#x95EE;&#x9898;&#x3002;</font></em></p>
+<blockquote>
+<p>localhost:8080/login?name=lzy&amp;password=123456</p>
+</blockquote>
+<pre data-role="codeBlock" data-info class="language-"><code>@RequestMapping(&quot;login&quot;)
+public String updateById(Student student){
+    System.out.println(student);
+    return null;
+}
+</code></pre></li>
+</ul>
+<h2 class="mume-header" id="%E6%8B%A6%E6%88%AA%E5%99%A8">&#x62E6;&#x622A;&#x5668;</h2>
+
+<blockquote>
+<p>&#x62E6;&#x622A;&#x5668;&#x5B9E;&#x73B0;&#xFF1A; &#x8BBE;&#x7F6E;&#x62E6;&#x622A;&#x5668; =&gt; &#x6CE8;&#x518C;&#x62E6;&#x622A;&#x5668; =&gt; &#x5728;&#x4E0D;&#x540C;&#x7684;&#x5730;&#x65B9;&#x88AB;&#x89E6;&#x53D1;</p>
+</blockquote>
+<p><strong><font color="red">&#x4E00;&#x5B9A;&#x8981;&#x5728;&#x62E6;&#x622A;&#x5668;&#x4E0A;&#x6DFB;&#x52A0;@Component&#x6CE8;&#x89E3;&#x548C;&#x5728;&#x6CE8;&#x518C;&#x63A7;&#x5236;&#x5668;&#x7684;&#x7C7B;&#x4E0A;&#x6DFB;&#x52A0;@Configuration&#x6CE8;&#x89E3;&#xFF0C;&#x5426;&#x5219;spring&#x5C31;&#x4F1A;&#x627E;&#x4E0D;&#x5230;&#x62E6;&#x622A;&#x5668;&#xFF0C;&#x4ECE;&#x800C;&#x5BFC;&#x81F4;&#x62E6;&#x622A;&#x5668;&#x5931;&#x6548;</font></strong></p>
+<ol>
+<li>
+<p><strong>&#x8BBE;&#x7F6E;&#x62E6;&#x622A;&#x5668;&#xFF1A;</strong><br>
+&#x901A;&#x8FC7;&#x5B9E;&#x73B0;<code>HandlerInterceptor</code>&#x63A5;&#x53E3;&#x5E76;&#x6DFB;&#x52A0;<code>@Component</code>&#x6CE8;&#x89E3;&#x6765;&#x8868;&#x540D;&#x8BE5;&#x7C7B;&#x662F;&#x4E00;&#x4E2A;&#x9700;&#x8981;&#x88AB;&#x626B;&#x63CF;&#x7684;&#x7EC4;&#x4EF6;&#x3002;<br>
+&#x5927;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x901A;&#x8FC7;&#x5B9E;&#x73B0;<code>HandlerInterceptorAdapter</code>&#x63A5;&#x53E3;&#xFF0C;&#x4ED6;&#x4EEC;&#x90FD;&#x662F;&#x7EE7;&#x627F;&#x81EA;<code>HandlerInterceptor</code>&#x63A5;&#x53E3;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerInterceptor;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Component
+public class MyInterceptor implements HandlerInterceptor {
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		log.info(&quot;&#x62E6;&#x622A;&#x5668;:&quot;+request.getParameter(&quot;username&quot;));
+		return true;
+	}
+}
+</code></pre></li>
+</ol>
+<ul>
+<li>
+<p>preHandle:<br>
+<strong>&#x8BE5;&#x65B9;&#x6CD5;&#x5728;&#x6267;&#x884C;&#x5668;&#x65B9;&#x6CD5;&#x4E4B;&#x524D;&#x6267;&#x884C;&#x3002;</strong> &#x8FD4;&#x56DE;&#x503C;&#x4E3A;Boolean&#x7C7B;&#x578B;&#xFF0C;&#x5982;&#x679C;&#x8FD4;&#x56DE;false,&#x8868;&#x793A;&#x62E6;&#x622A;&#x5668;&#x4E0D;&#x518D;&#x5411;&#x4E0B;&#x6267;&#x884C;&#xFF1B;&#x5982;&#x679C;&#x8FD4;&#x56DE;true,&#x8868;&#x793A;&#x653E;&#x884C;&#xFF0C;&#x7A0B;&#x5E8F;&#x5411;&#x4E0B;&#x6267;&#x884C;(&#x5982;&#x679C;&#x540E;&#x8FB9;&#x6CA1;&#x6709;&#x5176;&#x4ED6;Interceptor,&#x5C31;&#x4F1A;&#x6267;&#x884C;Controller&#x65B9;&#x6CD5;)&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x6B64;&#x65B9;&#x6CD5;&#x53EF;&#x5BF9;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x5224;&#x65AD;&#xFF0C;&#x51B3;&#x5B9A;&#x7A0B;&#x5E8F;&#x662F;&#x5426;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#xFF0C;&#x6216;&#x8005;&#x8FDB;&#x884C;&#x4E00;&#x4E9B;&#x521D;&#x59CB;&#x5316;&#x64CD;&#x4F5C;&#x53CA;&#x5BF9;&#x8BF7;&#x6C42;&#x8FDB;&#x884C;&#x9884;&#x5904;&#x7406;&#x3002;</p>
+</li>
+<li>
+<p>postHandle:<br>
+<strong>&#x8BE5;&#x65B9;&#x6CD5;&#x5728;&#x6267;&#x884C;&#x63A7;&#x5236;&#x5668;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x4E4B;&#x540E;&#xFF0C;&#x4E14;&#x5728;&#x8FD4;&#x56DE;ModelAndView&#x4E4B;&#x524D;&#x6267;&#x884C;&#x3002;</strong> &#x7531;&#x4E8E;&#x8BE5;&#x65B9;&#x6CD5;&#x4F1A;&#x5728;DispatcherServlet&#x8FDB;&#x884C;&#x8FD4;&#x56DE;&#x89C6;&#x56FE;&#x6E32;&#x67D3;&#x4E4B;&#x524D;&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x6240;&#x4EE5;&#x6B64;&#x65B9;&#x6CD5;&#x591A;&#x88AB;&#x7528;&#x4E8E;&#x5904;&#x7406;&#x8FD4;&#x56DE;&#x7684;&#x89C6;&#x56FE;&#xFF0C;&#x53EF;&#x901A;&#x8FC7;&#x6B64;&#x65B9;&#x6CD5;&#x591A;&#x88AB;&#x7528;&#x4E8E;&#x5904;&#x7406;&#x8FD4;&#x56DE;&#x7684;&#x89C6;&#x56FE;&#xFF0C;&#x53EF;&#x901A;&#x8FC7;&#x6B64;&#x65B9;&#x6CD5;&#x5BF9;&#x8BF7;&#x6C42;&#x57DF;&#x4E2D;&#x7684;&#x6A21;&#x578B;&#x548C;&#x89C6;&#x56FE;&#x505A;&#x8FDB;&#x4E00;&#x6B65;&#x7684;&#x4FEE;&#x6539;</p>
+</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>&#x6CE8;&#x518C;&#x62E6;&#x622A;&#x5668;&#xFF1A;</strong><br>
+&#x6CE8;&#x518C;&#x62E6;&#x622A;&#x5668;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x5206;&#x522B;&#x662F;</p>
+<ul>
+<li>
+<p>&#x7EE7;&#x627F;WebMvcConfigurationSupport&#x7C7B;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>@Configuration
+public class MyInterceptorConfig extends WebMvcConfigurationSupport {
+
+    @Override
+    protected void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new MyInterceptor()).addPathPatterns(&quot;/**&quot;);
+        super.addInterceptors(registry);
+    }
+}
+</code></pre><p>&#x8FD9;&#x79CD;&#x65B9;&#x6CD5;&#x4F1A;&#x5BFC;&#x81F4;&#x9ED8;&#x8BA4;&#x7684;&#x9759;&#x6001;&#x8D44;&#x6E90;&#x88AB;&#x62E6;&#x622A;&#xFF0C;&#x9700;&#x8981;&#x6211;&#x4EEC;&#x624B;&#x52A8;&#x5C06;&#x9759;&#x6001;&#x8D44;&#x6E90;&#x5F00;&#x653E;&#xFF0C;&#x9700;&#x8981;&#x91CD;&#x5199;<code>addRsourceHandlers</code>&#x65B9;&#x6CD5;&#x6765;&#x91CA;&#x653E;&#x9759;&#x6001;&#x8D44;&#x6E90;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>@Override
+protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+    registry.addResourceHandler(&quot;/**&quot;).addResourceLocations(&quot;classpath:/static/&quot;);
+    super.addResourceHandlers(registry);
+}
+
+</code></pre></li>
+<li>
+<p>&#x5B9E;&#x73B0;&#x5B9E;&#x73B0;WebMvcConfigurer&#x63A5;&#x53E3;<br>
+&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x5B9E;&#x73B0;WebMvcConfigurer&#x63A5;&#x53E3;&#xFF0C;&#x91CD;&#x5199;addInterceptors&#x65B9;&#x6CD5;&#xFF0C;&#x6B64;&#x65B9;&#x6CD5;&#x4E0D;&#x4F1A;&#x62E6;&#x622A;&#x9759;&#x6001;&#x8D44;&#x6E90;&#x3002;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>@Configuration
+public class MyInterceptorConfig implements WebMvcConfigurer {
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        // &#x5B9E;&#x73B0;WebMvcConfigurer&#x4E0D;&#x4F1A;&#x5BFC;&#x81F4;&#x9759;&#x6001;&#x8D44;&#x6E90;&#x88AB;&#x62E6;&#x622A;
+        registry.addInterceptor(new MyInterceptor()).addPathPatterns(&quot;/**&quot;);
+    }
+}
+</code></pre></li>
+</ul>
+</li>
+</ol>
+<p>&#x7531;&#x4E8E;&#x8FD9;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x7684;&#x4E0D;&#x540C;&#xFF1A;<br>
+&#x7EE7;&#x627F; WebMvcConfigurationSupport&#x7C7B;&#x7684;&#x65B9;&#x5F0F;&#x63A8;&#x8350;&#x7528;&#x5728;&#x524D;&#x540E;&#x7AEF;&#x5206;&#x79BB;&#x7684;&#x9879;&#x76EE;&#x4E2D;&#xFF0C;&#x540E;&#x53F0;&#x4E0D;&#x9700;&#x8981;&#x8BBF;&#x95EE;&#x9759;&#x6001;&#x8D44;&#x6E90;&#xFF08;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x653E;&#x5F00;&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4E86;&#xFF09;&#xFF0C;&#x5F53;&#x7136;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x524D;&#x540E;&#x7AEF;&#x4E0D;&#x5206;&#x79BB;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x8BBF;&#x95EE;&#x9759;&#x6001;&#x8D44;&#x6E90;&#x4F7F;&#x7528;&#x4E0A;&#x9762;&#x7684;&#x65B9;&#x5F0F;&#x91CD;&#x5199;addResourceHandlers&#x65B9;&#x6CD5;&#x5373;&#x53EF;&#xFF1B;<br>
+&#x5B9E;&#x73B0; WebMvcConfigure&#x63A5;&#x53E3;&#x7684;&#x65B9;&#x5F0F;&#x63A8;&#x8350;&#x7528;&#x5728;&#x975E;&#x524D;&#x540E;&#x7AEF;&#x5206;&#x79BB;&#x7684;&#x9879;&#x76EE;&#x4E2D;&#xFF0C;&#x56E0;&#x4E3A;&#x9700;&#x8981;&#x8BFB;&#x53D6;&#x4E00;&#x4E9B;&#x56FE;&#x7247;&#x3001;css&#x3001;js&#x6587;&#x4EF6;&#x7B49;&#x7B49;&#xFF0C;&#x5F53;&#x7136;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5728;&#x524D;&#x540E;&#x7AEF;&#x5206;&#x79BB;&#x9879;&#x76EE;&#x3002;</p>
+<ul>
+<li>afterCompletion:<br>
+<strong>&#x8BE5;&#x65B9;&#x6CD5;&#x5728;&#x6267;&#x884C;&#x5B8C;&#x63A7;&#x5236;&#x5668;&#x4E4B;&#x540E;&#x6267;&#x884C;&#x3002;</strong> &#x7531;&#x4E8E;&#x662F;&#x5728;Controller&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x4E4B;&#x540E;&#x6267;&#x884C;&#x8BE5;&#x65B9;&#x6CD5;&#xFF0C;&#x6240;&#x4EE5;&#x8BE5;&#x65B9;&#x6CD5;&#x9002;&#x5408;&#x8FDB;&#x884C;&#x4E00;&#x4E9B;&#x8D44;&#x6E90;&#x6E05;&#x7406;&#x3001;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;&#x4FE1;&#x606F;&#x7B49;&#x5904;&#x7406;&#x64CD;&#x4F5C;&#x3002;</li>
+</ul>
+<h2 class="mume-header" id="%E6%8E%A5%E6%94%B6%E5%89%8D%E7%AB%AF%E5%8F%82%E6%95%B0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F">&#x63A5;&#x6536;&#x524D;&#x7AEF;&#x53C2;&#x6570;&#x7684;&#x56DB;&#x79CD;&#x65B9;&#x5F0F;</h2>
+
+<ol>
+<li>
+<p><strong>&#x901A;&#x8FC7;&#x539F;&#x751F;<code>HttpServletRequest</code>&#x8FDB;&#x884C;&#x53C2;&#x6570;&#x7684;&#x63A5;&#x6536;&#x3002;</strong></p>
+<pre data-role="codeBlock" data-info class="language-"><code>@RequestMapping(&quot;/b&quot;)
+public String b(HttpServletRequest request,HttpServletResponse response) throws IOException {
+  Integer id = request.getParameter(&quot;id&quot;);
+  mapper.findById(id);
+  return &quot;list&quot;;
+}
+</code></pre><p>&#x8FD9;&#x91CC;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5728;&#x53C2;&#x6570;&#x5217;&#x8868;&#x4E2D;&#x6DFB;&#x52A0;HttpServiletRequest&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x662F;&#x7ECF;&#x8FC7;springboot&#x5C01;&#x88C5;&#x8FC7;&#x7684;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x4F7F;&#x7528;&#x7684;&#x8FD8;&#x662F;&#x5E95;&#x5C42;&#x7684;servlet</p>
+</li>
+<li>
+<p><strong>&#x901A;&#x8FC7;<code>@Param</code>&#x6CE8;&#x89E3;&#x8FDB;&#x884C;&#x53C2;&#x6570;&#x7684;&#x5B9A;&#x4E49;</strong></p>
+<blockquote>
+<p>&#x94FE;&#x63A5;&#xFF1A;<strong>localhost:8080:/user/login?username=lzy&amp;password=123</strong></p>
+</blockquote>
+<p>&#x5728;&#x63A5;&#x53E3;&#x4E2D;&#x901A;&#x8FC7;&#x6CE8;&#x89E3;&#x6765;&#x83B7;&#x5F97;&#x76F8;&#x5BF9;&#x5E94;&#x7684;&#x53C2;&#x6570;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>@RequestMapping(method = {RequestMethod.GET,RequestMethod.POST},path = &quot;/user/login&quot;)
+  public String checkLogin(@Param(&quot;username&quot;)String username,@Param(&quot;,password&quot;)String password) {
+  log.info(&quot;username:&quot;+username+&quot;password:&quot;+password);
+  //&#x901A;&#x8FC7;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x5224;&#x65AD;&#x7528;&#x6237;&#x662F;&#x5426;&#x5B58;&#x5728;
+  User user = service.checkUser(username, password);
+  if(user == null) {
+    return &quot;login&quot;;
+  }else {
+    return &quot;index&quot;;
+  }
+}
+</code></pre></li>
+<li>
+<p><strong>&#x901A;&#x8FC7;<code>@PathVariable</code>&#x6CE8;&#x89E3;&#x8FDB;&#x884C;</strong></p>
+<blockquote>
+<p>&#x94FE;&#x63A5;&#xFF1A;<em>localhost:8080/id/1</em></p>
+</blockquote>
+<p>&#x901A;&#x8FC7;&#x5360;&#x4F4D;&#x7B26;&#x7684;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x53C2;&#x6570;&#x7684;&#x83B7;&#x53D6;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>@RequestMapping(&quot;test/{id}/{name}&quot;)
+public String test(@PathVariable(&quot;id&quot;) Integer id,@PathVariable(&quot;name&quot;) String name) {
+  System.out.println(id+&quot;-----&quot;+name);
+  return &quot;&quot;;
+}
+</code></pre><p>&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x5360;&#x4F4D;&#x7B26;&#x548C;&#x6CE8;&#x89E3;&#x4E2D;&#x7684;&#x503C;&#x8981;&#x4E00;&#x81F4;&#x3002;</p>
+</li>
+<li>
+<p><strong>&#x901A;&#x8FC7;&#x5B9E;&#x4F53;&#x7C7B;&#x76F4;&#x63A5;&#x83B7;&#x53D6;</strong><br>
+<font color="red">&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x662F;&#x6700;&#x63A8;&#x8350;&#x7684;&#x65B9;&#x5F0F;</font></p>
+<blockquote>
+<p>&#x94FE;&#x63A5;&#xFF1A;<strong>localhost:8080/update?id=1&amp;status=0&amp;creatTime=2022</strong></p>
+</blockquote>
+<p>&#x5B9E;&#x4F53;&#x7C7B;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>@javax.persistence.Entity
+@Data
+public class Entity {
+
+	//&#x6784;&#x9020;&#x65B9;&#x6CD5;
+	public Entity(Integer id, Integer status, String creatTime) {
+		super();
+		this.id = id;
+		this.status = status;
+		this.creatTime = creatTime;
+	}
+
+	public Entity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	//get set
+	private Integer id;
+	private Integer status;
+	private String creatTime;
+
+}
+</code></pre><p>&#x63A7;&#x5236;&#x5668;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>@RequestMapping(&quot;update&quot;)
+public String test(Entity entity) {
+  System.out.println(entity);
+  return &quot;&quot;;
+}
+</code></pre><p>&#x53EA;&#x8981;&#x94FE;&#x63A5;&#x4E2D;&#x7684;&#x53C2;&#x6570;&#x548C;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x7684;&#x53C2;&#x6570;&#x5BF9;&#x5E94;&#xFF0C;spring&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x901A;&#x8FC7;&#x5C5E;&#x6027;&#x540D;&#x8FDB;&#x884C;&#x88C5;&#x914D;&#xFF0C;&#x5982;&#x679C;&#x5C5E;&#x6027;&#x540D;&#x4E0D;&#x4E00;&#x81F4;&#xFF0C;&#x90A3;&#x4E48;&#x8BE5;&#x5C5E;&#x6027;&#x7684;&#x503C;&#x5C31;&#x662F;null&#x3002;</p>
+</li>
+</ol>
+<h4 class="mume-header" id="%E5%93%8D%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81">&#x54CD;&#x4E2D;&#x6587;&#x4E71;&#x7801;</h4>
+
+<p>&#x5728;&#x5BF9;&#x524D;&#x7AEF;&#x9875;&#x9762;&#x54CD;&#x5E94;&#x4E2D;&#x6587;&#x65F6;&#x4E71;&#x7801;&#xFF0C;&#x901A;&#x8FC7;HttpServletResponse&#x8FDB;&#x884C;&#x5B57;&#x7B26;&#x8BBE;&#x7F6E;&#x4E5F;&#x65E0;&#x6548;&#x3002;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>@RequestMapping(
+    method = RequestMethod.GET,
+    path = &quot;/check_login&quot;,
+    produces = &quot;text/html;charset=UTF-8&quot;
+    )
+</code></pre><p>&#x5728;&#x6CE8;&#x89E3;&#x4E2D;&#x6DFB;&#x52A0;&#x8BBE;&#x7F6E;&#x7F16;&#x7801;&#x683C;&#x5F0F;&#x7684;&#x5C5E;&#x6027;&#x5C31;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x4E86;&#x3002;</p>
+<hr>
+<h2 class="mume-header" id="springboot%E6%95%B4%E5%90%88mybatis">SpringBoot&#x6574;&#x5408;MyBatis</h2>
+
+<p><strong>&#x5F15;&#x5165;&#x4F9D;&#x8D56;</strong></p>
+<pre data-role="codeBlock" data-info class="language-"><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
+  &lt;version&gt;2.2.2&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;mysql&lt;/groupId&gt;
+  &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+  &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre><p>&#x5728;&#x4F7F;&#x7528;Mybatis&#x7684;&#x65F6;&#x5019;&#x9700;&#x8981;&#x5F15;&#x5165;mysql&#x548C;mybatis&#x7684;maven&#x4F9D;&#x8D56;&#xFF0C;&#x4E4B;&#x540E;spring&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x8FDB;&#x884C;&#x8D44;&#x6E90;&#x626B;&#x63CF;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x5BF9;&#x6570;&#x636E;&#x5E93;&#x94FE;&#x63A5;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#x3002;</p>
+<p>&#x60F3;&#x8981;&#x5728;springboot&#x9879;&#x76EE;&#x4E2D;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x5E93;&#x7684;&#x5173;&#x8054;&#xFF0C;&#x5341;&#x5206;&#x7684;&#x7B80;&#x5355;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;<strong>resources</strong>&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#x7684;&#x7684;<font color="red">application.properties</font>&#x6587;&#x4EF6;&#x4E2D;&#x6DFB;&#x52A0;jdbc&#x6240;&#x9700;&#x8981;&#x7684;&#x51E0;&#x4E2A;&#x76F8;&#x5173;&#x914D;&#x7F6E;&#x5C31;&#x53EF;&#x4EE5;&#x6210;&#x529F;&#x542F;&#x52A8;&#x9879;&#x76EE;&#x4E86;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x542F;&#x52A8;&#x9879;&#x76EE;&#xFF0C;spring&#x4F1A;&#x81EA;&#x52A8;&#x68C0;&#x6D4B;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x5E76;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#x3002;</p>
+<p><strong>properties&#x6587;&#x4EF6;&#xFF1A;</strong></p>
+<pre data-role="codeBlock" data-info class="language-"><code>spring.datasource.driver-class-name = com.mysql.cj.jdbc.Driver
+spring.datasource.url = jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;allowPublicKeyRetrieval=true
+spring.datasource.username = root
+spring.datasource.password = 123456
+</code></pre><p><strong>yml&#x6587;&#x4EF6;&#xFF1A;</strong></p>
+<pre data-role="codeBlock" data-info class="language-"><code>spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+</code></pre><h2 class="mume-header" id="%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91">&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&#x548C;&#x91CD;&#x5B9A;&#x5411;</h2>
+
+<p>&#x5728;SpringBoot&#x4E2D;&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&#x548C;&#x91CD;&#x5B9A;&#x5411;&#x7684;&#x4F7F;&#x7528;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#x3002;<br>
+<strong>&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;</strong></p>
+<ol>
+<li>
+<p>&#x5728;&#x8FD4;&#x56DE;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x6DFB;&#x52A0;forward&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x5E76;&#x5F85;&#x5E26;&#x4E0A;&#x9700;&#x8981;&#x8F6C;&#x53D1;&#x7684;&#x5730;&#x5740;&#x3002;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.example.demo.dao.entity.Student;
+
+@Controller
+public class StudentController {
+	@RequestMapping(&quot;test&quot;)
+	public String  a(Student stu) {
+		System.out.println(stu);
+		System.out.println(&quot;&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&quot;);
+		return &quot;forward:/add&quot;;
+	}
+}
+</code></pre><p><font color="red">&#x5728;&#x6709;@ResponseBody&#x6CE8;&#x89E3;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4F7F;&#x7528;&#x8BE5;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&#x662F;&#x65E0;&#x6548;&#x7684;&#x3002;</font></p>
+</li>
+<li>
+<p>&#x4F7F;&#x7528;servlet&#x63D0;&#x4F9B;&#x7684;API&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>@RestController</code>&#x6CE8;&#x89E3;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>@RequestMapping(&quot;test&quot;)
+@ResponseBody
+public void a(Student stu,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+  request.getRequestDispatcher(&quot;/add&quot;).forward(request, response);
+}
+</code></pre><p>&#x867D;&#x7136;&#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x4E86;@ResponseBody&#x6CE8;&#x89E3;&#xFF0C;&#x4F46;&#x662F;&#x6548;&#x679C;&#x5176;&#x5B9E;&#x662F;&#x548C;<code>forward</code>&#x65B9;&#x6CD5;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;</p>
+</li>
+</ol>
+<p><strong>&#x91CD;&#x5B9A;&#x5411;</strong><br>
+&#x91CD;&#x5B9A;&#x5411;&#x7684;&#x65B9;&#x5F0F;&#x6709;&#x4E09;&#x79CD;</p>
+<ol>
+<li>
+<p>MVC&#x81EA;&#x5E26;&#x7684;&#x91CD;&#x5B9A;&#x5411;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>@Controller
+public class StudentController {
+  @RequestMapping(&quot;test&quot;)
+  public String  a(Student stu) {
+    System.out.println(stu);
+    System.out.println(&quot;&#x8BF7;&#x6C42;&#x8F6C;&#x53D1;&quot;);
+    return &quot;add&quot;;
+  }
+}
+</code></pre><p>&#x8FD9;&#x91CC;&#x6DFB;&#x52A0;&#x4E86;Thymeleaf&#xFF0C;&#x6240;&#x4EE5;&#x5E76;&#x4E0D;&#x7528;&#x6DFB;&#x52A0;&#x6587;&#x4EF6;&#x7684;&#x540E;&#x7F00;&#x4E5F;&#x4F1A;&#x627E;&#x5230;&#x76F8;&#x5E94;&#x7684;html&#x9875;&#x9762;&#x3002;</p>
+</li>
+<li>
+<p>&#x4F7F;&#x7528;redirect&#x5173;&#x952E;&#x5B57;&#x3002;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>@RequestMapping(&quot;/test&quot;)
+public String b() {
+	return &quot;redirect:add&quot;;
+}
+</code></pre><p><font color="red">&#x5728;&#x6709;@ResponseBody&#x6CE8;&#x89E3;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4F7F;&#x7528;&#x8BE5;&#x65B9;&#x6CD5;&#x8FDB;&#x91CD;&#x5B9A;&#x5411;&#x662F;&#x65E0;&#x6548;&#x7684;&#x3002;</font></p>
+</li>
+<li>
+<p>&#x4F7F;&#x7528;ServletAPI&#x8FDB;&#x884C;&#x91CD;&#x5B9A;&#x5411;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>@RequestMapping(&quot;/test&quot;)
+public void b(HttpServletRequest request,HttpServletResponse response) throws IOException {
+	response.sendRedirect(request.getContextPath()+&quot;add&quot;);
+}
+</code></pre><p>&#x4F7F;&#x7528;API&#x8FDB;&#x884C;&#x91CD;&#x5B9A;&#x5411;&#x65F6;&#xFF0C;&#x4E00;&#x822C;&#x4F1A;&#x5728;url&#x4E4B;&#x524D;&#x52A0;&#x4E0A;&#xFF1A;<code>request.getContextPath()</code>&#xFF0C;&#x610F;&#x601D;&#x662F;&#x8FD4;&#x8D44;&#x6E90;&#x7684;&#x6839;&#x8DEF;&#x5F84;&#xFF0C;&#x4E14;&#x4F7F;&#x7528;&#x8BE5;&#x65B9;&#x6CD5;&#x5373;&#x5728;&#x6709;<code>@ResponseBody</code>&#x6CE8;&#x91CA;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x4E5F;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x4F7F;&#x7528;&#x3002;</p>
+</li>
+</ol>
+<h2 class="mume-header" id="springboot%E4%BD%BF%E7%94%A8springdatajpa">SpringBoot&#x4F7F;&#x7528;SpringDataJPA</h2>
+
+<p><strong><font color="red">JPA&#x662F;Hibernate&#x7684;&#x5C01;&#x88C5;</font></strong></p>
+<p>&#x5F15;&#x5165;&#x76F8;&#x5173;&#x4F9D;&#x8D56;&#x3002;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;mysql&lt;/groupId&gt;
+  &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+  &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre><p><em>&#x4F7F;&#x7528;jpa&#x548C;&#x4F7F;&#x7528;mybatis&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x90FD;&#x9700;&#x8981;&#x5BF9;yml&#x6216;properties&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x914D;&#x7F6E;</em></p>
+<pre data-role="codeBlock" data-info class="language-"><code>spring.datasource.driver-class-name = com.mysql.cj.jdbc.Driver
+spring.datasource.url = jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;allowPublicKeyRetrieval=true
+spring.datasource.username = root
+spring.datasource.password = 123456
+</code></pre><p><strong>&#x4F7F;&#x7528;jpa&#x7684;&#x8FC7;&#x7A0B;&#x662F;&#xFF1A;</strong></p>
+<ol>
+<li>
+<p>&#x521B;&#x5EFA;&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x8868;&#x4E2D;&#x5B57;&#x6BB5;&#x5C5E;&#x6027;&#x76F8;&#x5BF9;&#x5E94;&#x7684;&#x5B9E;&#x4F53;&#x7C7B;&#xFF0C;&#x6DFB;&#x52A0;<strong>Entity&#xFF0C;Id</strong>&#x6CE8;&#x89E3;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Student {
+
+	@Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        //&#x8BBE;&#x7F6E;&#x4E3B;&#x952E;&#x89C4;&#x5219;&#x3002;  
+        @Column(&quot;id&quot;)
+        //&#x5BF9;&#x5E94;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x5B57;&#x6BB5;&#x7684;&#x540D;&#x5B57;
+	private Integer id;
+	private String name;
+	private String gender;
+}
+
+</code></pre><pre class="language-text"> HAUTO&#xFF1A;JPA&#x81EA;&#x52A8;&#x9009;&#x62E9;&#x5408;&#x9002;&#x7684;&#x7B56;&#x7565;&#xFF0C;&#x662F;&#x9ED8;&#x8BA4;&#x9009;&#x9879;
+
+ IDENTITY&#xFF1A;&#x91C7;&#x7528;&#x6570;&#x636E;&#x5E93; ID&#x81EA;&#x589E;&#x957F;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x81EA;&#x589E;&#x4E3B;&#x952E;&#x5B57;&#x6BB5;&#xFF0C;Oracle &#x4E0D;&#x652F;&#x6301;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;
+
+ SEQUENCE&#xFF1A;&#x901A;&#x8FC7;&#x5E8F;&#x5217;&#x4EA7;&#x751F;&#x4E3B;&#x952E;&#xFF0C;&#x901A;&#x8FC7;@SequenceGenerator&#x6CE8;&#x89E3;&#x6307;&#x5B9A;&#x5E8F;&#x5217;&#x540D;&#xFF0C;MySql &#x4E0D;&#x652F;&#x6301;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;
+
+ TABLE&#xFF1A;&#x901A;&#x8FC7;&#x4E00;&#x5F20;&#x6570;&#x636E;&#x5E93;&#x8868;&#x7684;&#x5F62;&#x5F0F;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x5B8C;&#x6210;&#x4E3B;&#x952E;&#x81EA;&#x589E;
+</pre>
+<p><strong>&#x5E38;&#x7528;&#x6CE8;&#x89E3;&#xFF1A;</strong></p>
+ <table><thead><tr><th align="left">&#x6CE8;&#x89E3;</th><th align="left">&#x4F5C;&#x7528;</th><th align="left">&#x5E38;&#x7528;&#x5C5E;&#x6027;</th></tr></thead><tbody><tr><td align="left">@Data</td><td align="left">&#x7ED9;&#x5B9E;&#x4F53;&#x7C7B;&#x52A0;get/set/toString/EqualsAndHashCode&#x65B9;&#x6CD5;&#xFF0C;&#x662F;lombok&#x7684;&#x6CE8;&#x89E3;</td><td align="left"></td></tr><tr><td align="left">@Entity</td><td align="left">&#x6307;&#x5B9A;&#x5F53;&#x524D;&#x7C7B;&#x662F;&#x5B9E;&#x4F53;&#x7C7B;</td><td align="left"></td></tr><tr><td align="left">@Table</td><td align="left">&#x6307;&#x5B9A;&#x5B9E;&#x4F53;&#x7C7B;&#x548C;&#x8868;&#x4E4B;&#x95F4;&#x7684;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;</td><td align="left">name&#xFF1A;&#x6307;&#x5B9A;&#x6570;&#x636E;&#x5E93;&#x8868;&#x7684;&#x540D;&#x79F0;</td></tr><tr><td align="left">@EntityListeners</td><td align="left">&#x5728;&#x5B9E;&#x4F53;&#x7C7B;&#x589E;&#x5220;&#x6539;&#x7684;&#x65F6;&#x5019;&#x76D1;&#x542C;&#xFF0C;&#x4E3A;&#x521B;&#x5EFA;&#x4EBA;/&#x521B;&#x5EFA;&#x65F6;&#x95F4;&#x7B49;&#x57FA;&#x7840;&#x5B57;&#x6BB5;&#x8D4B;&#x503C;</td><td align="left">value&#xFF1A;&#x6307;&#x5B9A;&#x76D1;&#x542C;&#x7C7B;</td></tr><tr><td align="left">@Id</td><td align="left">&#x6307;&#x5B9A;&#x5F53;&#x524D;&#x5B57;&#x6BB5;&#x662F;&#x4E3B;&#x952E;</td><td align="left"></td></tr><tr><td align="left">@SequenceGenerator</td><td align="left">&#x6307;&#x5B9A;&#x6570;&#x636E;&#x5E93;&#x5E8F;&#x5217;&#x522B;&#x540D;</td><td align="left">sequenceName&#xFF1A;&#x6570;&#x636E;&#x5E93;&#x5E8F;&#x5217;&#x540D;<br>name&#xFF1A;&#x53D6;&#x7684;&#x522B;&#x540D;</td></tr><tr><td align="left">@GeneratedValue</td><td align="left">&#x6307;&#x5B9A;&#x4E3B;&#x952E;&#x7684;&#x751F;&#x6210;&#x65B9;&#x5F0F;</td><td align="left">strategy &#xFF1A;&#x6307;&#x5B9A;&#x4E3B;&#x952E;&#x751F;&#x6210;&#x7B56;&#x7565;<br>generator&#xFF1A;&#x9009;&#x62E9;&#x4E3B;&#x952E;&#x522B;&#x540D;</td></tr><tr><td align="left">@Column</td><td align="left">&#x6307;&#x5B9A;&#x5B9E;&#x4F53;&#x7C7B;&#x5C5E;&#x6027;&#x548C;&#x6570;&#x636E;&#x5E93;&#x8868;&#x4E4B;&#x95F4;&#x7684;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;</td><td align="left">name&#xFF1A;&#x6307;&#x5B9A;&#x6570;&#x636E;&#x5E93;&#x8868;&#x7684;&#x5217;&#x540D;&#x79F0;&#x3002;<br>unique&#xFF1A;&#x662F;&#x5426;&#x552F;&#x4E00;<br>nullable&#xFF1A;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x4E3A;&#x7A7A;<br>nserttable&#xFF1A;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x63D2;&#x5165;<br>updateable&#xFF1A;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x66F4;&#x65B0;<br>columnDefinition: &#x5B9A;&#x4E49;&#x5EFA;&#x8868;&#x65F6;&#x521B;&#x5EFA;&#x6B64;&#x5217;&#x7684;DDL<br></td></tr><tr><td align="left">@CreatedBy</td><td align="left">&#x81EA;&#x52A8;&#x63D2;&#x5165;&#x521B;&#x5EFA;&#x4EBA;</td><td align="left"></td></tr><tr><td align="left">@CreatedDate</td><td align="left">&#x81EA;&#x52A8;&#x63D2;&#x5165;&#x521B;&#x5EFA;&#x65F6;&#x95F4;</td><td align="left"></td></tr><tr><td align="left">@LastModifiedBy</td><td align="left">&#x81EA;&#x52A8;&#x4FEE;&#x6539;&#x66F4;&#x65B0;&#x4EBA;</td><td align="left"></td></tr><tr><td align="left">@LastModifiedDate</td><td align="left">&#x81EA;&#x52A8;&#x4FEE;&#x6539;&#x66F4;&#x7EC6;&#x65F6;&#x95F4;</td><td align="left"></td></tr><tr><td align="left">@Version</td><td align="left">&#x81EA;&#x52A8;&#x66F4;&#x65B0;&#x7248;&#x672C;&#x53F7;</td><td align="left"></td></tr><tr><td align="left">@JsonFormat</td><td align="left">&#x63D2;&#x5165;/&#x4FEE;&#x6539;/&#x8BFB;&#x53D6;&#x7684;&#x65F6;&#x95F4;&#x8F6C;&#x6362;&#x6210;&#x60F3;&#x8981;&#x7684;&#x683C;&#x5F0F;</td><td align="left">pattern&#xFF1A;&#x5C55;&#x793A;&#x683C;&#x5F0F;<br>timezone&#xFF1A;&#x56FD;&#x9645;&#x65F6;&#x95F4;</td></tr></tbody></table>
+<p><font color="red">&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x4EE5;&#x4E0A;&#x6240;&#x6709;&#x7528;&#x5230;&#x7684;&#x6CE8;&#x89E3;&#x90FD;&#x662F;&#x6765;&#x81EA;<code>javax.persistence</code>jar&#x5305;&#x4E2D;</font></p>
+</li>
+<li>
+<p>&#x521B;&#x5EFA;dao&#x64CD;&#x4F5C;&#x63A5;&#x53E3;&#x7EE7;&#x627F;<strong>JpaRepository</strong>&#x63A5;&#x53E3;&#xFF0C;&#x5E76;&#x5C06;&#x76F8;&#x5E94;&#x7684;&#x5B9E;&#x4F53;&#x7C7B;&#x548C;&#x5B9E;&#x4F53;&#x7C7B;&#x4E2D;&#x5BF9;&#x5E94;&#x8868;id&#x7684;&#x5C5E;&#x6027;&#x52A0;&#x5165;&#x5230;&#x7EE7;&#x627F;&#x63A5;&#x53E3;&#x7684;&#x6CDB;&#x578B;&#x4E2D;&#x3002;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.dao.entity.Student;
+
+public interface StudentMapper extends JpaRepository&lt;Student, Integer&gt; {
+}
+</code></pre></li>
+</ol>
+<p>&#x4E4B;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;Spring&#x7684;Ioc&#x6765;&#x64CD;&#x4F5C;&#x8BE5;&#x7C7B;&#x4E86;&#xFF0C;&#x7EE7;&#x627F;<strong>JpaRepository</strong>&#x63A5;&#x53E3;&#x4E4B;&#x540E;&#x7684;&#x63A5;&#x53E3;&#x5305;&#x542B;&#x4E00;&#x4E9B;&#x57FA;&#x672C;&#x7684;&#x589E;&#x5220;&#x6539;&#x67E5;&#x64CD;&#x4F5C;&#x3002;</p>
+<blockquote>
+<p>Repository =&gt; CrudRepository =&gt; PagingAndSorting =&gt; JpaRepository<br>
+&#x8FD9;&#x4E9B;&#x63A5;&#x53E3;&#x90FD;&#x662F;&#x7EE7;&#x627F;&#x5173;&#x7CFB;&#xFF0C;Japan&#x63A5;&#x53E3;&#x62E5;&#x6709;&#x7684;&#x57FA;&#x7840;&#x65B9;&#x6CD5;&#x65F6;&#x6700;&#x591A;&#x7684;&#x3002;</p>
+</blockquote>
+<h4 class="mume-header" id="jpa%E8%87%AA%E5%AE%9A%E4%B9%89sql">JPA&#x81EA;&#x5B9A;&#x4E49;sql</h4>
+
+<p>&#x5728;jpa&#x4E2D;&#x81EA;&#x5B9A;&#x4E49;sql&#x9700;&#x8981;&#x4F7F;&#x7528;<code>@Query</code>&#x6CE8;&#x89E3;</p>
+<ol>
+<li>
+<p>value:<br>
+&#x81EA;&#x5B9A;&#x4E49;&#x7684;sql&#x8BED;&#x53E5;</p>
+</li>
+<li>
+<p>nativeQuery&#xFF1A;<br>
+true&#x8868;&#x793A;sql&#xFF0C;false&#x8868;&#x793A;hql,jap&#x9ED8;&#x8BA4;&#x7684;&#x5C5E;&#x6027;&#x662F;false<code>&#xFF1F;&#xFF1F;&#xFF1F;&#xFF1F;&#xFF1F;&#x5E76;&#x4E0D;&#x660E;&#x786E;&#xFF1F;&#xFF1F;&#xFF1F;&#xFF1F;</code></p>
+</li>
+</ol>
+<p><strong>&#x5728;<code>@Query</code>&#x4E2D;&#x4F7F;&#x7528;&#x5360;&#x4F4D;&#x7B26;</strong></p>
+<ol>
+<li>
+<p>&#x4F7F;&#x7528;<code>@Param</code>&#x6CE8;&#x89E3;&#x8FDB;&#x884C;&#x5360;&#x4F4D;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>/**
+* &#x901A;&#x8FC7;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x67E5;&#x8BE2;&#x72B6;&#x6001;&#x4E3A;&#x6B63;&#x5E38;&#x7684;&#x7528;&#x6237;
+* @param username &#x7528;&#x6237;&#x540D;
+* @param password &#x7528;&#x6237;&#x5BC6;&#x7801;
+* @return &#x8FD4;&#x56DE;&#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#x7684;&#x7528;&#x6237;&#x5BF9;&#x8C61;&#xFF0C;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x6CA1;&#x6709;&#x5219;&#x8FD4;&#x56DE;null
+*/
+@Query(value = &quot;SELECT * FROM user WHERE username=:username AND password=:password AND status=0&quot;,nativeQuery=true)
+User checkUserByUsernameAndPassword(@Param(&quot;username&quot;)String username,@Param(&quot;password&quot;)String password);
+</code></pre><p>&#x9996;&#x5148;&#x5728;&#x53C2;&#x6570;&#x5217;&#x8868;&#x4E2D;&#x901A;&#x8FC7;<code>@Param</code>&#x6CE8;&#x89E3;&#x8FDB;&#x884C;&#x53C2;&#x6570;&#x7684;&#x6CE8;&#x89E3;&#xFF0C;&#x4E4B;&#x540E;&#x5728;<code>@Qurey</code>&#x6CE8;&#x89E3;&#x4E2D;&#x7684;sql&#x4E2D;&#x901A;&#x8FC7;<code>:&#x53C2;&#x6570;&#x540D;</code>&#x7684;&#x683C;&#x5F0F;&#x8FDB;&#x884C;&#x5360;&#x4F4D;&#x3002;</p>
+</li>
+<li>
+<p>&#x76F4;&#x63A5;&#x4F7F;&#x7528;<code>?</code>&#x8FDB;&#x884C;&#x5360;&#x4F4D;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>/**
+* &#x901A;&#x8FC7;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;&#x67E5;&#x8BE2;&#x72B6;&#x6001;&#x4E3A;&#x6B63;&#x5E38;&#x7684;&#x7528;&#x6237;
+* @param username &#x7528;&#x6237;&#x540D;
+* @param password &#x7528;&#x6237;&#x5BC6;&#x7801;
+* @return &#x8FD4;&#x56DE;&#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#x7684;&#x7528;&#x6237;&#x5BF9;&#x8C61;&#xFF0C;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x6CA1;&#x6709;&#x5219;&#x8FD4;&#x56DE;null
+*/
+@Query(value = &quot;SELECT * FROM user WHERE username=?1 AND password=?2 AND status=0&quot;,nativeQuery=true)
+User checkUserByUsernameAndPassword(String username,String password);
+</code></pre><p>&#x4F7F;&#x7528;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x4E0D;&#x7528;&#x6DFB;&#x52A0;&#x6CE8;&#x91CA;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x4EE5;<code>?&#x53C2;&#x6570;&#x4F4D;&#x7F6E;</code>&#x7684;&#x5F62;&#x5F0F;&#x5C31;&#x53EF;&#x4EE5;&#x5C06;&#x53C2;&#x6570;&#x653E;&#x5165;sql&#x4E2D;&#x3002;</p>
+</li>
+</ol>
+<p><font color="red">&#x56E0;&#x4E3A;&#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x4E86;mysql&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x5C06;<code>@Qurey</code>&#x4E2D;&#x7684;nativeQurey&#x503C;&#x8BBE;&#x4E3A;true&#x3002;</font></p>
+<pre class="language-text">```
+/**
+     *&#x590D;&#x6742;JPA&#x64CD;&#x4F5C;  &#x4F7F;&#x7528;@Query()&#x81EA;&#x5B9A;&#x4E49;sql&#x8BED;&#x53E5;  &#x6839;&#x636E;&#x4E1A;&#x52A1;id UId&#x53BB;&#x66F4;&#x65B0;&#x6574;&#x4E2A;&#x5B9E;&#x4F53;
+     * &#x5220;&#x9664;&#x548C;&#x66F4;&#x65B0;&#x64CD;&#x4F5C;&#xFF0C;&#x9700;&#x8981;@Modifying&#x548C;@Transactional&#x6CE8;&#x89E3;&#x7684;&#x652F;&#x6301;
+     *
+     * &#x66F4;&#x65B0;&#x64CD;&#x4F5C;&#x4E2D; &#x5982;&#x679C;&#x67D0;&#x4E2A;&#x5B57;&#x6BB5;&#x4E3A;null&#x5219;&#x4E0D;&#x63D2;&#x5165;&#xFF0C;&#x5426;&#x5219;&#x63D2;&#x5165;&#x3010;&#x6CE8;&#x610F;&#x7B26;&#x53F7;&#x548C;&#x7A7A;&#x683C;&#x4F4D;&#x7F6E;&#x3011;
+     */
+    @Transactional
+    @Modifying
+    @Query(value = &quot;insert into bi_user (user_code,user_type) values (&quot; +
+            &quot;CASE WHEN :#{#users.userCode} IS NULL THEN user_code ELSE :#{#users.userCode} END ,&quot; +
+            &quot;CASE WHEN :#{#users.userType} IS NULL THEN user_type ELSE :#{#users.userType} END ,&quot; +
+            &quot;)&quot;, nativeQuery = true)
+    int insertAndFlush(@Param(&quot;users&quot;) Users users);
+
+```
+</pre>
+<blockquote>
+<p>&#x81EA;&#x5DF1;&#x5199;sql&#x5E76;&#x4F7F;&#x7528;&#x6A21;&#x7CCA;&#x67E5;&#x8BE2;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4EE5; <strong>%?1%</strong> &#x7684;&#x5F62;&#x5F0F;&#x8FDB;&#x884C;&#x6A21;&#x7CCA;&#x67E5;&#x8BE2;&#x3002;</p>
+</blockquote>
+<h2 class="mume-header" id="jpa%E6%8A%A5%E9%94%99%E6%89%BE%E4%B8%8D%E5%88%B0%E7%9B%B8%E5%85%B3%E7%9A%84%E6%8E%A5%E5%8F%A3">Jpa&#x62A5;&#x9519;&#x627E;&#x4E0D;&#x5230;&#x76F8;&#x5173;&#x7684;&#x63A5;&#x53E3;</h2>
+
+<pre data-role="codeBlock" data-info class="language-"><code>springboot jpa java.lang.NullPointerException: Cannot invoke &quot;com.example.demo.dao.mapper.UserMapper.findById(Object)&quot; because &quot;this.mapper&quot; is null
+</code></pre><p><strong>&#x539F;&#x56E0;&#x662F;&#x56E0;&#x4E3A;&#x6CA1;&#x6709;&#x5728;&#x5F15;&#x7528;&#x63A5;&#x53E3;&#x7684;&#x65F6;&#x5019;&#x6DFB;&#x52A0;Ioc&#x6CE8;&#x89E3;&#xFF0C;&#x53EA;&#x8981;&#x6DFB;&#x52A0;&#x4E0A;<br>
+<code>@AutoWired</code>&#x6CE8;&#x89E3;&#x5C31;&#x597D;&#x4E86;</strong></p>
+<pre data-role="codeBlock" data-info class="language-"><code>//dao&#x63A5;&#x53E3;
+@Autowired
+private UserMapper mapper;
+
+</code></pre><h2 class="mume-header" id="jpa%E6%8A%A5%E9%94%99%E6%89%BE%E4%B8%8D%E5%88%B0%E7%9B%B8%E5%85%B3%E5%AE%9E%E4%BD%93%E7%B1%BB">JPA&#x62A5;&#x9519;&#x627E;&#x4E0D;&#x5230;&#x76F8;&#x5173;&#x5B9E;&#x4F53;&#x7C7B;</h2>
+
+<blockquote>
+<p>java.sql.SQLSyntaxErrorException: Unknown column &apos;zttask0_.assigned_date&apos; in &apos;field list&apos;</p>
+</blockquote>
+<p><strong>&#x51FA;&#x73B0;&#x8FD9;&#x79CD;&#x9519;&#x8BEF;&#x7684;&#x539F;&#x56E0;&#x6709;&#x4E24;&#x79CD;&#xFF1A;</strong></p>
+<ul>
+<li>
+<p>&#x4E00;&#x79CD;&#x662F;&#x56E0;&#x4E3A;jpa&#x9ED8;&#x8BA4;&#x7684;&#x547D;&#x540D;&#x89C4;&#x5219;&#xFF0C;&#x5C06;&#x9A7C;&#x5CF0;&#x547D;&#x540D;&#x6CD5;&#x6539;&#x4E3A;&#x4E86;&#x4E0B;&#x5212;&#x7EBF;&#x547D;&#x540D;&#x6CD5;&#xFF0C;&#x5BFC;&#x81F4;&#x548C;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x4E0D;&#x4E00;&#x81F4;&#x3002;</p>
+<p>&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x9700;&#x8981;&#x5173;&#x95ED;jpa&#x7684;&#x9ED8;&#x8BA4;&#x547D;&#x540D;&#x89C4;&#x5219;&#xFF0C;&#x5728;application.yml&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x914D;&#x7F6E;&#x53D6;&#x6D88;&#x81EA;&#x52A8;&#x5C06;&#x9A7C;&#x5CF0;&#x547D;&#x540D;&#x8F6C;&#x4E3A;&#x4E0B;&#x5212;&#x7EBF;&#x683C;&#x5F0F;&#x3002;</p>
+<p><strong>&#x8BE5;&#x65B9;&#x6CD5;&#x8C8C;&#x4F3C;&#x4E0D;&#x9002;&#x7528;&#xFF0C;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#x7B2C;&#x4E8C;&#x79CD;&#x3002;</strong></p>
+<pre data-role="codeBlock" data-info class="language-"><code>jpa:
+  hibernate:
+    naming:
+      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+</code></pre><p>&#x6216;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>jpa:
+ database: MYSQL
+ show-sql: true
+#Hibernate ddl auto (validate|create|create-drop|update)
+ hibernate:
+  ddl-auto: update
+  naming:
+    physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+ properties:
+  hibernate:
+    dialect:  org.hibernate.dialect.MySQL5InnoDBDialect
+</code></pre></li>
+<li>
+<p>&#x7B2C;&#x4E8C;&#x79CD;&#x662F;&#x56E0;&#x4E3A;&#x7EE7;&#x627F;&#x4E86;&#x5176;&#x4ED6;&#x7C7B;&#x7684;&#x539F;&#x56E0;&#xFF0C;jpa&#x4F1A;&#x751F;&#x6210;&#x9519;&#x8BEF;&#x7684;mapper&#x65B9;&#x6CD5;&#x3002;<br>
+&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x53EA;&#x8981;&#x628A;&#x7EE7;&#x627F;&#x7684;&#x7C7B;&#x5220;&#x6389;&#x5C31;&#x597D;&#x4E86;&#x3002;</p>
+</li>
+</ul>
+<h2 class="mume-header" id="jpa%E8%87%AA%E5%8A%A8%E6%89%A7%E8%A1%8Csql%E8%84%9A%E6%9C%AC%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE">JPA&#x81EA;&#x52A8;&#x6267;&#x884C;sql&#x811A;&#x672C;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x5E76;&#x6DFB;&#x52A0;&#x6570;&#x636E;</h2>
+
+<p>&#x518D;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x6DFB;&#x52A0;&#x81EA;&#x52A8;&#x6267;&#x884C;sql&#x8BED;&#x53E5;&#x7684;&#x914D;&#x7F6E;&#xFF0C;&#x90A3;&#x4E48;springboot&#x518D;&#x542F;&#x52A8;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x6839;&#x636E;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x5E76;&#x6DFB;&#x52A0;&#x5185;&#x5BB9;&#x3002;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>jpa:
+  database: MYSQL
+  show-sql: true
+  hibernate:
+    ddl-auto: update
+sql:
+  init:
+    data-locations: classpath:data.sql
+    mode: always
+</code></pre><ul>
+<li><code>ddl-auto: update</code>&#x662F;&#x81EA;&#x52A8;&#x6839;&#x636E;&#x8981;&#x6C42;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x7684;&#x610F;&#x601D;&#xFF0C;&#x4E4B;&#x6DFB;&#x52A0;&#x8FD9;&#x6BB5;&#x8BDD;&#xFF0C;springboot&#x4F1A;&#x6839;&#x636E;@Entity&#x5B9E;&#x4F53;&#x7C7B;&#x6765;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x8868;&#x3002;</li>
+<li><code>data-locations: classpath:data.sql</code>&#x662F;&#x4ECE;resource&#x6587;&#x4EF6;&#x5939;&#x90A3;&#x4E2A;&#x4F4D;&#x7F6E;&#x626B;&#x63CF;sql&#x811A;&#x672C;&#x7684;&#x610F;&#x601D;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8FD9;&#x91CC;&#x6765;&#x6307;&#x5B9A;&#x9700;&#x8981;&#x626B;&#x63CF;&#x7684;sql&#x811A;&#x672C;&#x3002;</li>
+<li><code>always</code>&#x4E3A;&#x59CB;&#x7EC8;&#x6267;&#x884C;&#x521D;&#x59CB;&#x5316;</li>
+<li><code>embedded</code>&#x53EA;&#x521D;&#x59CB;&#x5316;&#x5185;&#x5B58;&#x6570;&#x636E;&#x5E93;&#xFF08;&#x9ED8;&#x8BA4;&#x503C;&#xFF09;,&#x5982;h2&#x7B49;</li>
+<li><code>never</code>&#x4E3A;&#x4E0D;&#x6267;&#x884C;&#x521D;&#x59CB;&#x5316;</li>
+</ul>
+<hr>
+<h2 class="mume-header" id="slf4j%E6%B3%A8%E8%A7%A3">@Slf4j&#x6CE8;&#x89E3;</h2>
+
+<p>&#x60F3;&#x8981;&#x4F7F;&#x7528;&#x8BE5;&#x6CE8;&#x89E3;&#x9700;&#x8981;&#x5F15;&#x5165;Lombok&#x4F9D;&#x8D56;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>&lt;dependency&gt;
+    &lt;groupId&gt;io.mateu&lt;/groupId&gt;
+    &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+    &lt;version&gt;1.18.11.97&lt;/version&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+
+&lt;!--Eclipse&#x4F9D;&#x8D56;--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.projectlombok&lt;/groupId&gt;
+    &lt;artifactId&gt;lombok&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre><p><strong>&#x4E0B;&#x8F7D;lombok&#x4E4B;&#x540E;eclipse&#x6253;&#x4E0D;&#x5F00;&#xFF0C;&#x9700;&#x8981;&#x5C06;eclipse.ini&#x6587;&#x4EF6;&#x4E2D;&#x4E0E;lombok&#x76F8;&#x5173;&#x7684;&#x914D;&#x7F6E;&#x6539;&#x6210;&#xFF1A;</strong></p>
+<pre data-role="codeBlock" data-info class="language-"><code>-javaagent:lombok.jar
+-Xbootclasspath/:lombok.jar
+</code></pre><p><img src="assets/SpringBoot%E4%BD%BF%E7%94%A8-e02c1221.png" alt></p>
+<p>&#x5728;&#x7C7B;&#x4E0A;&#x6DFB;&#x52A0;&#x4E86;&#x8BE5;&#x6CE8;&#x89E3;&#x4E4B;&#x540E;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x5199;&#x4E86;<code>private final Logger logger = LoggerFactory.getLogger(&#x5F53;&#x524D;&#x7C7B;&#x540D;.class);</code>&#x8FD9;&#x6BB5;&#x8BDD;&#x3002;<br>
+&#x6709;&#x4E86;&#x8BE5;&#x6CE8;&#x89E3;&#x4E4B;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5728;&#x7C7B;&#x4E2D;&#x4F7F;&#x7528;<code>log.info()</code>&#x65B9;&#x6CD5;&#x3002;</p>
+<hr>
+<p>&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x811A;&#x6CE8;<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>&#x6392;&#x9664; <a href="#fnref1" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>&#x811A;&#x6CE8;&#x5C31;&#x662F;&#x9644;&#x5728;&#x9875;&#x9762;&#x6700;&#x4F4E;&#x7AEF;&#x7684;&#x5BF9;&#x67D0;&#x4E00;&#x6BB5;&#x6587;&#x5B57;&#x6216;&#x8005;&#x67D0;&#x4E2A;&#x8BCD;&#x8BED;&#x7684;&#x89E3;&#x91CA;&#x3002; <a href="#fnref2" class="footnote-backref">&#x21A9;&#xFE0E;</a></p>
+</li>
+</ol>
+</section>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

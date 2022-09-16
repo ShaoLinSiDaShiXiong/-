@@ -1,0 +1,1558 @@
+<!DOCTYPE html><html><head>
+      <title>MySQL&#x7684;&#x5B89;&#x88C5;&#x4E0E;&#x4F7F;&#x7528;</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///C:\Users\SaoLinSiDaShiXiong\.atom\packages\markdown-preview-enhanced-with-litvis\node_modules\mume-with-litvis\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="mysql%E7%9A%84%E4%BD%BF%E7%94%A8"><em>MySQL</em>&#x7684;&#x4F7F;&#x7528;</h1>
+
+<p><strong>&#x5728;windows&#x7CFB;&#x7EDF;&#x4E2D;MySQL&#x662F;&#x4E0D;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x5728;Linux&#x7CFB;&#x7EDF;&#x4E2D;&#x53EA;&#x6709;&#x5217;&#x540D;&#x548C;&#x5217;&#x522B;&#x540D;&#x4E0D;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#xFF0C;&#x5176;&#x4ED6;&#x90FD;&#x662F;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#x7684;&#x3002;</strong></p>
+<h2 class="mume-header" id="mysql%E7%9A%84%E5%AE%89%E8%A3%85">MySQL&#x7684;&#x5B89;&#x88C5;</h2>
+
+<p><strong>MySQL&#x5B98;&#x7F51;&#x5730;&#x5740;&#xFF1A;<a href="http://www.mysql.com">http://www.mysql.com</a></strong></p>
+<p>&#x8FDB;&#x5165;&#x5B98;&#x7F51;&#x4E4B;&#x540E;&#x9009;&#x62E9;&#x9002;&#x5408;&#x81EA;&#x5DF1;&#x7535;&#x8111;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;MysQL&#x5B89;&#x88C5;&#x5305;&#x4E0B;&#x8F7D;&#x3002;</p>
+<p><strong>C&#x8BED;&#x8A00;&#x4E2D;&#x6587;&#x7F51;&#x8BE6;&#x7EC6;&#x5B89;&#x88C5;&#x6559;&#x7A0B;&#xFF1A;<a href="http://c.biancheng.net/view/7135.html">http://c.biancheng.net/view/7135.html</a></strong></p>
+<p><strong>&#x81EA;&#x5B9A;&#x4E49;&#x5B89;&#x88C5;&#x9700;&#x8981;&#x5B89;&#x88C5;&#x7684;&#x6A21;&#x5757;</strong></p>
+<ul>
+<li>Connector/J 8.0.19 (&#x8FD9;&#x4E2A;&#x662F;mysql&#x5BF9;Java&#x7684;&#x8FDE;&#x63A5;&#x5668;&#xFF0C;&#x4F7F;&#x7528;Java&#x64CD;&#x4F5C;MySQL&#x5FC5;&#x987B;&#x4E0B;&#x8F7D;)</li>
+<li>MySQL Shell 8.0.19&#xFF08;&#x8FD9;&#x4E2A;&#x662F;MySQL&#x4EE4;&#x724C;&#xFF09;</li>
+<li>MySQL Server &#xFF08;MySQL&#x670D;&#x52A1;&#x5668;&#xFF09;</li>
+<li>MySQL Workbench&#xFF08;MySQL&#x5DE5;&#x4F5C;&#x53F0;&#xFF09;</li>
+</ul>
+<h2 class="mume-header" id="mysql%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">MySQL&#x6570;&#x636E;&#x7C7B;&#x578B;</h2>
+
+<p><strong>&#x5728;MySQL&#x4E2D;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x5927;&#x6982;&#x53EF;&#x4EE5;&#x5206;&#x949F;&#x4E94;&#x79CD;&#xFF1A;</strong></p>
+<ul>
+<li>
+<p>&#x6570;&#x503C;&#x7C7B;&#x578B;</p>
+<p>MySQL&#x4E2D;&#x7684;&#x6574;&#x6570;&#x7C7B;&#x578B;&#x6709;&#x4E94;&#x79CD;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">&#x7C7B;&#x578B;&#x540D;&#x79F0;</th>
+<th style="text-align:center">&#x8BF4;&#x660E;</th>
+<th style="text-align:center">&#x5B58;&#x50A8;&#x9700;&#x6C42;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">TINYINT</td>
+<td style="text-align:center">&#x5F88;&#x5C0F;&#x7684;&#x6574;&#x6570;</td>
+<td style="text-align:center">1&#x4E2A;&#x5B57;&#x8282;</td>
+</tr>
+<tr>
+<td style="text-align:center">SMALLINT</td>
+<td style="text-align:center">&#x5C0F;&#x7684;&#x6574;&#x6570;</td>
+<td style="text-align:center">2&#x4E2A;&#x5B57;&#x8282;</td>
+</tr>
+<tr>
+<td style="text-align:center">MEDIUMINT</td>
+<td style="text-align:center">&#x4E2D;&#x7B49;&#x5927;&#x5C0F;&#x7684;&#x6574;&#x6570;</td>
+<td style="text-align:center">3&#x4E2A;&#x5B57;&#x8282;</td>
+</tr>
+<tr>
+<td style="text-align:center">INT(INTEGHR)</td>
+<td style="text-align:center">&#x666E;&#x901A;&#x5927;&#x5C0F;&#x7684;&#x6574;&#x6570;</td>
+<td style="text-align:center">4&#x4E2A;&#x5B57;&#x8282;</td>
+</tr>
+<tr>
+<td style="text-align:center">BIGINT</td>
+<td style="text-align:center">&#x5927;&#x6574;&#x6570;</td>
+<td style="text-align:center">8&#x4E2A;&#x5B57;&#x8282;</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>&#x6D6E;&#x70B9;&#x6570;/&#x5B9A;&#x70B9;&#x6570;&#x7C7B;&#x578B;</p>
+<p>MySQL&#x4E2D;&#x4F7F;&#x7528;&#x6D6E;&#x70B9;&#x6570;&#x548C;&#x5B9A;&#x70B9;&#x6570;&#x6765;&#x8868;&#x793A;&#x5C0F;&#x6570;&#x3002;</p>
+<p>&#x6D6E;&#x70B9;&#x7C7B;&#x578B;&#x548C;&#x5B9A;&#x70B9;&#x7C7B;&#x578B;&#x90FD;&#x53EF;&#x4EE5;&#x7528;<code>&#xFF08;M&#xFF0C;D&#xFF09;</code>&#x6765;&#x8868;&#x793A;&#xFF0C;&#x5176;&#x4E2D;<code>M</code>&#x6210;&#x4E3A;i&#x7CBE;&#x5EA6;&#xFF0C;&#x8868;&#x793A;&#x603B;&#x5171;&#x7684;&#x4F4D;&#x6570;&#xFF1B;<code>D</code>&#x79F0;&#x4E3A;&#x6807;&#x5EA6;&#xFF0C;&#x8868;&#x793A;&#x5C0F;&#x6570;&#x7684;&#x4F4D;&#x6570;i&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th>&#x7C7B;&#x578B;&#x540D;&#x79F0;</th>
+<th>&#x8BF4;&#x660E;</th>
+<th>&#x5B58;&#x50A8;&#x9700;&#x6C42;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FLOAT</td>
+<td>&#x5355;&#x7CBE;&#x5EA6;&#x6D6E;&#x70B9;&#x6570;</td>
+<td>4&#x4E2A;&#x5B57;&#x8282;</td>
+</tr>
+<tr>
+<td>DOBULE</td>
+<td>&#x53CC;&#x7CBE;&#x5EA6;&#x6D6E;&#x70B9;&#x6570;</td>
+<td>8&#x4E2A;&#x5B57;&#x8282;</td>
+</tr>
+<tr>
+<td>DECIMAL(M,D),DEC</td>
+<td>&#x538B;&#x7F29;&#x7684;&#x201C;&#x4E25;&#x683C;&#x201D;&#x5B9A;&#x70B9;&#x6570;</td>
+<td>M+2&#x4E2A;&#x5B57;&#x8282;</td>
+</tr>
+</tbody>
+</table>
+<p><u>&#x4E0D;&#x7BA1;&#x662F;&#x5B9A;&#x70B9;&#x8FD8;&#x662F;&#x6D6E;&#x70B9;&#x7C7B;&#x578B;&#xFF0C;&#x5982;&#x679C;&#x7528;&#x6237;&#x6307;&#x5B9A;&#x7684;&#x7CBE;&#x5EA6;&#x8D85;&#x51FA;&#x7CBE;&#x5EA6;&#x8303;&#x56F4;&#xFF0C;&#x5219;&#x4F1A;&#x56DB;&#x820D;&#x4E94;&#x5165;&#x8FDB;&#x884C;&#x5904;&#x7406;&#x3002;</u></p>
+</li>
+<li>
+<p>&#x65E5;&#x671F;/&#x65F6;&#x95F4;&#x7C7B;&#x578B;</p>
+<p>MySQL&#x4E2D;&#x6709;&#x4E94;&#x79CD;&#x8868;&#x793A;&#x65E5;&#x671F;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th>&#x7C7B;&#x578B;&#x540D;&#x79F0;</th>
+<th>&#x65E5;&#x671F;&#x683C;&#x5F0F;</th>
+<th>&#x65E5;&#x671F;&#x8303;&#x56F4;</th>
+<th>&#x5B58;&#x50A8;&#x9700;&#x6C42;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>YEAR</td>
+<td>YYYY</td>
+<td>1901~2155</td>
+<td>1&#x4E2A;&#x5B57;&#x8282;</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>HH:MM:SS</td>
+<td>-838:59:59~838:59:59</td>
+<td>3&#x4E2A;&#x5B57;&#x8282;</td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>YYYY-MM-DD</td>
+<td>1000-01-01~9999-12-3</td>
+<td>3&#x4E2A;&#x5B57;&#x8282;</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td>YYYY-MM-DD HH:MM:SS</td>
+<td>1980-01-01 00:00:00 ~9999-12-31 23:59:59</td>
+<td>8&#x4E2A;&#x5B57;&#x8282;</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td>YYYY-MM-DD HH:MM:SS</td>
+<td>1980-01-01 00:00:01 UTC ~ 2040-01-19 03:14:07 UTC</td>
+<td>4&#x4E2A;&#x5B57;&#x8282;</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>&#x5B57;&#x7B26;&#x4E32;&#x7C7B;&#x578B;</p>
+</li>
+<li>
+<p>&#x4E8C;&#x8FDB;&#x5236;&#x7C7B;&#x578B;</p>
+</li>
+</ul>
+<h3 class="mume-header" id="%E4%B8%8D%E5%90%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8">&#x4E0D;&#x540C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x4F7F;&#x7528;</h3>
+
+<p><strong>&#x4E0D;&#x540C;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x90FD;&#x4F1A;&#x6709;&#x5C5E;&#x4E8E;&#x81EA;&#x5DF1;&#x7684;&#x9ED8;&#x8BA4;&#x503C;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x5BF9;&#x4E0D;&#x540C;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x8FDB;&#x884C;&#x9ED8;&#x8BA4;&#x503C;&#x8BBE;&#x5B9A;&#xFF0C;&#x4ECE;&#x800C;&#x8D77;&#x5230;&#x8BBE;&#x8BA1;&#x8868;&#x7684;&#x76EE;&#x7684;&#x3002;</strong></p>
+<p><strong>&#x65E5;&#x671F;&#x7C7B;&#x578B; TIMESTAMP&#xFF1A;</strong></p>
+<ul>
+<li>DEFAULT CURRENT_TIMESTAMP:&#x5982;&#x63D2;&#x5165;&#x8BB0;&#x5F55;&#x65F6;&#x672A;&#x6307;&#x5B9A;&#x5177;&#x4F53;&#x65F6;&#x95F4;&#x6570;&#x636E;&#xFF0C;&#x5219;&#x4F1A;&#x63D2;&#x5165;&#x5F53;&#x524D;&#x65F6;&#x95F4;&#x7684;&#x65F6;&#x95F4;&#x6233;&#x3002;</li>
+<li>NO UPDATE CURRENT_TIMESTAMP:&#x5982;&#x66F4;&#x65B0;&#x8BB0;&#x5F55;&#x65F6;&#x672A;&#x6307;&#x5B9A;&#x5177;&#x4F53;&#x7684;&#x65F6;&#x95F4;&#x6570;&#x636E;&#xFF0C;&#x5219;&#x4F1A;&#x63D2;&#x5165;&#x5F53;&#x524D;&#x65F6;&#x95F4;&#x7684;&#x65F6;&#x95F4;&#x6233;&#x3002;</li>
+</ul>
+<h2 class="mume-header" id="%E7%BA%A6%E6%9D%9F">&#x7EA6;&#x675F;</h2>
+
+<p><strong>&#x5728;MySQL&#x4E2D;&#xFF0C;&#x7EA6;&#x675F;&#x662F;&#x5BF9;&#x8868;&#x4E2D;&#x6570;&#x636E;&#x7684;&#x4E00;&#x79CD;&#x7EA6;&#x675F;&#xFF0C;&#x53EF;&#x4EE5;&#x786E;&#x4FDD;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x6570;&#x636E;&#x7684;&#x6709;&#x6548;&#x6027;&#x3002;</strong></p>
+<p><strong>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x7EA6;&#x675F;&#x6761;&#x4EF6;&#x5728;&#x5B57;&#x6BB5;&#x521B;&#x5EFA;&#x7684;&#x65F6;&#x5019;&#x5E76;&#x4E0D;&#x662F;&#x5FC5;&#x987B;&#x7684;&#x3002;</strong></p>
+<p>MySQL&#x4E2D;&#x4E3B;&#x8981;&#x6709;&#x652F;&#x6301;&#x516D;&#x79CD;&#x7EA6;&#x675F;&#xFF0C;&#x4EE5;&#x4E0B;&#x516D;&#x79CD;&#x7EA6;&#x675F;&#xFF0C;&#x9664;&#x4E86;&#x4E3B;&#x952E;&#x7EA6;&#x675F;&#x4E4B;&#x5916;&#xFF0C;&#x5176;&#x4ED6;&#x7EA6;&#x675F;&#x90FD;&#x53EF;&#x4EE5;&#x90FD;&#x591A;&#x4E2A;&#x3002;</p>
+<ol>
+<li>
+<p><strong>&#x4E3B;&#x952E;&#x7EA6;&#x675F;&#xFF08;PK&#xFF09;&#xFF1A;PRIMARY KEY</strong></p>
+<p>&#x4E3B;&#x952E;&#x7EA6;&#x675F;&#x662F;&#x4F7F;&#x7528;&#x6700;&#x9891;&#x7E41;&#x7684;&#xFF0C;&#x5728;&#x8FDB;&#x884C;&#x8868;&#x7684;&#x8BBE;&#x8BA1;&#x65F6;&#x4E00;&#x822C;&#x90FD;&#x4F1A;&#x8981;&#x6C42;&#x8BBE;&#x8BA1;&#x4E00;&#x4E2A;&#x4E3B;&#x952E;&#xFF0C;&#x4E3B;&#x952E;&#x662F;&#x552F;&#x4E00;&#x7684;&#xFF0C;&#x4E14;&#x4E0D;&#x5141;&#x8BB8;&#x6709;&#x7A7A;&#x503C;&#x3002;<em>&#x4E3B;&#x952E;&#x7EA6;&#x675F;&#x7684;&#x6DFB;&#x52A0;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x5728;&#x5B57;&#x6BB5;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x540E;&#x9762;&#x52A0;&#x4E0A;&#xFF0C;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x5728;&#x8868;&#x521B;&#x5EFA;&#x7684;&#x6700;&#x540E;&#x8FDB;&#x884C;&#x6DFB;&#x52A0;</em> <strong>PRIMARY KEY(&#x5B57;&#x6BB5;&#x540D;)</strong></p>
+<p>**&#x8054;&#x5408;&#x4E3B;&#x952E;&#xFF1A;**&#x5728;&#x8BBE;&#x8BA1;&#x4E3B;&#x952E;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x8F93;&#x5165;&#x591A;&#x4E2A;&#x5B57;&#x6BB5;&#x540D;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E24;&#x4E2A;&#x5B57;&#x6BB5;&#x5C31;&#x88AB;&#x79F0;&#x4E3A;&#x8054;&#x5408;&#x4E3B;&#x952E;&#x3002;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#x5982;&#x679C;&#x9700;&#x8981;&#x8BBE;&#x8BA1;&#x8054;&#x5408;&#x4E3B;&#x952E;&#x90A3;&#x4E48;&#x5728;&#x5B57;&#x6BB5;&#x58F0;&#x540D;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x4E0D;&#x80FD;&#x6DFB;&#x52A0;&#x4E3B;&#x952E;&#x7EA6;&#x675F;&#x3002;</p>
+<p><strong>&#x4E3B;&#x952E;&#x81EA;&#x589E;&#xFF1A;AUTO_INCREMENT</strong>&#x7ED9;&#x5B57;&#x6BB5;&#x6DFB;&#x52A0;&#x53EF;&#x4EE5;&#x4F7F;&#x8BE5;&#x5B57;&#x6BB5;&#x5B9E;&#x73B0;&#x81EA;&#x589E;&#x957F;&#x3002;</p>
+<p>&#x5B57;&#x6BB5;&#x540D; &#x6570;&#x636E;&#x7C7B;&#x578B; AUTO_INCREMENT</p>
+<pre data-role="codeBlock" data-info="MySQL" class="language-mysql"><code>alter table t1 change id id int auto_increment;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+</code></pre><p><font color="#900">&#x60F3;&#x8981;&#x5728;&#x4FEE;&#x6539;&#x8868;&#x65F6;&#x6DFB;&#x52A0;&#x4E3B;&#x952E;&#x81EA;&#x589E;&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;change&#x5173;&#x952E;&#x5B57;&#x8FDB;&#x884C;&#x6DFB;&#x52A0;&#x3002;</font></p>
+</li>
+</ol>
+<p><strong>&#x8BBE;&#x7F6E;&#x4E3B;&#x952E;&#x521D;&#x59CB;&#x503C;</strong></p>
+<pre data-role="codeBlock" data-info class="language-"><code>  ALTER TALBE testkey AUTO_INCREMENT=10001;
+</code></pre><p><strong>&#x521B;&#x5EFA;&#x8868;&#x65F6;&#x8BBE;&#x7F6E;&#x521D;&#x59CB;id</strong></p>
+<pre data-role="codeBlock" data-info class="language-"><code>create table testkey2(
+  id int unsigned not null primary key auto_increment,#&#x8BBE;&#x7F6E;&#x4E3B;&#x952E;&#x4E3A;id&#x7C7B;&#x578B;&#x4E3A;int unsigned
+  name varchar(20) not null)
+  auto_increment = 10001;
+</code></pre><p>&#x901A;&#x8FC7;alter&#x547D;&#x4EE4;&#x66F4;&#x6539;&#x4E3B;&#x952E;&#x7684;</p>
+<p><em>&#x5220;&#x9664;&#x8868;&#x4E3B;&#x952E;&#x7EA6;&#x675F;&#xFF1A;</em></p>
+<p><strong>ALTER TABLE table_name</strong></p>
+<p><strong>DROP PRIMARY KEY</strong></p>
+<p><font color="#900">&#x56E0;&#x4E3A;&#x6BCF;&#x4E2A;&#x8868;&#x4E2D;&#x7684;&#x4E3B;&#x952E;&#x56FA;&#x5B9A;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#xFF0C;&#x6240;&#x4EE5;&#x5220;&#x9664;&#x4E3B;&#x952E;&#x7EA6;&#x675F;&#x76F4;&#x63A5;DORP PRIMARY KEY&#x5C31;&#x884C;&#x4E86;&#x3002;</font></p>
+<pre data-role="codeBlock" data-info="mysql" class="language-mysql"><code>mysql&gt; create table test(
+    -&gt; id int primary key,
+    -&gt; name varchar(5),
+    -&gt; age int,
+    -&gt; id_number varchar(18)
+    -&gt; );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql&gt; desc test;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | int         | NO   | PRI | NULL    |       |
+| name      | varchar(5)  | YES  |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| id_number | varchar(18) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql&gt; alter table test
+    -&gt; drop primary key;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql&gt; desc test;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | int         | NO   |     | NULL    |       |
+| name      | varchar(5)  | YES  |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| id_number | varchar(18) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+mysql&gt; alter table test
+    -&gt; add primary key(id);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql&gt; desc test;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | int         | NO   | PRI | NULL    |       |
+| name      | varchar(5)  | YES  |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| id_number | varchar(18) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+mysql&gt; alter table test
+    -&gt; change column id id int auto_increment;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql&gt; desc test;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int         | NO   | PRI | NULL    | auto_increment |
+| name      | varchar(5)  | YES  |     | NULL    |                |
+| age       | int         | YES  |     | NULL    |                |
+| id_number | varchar(18) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+</code></pre><p><font color="#900">&#x4EE5;&#x4E0A;&#x64CD;&#x4F5C;&#x65F6;&#x5728;&#x662F;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x65F6;&#x6DFB;&#x52A0;&#x4E3B;&#x952E;&#x7EA6;&#x675F;&#xFF0C;&#x4E4B;&#x540E;&#x8FDB;&#x884C;&#x4E3B;&#x952E;&#x7EA6;&#x675F;&#x7684;&#x5220;&#x9664;&#xFF0C;&#x6DFB;&#x52A0;&#x548C;&#x6DFB;&#x52A0;&#x4E3B;&#x952E;&#x81EA;&#x589E;&#x3002;</font></p>
+<hr>
+<ol start="2">
+<li>
+<p><strong>&#x5916;&#x952E;&#x7EA6;&#x675F;&#xFF08;FK&#xFF09;&#xFF1A;FOREIGN KEY</strong></p>
+<p>&#x5916;&#x952E;&#x7EA6;&#x675F;&#x662F;&#x548C;&#x4E3B;&#x952E;&#x7EA6;&#x675F;&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#x7684;&#xFF0C;&#x7528;&#x6765;&#x4FDD;&#x8BC1;&#x6570;&#x636E;&#x7684;&#x4E00;&#x81F4;&#x6027;&#x3002;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x4E00;&#x4E2A;&#x8868;&#x7684;&#x5916;&#x952E;&#x5C31;&#x662F;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x8868;&#x7684;&#x4E3B;&#x952E;&#xFF0C;&#x5916;&#x952E;&#x53EF;&#x4EE5;&#x91CD;&#x590D;&#xFF0C;&#x4E3B;&#x952E;&#x4E0D;&#x53EF;&#x4EE5;&#x91CD;&#x590D;&#x3002;&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x8868;&#x7684;&#x4E3B;&#x952E;&#x662F;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x8868;&#x7684;&#x5916;&#x952E;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E24;&#x4E2A;&#x8868;&#x7684;&#x5173;&#x8054;&#x6027;&#x5C31;&#x4F1A;&#x88AB;&#x52A0;&#x5F3A;&#x3002;</p>
+<p><em>&#x521B;&#x5EFA;&#x8868;&#x65F6;&#x8BBE;&#x7F6E;&#x5916;&#x952E;&#x7EA6;&#x675F;&#xFF1A;</em></p>
+<p><strong>[CONSTRAINT &lt;&#x5916;&#x952E;&#x540D;&gt;] FOREIGN KEY &#x5B57;&#x6BB5;&#x540D;[&#x5B57;&#x6BB5;&#x540D;2,...]</strong></p>
+<p><strong>REFERENCES &lt;&#x4E3B;&#x8868;&#x540D;&gt; &#x4E3B;&#x952E;1[,&#x4E3B;&#x952E;2,...];</strong></p>
+<p><font color="#900"><strong>&#x5728;&#x8FDB;&#x884C;&#x5916;&#x952E;&#x7684;&#x5B9A;&#x4E49;&#x65F6;&#xFF0C;CONSTRAINT&#x5E76;&#x4E0D;&#x662F;&#x5FC5;&#x987B;&#x7684;&#xFF0C;&#x5B83;&#x5B58;&#x5728;&#x7684;&#x610F;&#x4E49;&#x4EC5;&#x4EC5;&#x53EA;&#x662F;&#x4E3A;&#x4E86;&#x5728;&#x5220;&#x9664;&#x5916;&#x952E;&#x65F6;&#x4F7F;&#x7528;&#xFF0C;&#x5373;&#x4F7F;&#x4E0D;&#x624B;&#x52A8;&#x6DFB;&#x52A0;&#x5916;&#x952E;&#x540D;&#x6267;&#x884C;SQL&#x8BED;&#x53E5;&#x4E5F;&#x4E0D;&#x4F1A;&#x62A5;&#x9519;&#xFF0C;&#x6570;&#x636E;&#x5E93;&#x5728;&#x8FD0;&#x884C;SQL&#x8BED;&#x53E5;&#x65F6;&#x4F1A;&#x81EA;&#x52A8;&#x6DFB;&#x52A0;&#x4E0A;&#x9ED8;&#x8BA4;&#x7684;&#x5916;&#x952E;&#x540D;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F7F;&#x7528; SHOW CREATE TABLE table_name &#x5C55;&#x793A;&#x8868;&#x7ED3;&#x6784;&#x8BED;&#x53E5;&#x6765;&#x67E5;&#x770B;&#x8868;&#x4E2D;&#x5916;&#x952E;&#x7684;&#x9ED8;&#x8BA4;&#x540D;</strong></font></p>
+<p><em>&#x5220;&#x9664;&#x8868;&#x5916;&#x952E;&#x7EA6;&#x675F;&#xFF1A;</em></p>
+<p><strong>ALTER TABLE table_name DROP FOREIGN KEY &#x5916;&#x952E;&#x7EA6;&#x675F;&#x540D;</strong></p>
+<p><em>&#x5728;&#x4FEE;&#x6539;&#x8868;&#x65F6;&#x6DFB;&#x52A0;&#x5916;&#x952E;&#x7EA6;&#x675F;&#xFF1A;</em></p>
+<p><strong>ALTER TABLE table_name</strong></p>
+<p>**ADD [CONSTRAINT &lt;&#x5916;&#x952E;&#x540D;&gt;] **</p>
+<p><strong>FOREIGN KEY &#x5B57;&#x6BB5;&#x540D;[&#x5B57;&#x6BB5;&#x540D;2,...]</strong></p>
+<p><strong>REFERENCES &lt;&#x4E3B;&#x8868;&#x540D;&gt; &#x4E3B;&#x952E;[,&#x4E3B;&#x952E;2,...];</strong></p>
+<p><font color="#900">&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;&#x4FEE;&#x6539;&#x8868;&#x65F6;&#x521B;&#x5EFA;&#x5916;&#x952E;&#x7EA6;&#x675F;&#xFF0C;&#x4F46;&#x662F;&#x6709;&#x4E00;&#x70B9;&#x9700;&#x8981;&#x7279;&#x522B;&#x6CE8;&#x610F;&#xFF0C;&#x8981;&#x786E;&#x4FDD;&#x6DFB;&#x52A0;&#x5916;&#x952E;&#x7EA6;&#x675F;&#x7684;&#x5217;&#x7684;&#x503C;&#x90FD;&#x6765;&#x81EA;&#x4E3B;&#x8868;&#x7684;&#x4E3B;&#x952E;&#x5217;&#xFF0C;&#x4E14;&#x5916;&#x952E;&#x5217;&#x4E0D;&#x80FD;&#x4E3A;&#x7A7A;&#x3002;</font></p>
+<p><strong>&#x5B9A;&#x4E49;&#x5916;&#x952E;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x9075;&#x5B88;&#x4E0B;&#x5217;&#x89C4;&#x5219;&#xFF1A;</strong></p>
+<ul>
+<li>&#x4E3B;&#x8868;&#x5FC5;&#x987B;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x4E0E; &#x6570;&#x636E;&#x5E93;&#x4E2D;&#xFF0C;&#x6216;&#x8005;&#x662F;&#x5F53;&#x524D;&#x6B63;&#x5728;&#x521B;&#x5EFA;&#x7684;&#x8868;&#x3002;&#x5982;&#x679C;&#x662F;&#x7B2C;&#x4E8C;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x5219;&#x4E3B;&#x8868;&#x4E0E;&#x4ECE;&#x8868;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x8868;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x8868;&#x4E3A;&#x5B50;&#x53C2;&#x7167;&#x8868;&#xFF0C;&#x8FD9;&#x79CD;&#x7ED3;&#x6784;&#x79F0;&#x4E3A;&#x81EA;&#x53C2;&#x7167;&#x5B8C;&#x6574;&#x6027;&#x3002;</li>
+<li>&#x8FDB;&#x884C;&#x5173;&#x8054;&#x7684;&#x4E3B;&#x8868;&#x5FC5;&#x987B;&#x6709;&#x4E3B;&#x952E;&#x3002;</li>
+<li>&#x4E3B;&#x952E;&#x4E0D;&#x80FD;&#x5305;&#x542B;&#x7A7A;&#x503C;&#xFF0C;&#x4F46;&#x5141;&#x8BB8;&#x5728;&#x5916;&#x952E;&#x4E2D;&#x51FA;&#x73B0;&#x7A7A;&#x503C;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x53EA;&#x8981;&#x5916;&#x952E;&#x7684;&#x975E;&#x7A7A;&#x5185;&#x5BB9;&#x4E0E;&#x4E3B;&#x952E;&#x7684;&#x5185;&#x5BB9;&#x4E00;&#x81F4;&#xFF0C;&#x5219;&#x8FD9;&#x4E2A;&#x5916;&#x952E;&#x5C31;&#x662F;&#x771F;&#x786E;&#x7684;&#x3002;</li>
+<li>&#x5728;&#x4E3B;&#x8868;&#x7684;&#x8868;&#x9762;&#x90A3;&#x4E2A;&#x540E;&#x9762;&#x6307;&#x5B9A;&#x5217;&#x540D;&#x6216;&#x5217;&#x540D;&#x7684;&#x7EC4;&#x5408;&#xFF0C;&#x8FD9;&#x4E2A;&#x5217;&#x6216;&#x5217;&#x7684;&#x7EC4;&#x5408;&#x5FC5;&#x987B;&#x662F;&#x4E3B;&#x8868;&#x7684;&#x4E3B;&#x952E;&#x6216;&#x5019;&#x9009;&#x952E;&#x3002;</li>
+<li>&#x5916;&#x952E;&#x4E2D;&#x5217;&#x7684;&#x6570;&#x91CF;&#x5FC5;&#x987B;&#x548C;&#x4E3B;&#x8868;&#x4E2D;&#x4E3B;&#x952E;&#x7684;&#x6570;&#x76EE;&#x76F8;&#x540C;&#x3002;</li>
+<li>&#x5916;&#x952E;&#x4E2D;&#x5217;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x5FC5;&#x987B;&#x548C;&#x4E3B;&#x8868;&#x4E2D;&#x4E3B;&#x952E;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x4E00;&#x81F4;&#x3002;</li>
+</ul>
+<pre data-role="codeBlock" data-info="mysql" class="language-mysql"><code>mysql&gt; create table test2(
+    -&gt; id int,
+    -&gt; id_number int,
+    -&gt; constraint k
+    -&gt; foreign key(id_number)
+    -&gt; references test(id)
+    -&gt; );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql&gt; show create table test2;
++-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                    |
++-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| test2 | CREATE TABLE `test2` (
+  `id` int DEFAULT NULL,
+  `id_number` int DEFAULT NULL,
+  KEY `k` (`id_number`),
+  CONSTRAINT `k` FOREIGN KEY (`id_number`) REFERENCES `test` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+mysql&gt; alter table test2
+    -&gt; drop foreign key k;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql&gt; show create table test2;
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                               |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| test2 | CREATE TABLE `test2` (
+  `id` int DEFAULT NULL,
+  `id_number` int DEFAULT NULL,
+  KEY `k` (`id_number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; alter table clerk_position
+    -&gt; add constraint clerk_position_clerk
+    -&gt; foreign key (id)
+    -&gt; references clerk(id);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+</code></pre><p><font color="#900">&#x8FD9;&#x91CC;&#x65B0;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x8868;&#xFF0C;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x5916;&#x952E;&#x7EA6;&#x675F;&#xFF0C;&#x6B64;&#x8868;&#x88AB;&#x5916;&#x952E;&#x7EA6;&#x675F;&#x7684;&#x5B57;&#x6BB5;&#x662F;id_number&#x94FE;&#x63A5;&#x7684;&#x662F;test&#x8868;&#x7684;id&#x3002;<strong>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#x6DFB;&#x52A0;&#x5916;&#x952E;&#x7EA6;&#x675F;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EA;&#x80FD;&#x94FE;&#x63A5;&#x4E3B;&#x8868;&#x7684;&#x4E3B;&#x952E;&#x3002;</strong></font></p>
+<p><font color="#900"><strong>&#x5728;&#x4F7F;&#x7528;&#x5916;&#x952E;&#x7EA6;&#x675F;&#x5173;&#x8054;&#x4E86;&#x4E24;&#x4E2A;&#x8868;&#x4E4B;&#x540E;&#xFF0C;&#x5728;&#x540E;&#x7EED;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#x6216;&#x8005;&#x66F4;&#x6539;&#x8868;&#x5B57;&#x6BB5;&#x7684;&#x65F6;&#x5019;&#x9700;&#x8981;&#x591A;&#x591A;&#x6CE8;&#x610F;&#x3002;&#x9996;&#x5148;&#x662F;&#x5B57;&#x6BB5;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x8981;&#x4E00;&#x81F4;&#xFF0C;&#x4E14;&#x5916;&#x952E;&#x7684;&#x503C;&#x4E0D;&#x80FD;&#x5728;&#x4E3B;&#x8868;&#x4E3B;&#x952E;&#x503C;&#x7684;&#x8303;&#x56F4;&#x4E4B;&#x5916;&#x3002;</strong></font></p>
+<hr>
+</li>
+<li>
+<p><strong>&#x552F;&#x4E00;&#x7EA6;&#x675F;&#xFF1A;Unique Key</strong></p>
+<p>&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x548C;&#x4E3B;&#x952E;&#x7EA6;&#x675F;&#x7C7B;&#x4F3C;&#xFF0C;&#x4ED6;&#x4EEC;&#x90FD;&#x53EF;&#x4EE5;&#x786E;&#x4FDD;&#x4FE1;&#x606F;&#x552F;&#x4E00;&#x6027;&#xFF0C;&#x4F46;&#x662F;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x53EF;&#x4EE5;&#x4E3A;&#x7A7A;&#xFF0C;&#x4E14;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;&#x3002;</p>
+<p><em>&#x521B;&#x5EFA;&#x8868;&#x65F6;&#x8BBE;&#x7F6E;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x8BED;&#x6CD5;&#xFF1A;</em></p>
+<p><strong>&lt;&#x5B57;&#x6BB5;&#x540D;&gt; &lt;&#x6570;&#x636E;&#x7C7B;&#x578B;&gt; UNIQUE</strong></p>
+<p><em>&#x5728;&#x4FEE;&#x6539;&#x8868;&#x65F6;&#x6DFB;&#x52A0;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x8BED;&#x6CD5;&#xFF1A;</em></p>
+<p><strong>ALTER TABLE &lt;&#x8868;&#x540D;&gt; ADD CONSTRAINT &lt;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x540D;&gt; UNIQUE(&lt;&#x5217;&#x540D;&gt;);</strong></p>
+<p><em>&#x5220;&#x9664;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x8BED;&#x6CD5;&#xFF1A;</em></p>
+<p><strong>ALTER TABLE &lt;&#x8868;&#x540D;&gt; DORP INDEX &lt;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x540D;&gt;;</strong></p>
+<p><font color="#900">&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;&#x6BD4;&#x8F83;&#x5C11;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x8868;&#x4E2D;&#x5DF2;&#x6709;&#x4E3B;&#x952E;&#x4E14;&#x6709;&#x5B57;&#x6BB5;&#x5177;&#x6709;&#x552F;&#x4E00;&#x6027;&#x7684;&#x5730;&#x65B9;&#x624D;&#x9700;&#x8981;&#x4F7F;&#x7528;&#xFF0C;&#x4E14;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x4E0E;&#x5916;&#x952E;&#x7EA6;&#x675F;&#x4E0D;&#x540C;&#xFF0C;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x7684;&#x9ED8;&#x8BA4;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x540D;&#x5C31;&#x662F;&#x5B57;&#x6BB5;&#x672C;&#x8EAB;&#xFF0C;&#x5728;&#x5220;&#x9664;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x7684;&#x65F6;&#x5019;&#x4E4B;&#x54DF;&#x554A;&#x52A0;&#x4E0A;<strong>INDEX</strong>&#x5173;&#x952E;&#x5B57;&#x5C31;&#x53EF;&#x4EE5;&#x5220;&#x9664;&#x7EA6;&#x675F;&#x4E86;&#x3002;</font></p>
+<pre data-role="codeBlock" data-info="MySQL" class="language-mysql"><code>mysql&gt; alter table test
+    -&gt; add unique key(id_number);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql&gt; desc test;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int         | NO   | PRI | NULL    | auto_increment |
+| name      | varchar(5)  | YES  |     | NULL    |                |
+| age       | int         | YES  |     | NULL    |                |
+| id_number | varchar(18) | YES  | UNI | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.03 sec)
+mysql&gt; show create table test;
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                  |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| test  | CREATE TABLE `test` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(5) DEFAULT NULL,
+  `age` int DEFAULT NULL,
+  `id_number` varchar(18) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_number` (`id_number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.02 sec)
+
+mysql&gt; alter table test
+    -&gt; drop index id_number;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql&gt; desc test;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int         | NO   | PRI | NULL    | auto_increment |
+| name      | varchar(5)  | YES  |     | NULL    |                |
+| age       | int         | YES  |     | NULL    |                |
+| id_number | varchar(18) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.03 sec)
+</code></pre><p><font color="#900">&#x8FD9;&#x91CC;&#x9996;&#x5148;&#x662F;&#x7ED9;id_number&#x5B57;&#x6BB5;&#x6DFB;&#x52A0;&#x4E86;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#xFF0C;&#x4E4B;&#x540E;&#x67E5;&#x770B;&#x8868;&#x7ED3;&#x6784;&#x770B;&#x5230;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x540D;&#x548C;&#x5B57;&#x6BB5;&#x540D;&#x5176;&#x5B9E;&#x662F;&#x4E00;&#x81F4;&#x7684;&#xFF0C;&#x6700;&#x540E;&#x4F7F;&#x7528;alter&#x5220;&#x9664;&#x8BE5;&#x5B57;&#x6BB5;&#x7684;&#x552F;&#x4E00;&#x7EA6;&#x675F;&#x3002;<strong>&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#x5220;&#x9664;&#x552F;&#x4E00;&#x5B57;&#x6BB5;&#x7684;&#x65F6;&#x5019;&#x5728;drop&#x4E4B;&#x540E;&#x4F7F;&#x7528;&#x7684;&#x5173;&#x952E;&#x5B57;&#x662F;index&#x540E;&#x9762;&#x8DDF;&#x552F;&#x4E00;&#x5B57;&#x6BB5;&#x540D;&#x3002;</strong></font></p>
+<hr>
+</li>
+<li>
+<p><strong>&#x68C0;&#x67E5;&#x7EA6;&#x675F;&#xFF1A;CHECK</strong></p>
+<p>&#x68C0;&#x67E5;&#x7EA6;&#x675F;&#x662F;&#x7528;&#x6765;&#x68C0;&#x67E5;&#x6570;&#x636E;&#x8868;&#x4E2D;&#x5B57;&#x6BB5;&#x662F;&#x5426;&#x6709;&#x6548;&#x7684;&#x624B;&#x6BB5;&#xFF0C;&#x53EF;&#x4EE5;&#x5BF9;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x9650;&#x5236;&#xFF0C;&#x51CF;&#x5C11;&#x65E0;&#x6548;&#x6570;&#x636E;&#x7684;&#x8F93;&#x5165;&#x3002;</p>
+<p><font color="#900"><strong>&#x82E5;&#x5C06;CHECK&#x7EA6;&#x675F;&#x5B50;&#x8BED;&#x53E5;&#x81F3;&#x4E8E;&#x6240;&#x6709;&#x5217;&#x7684;&#x5B9A;&#x4E49;&#x4EE5;&#x53CA;&#x4E3B;&#x952E;&#x7EA6;&#x675F;&#x548C;&#x5916;&#x952E;&#x7EA6;&#x675F;&#x5B9A;&#x4E49;&#x4E4B;&#x540E;&#xFF0C;&#x5219;&#x79CD;&#x79CD;&#x7EA6;&#x675F;&#x4E5F;&#x6210;&#x4E3A;&#x57FA;&#x4E8E;&#x8868;&#x7684;CHECK&#x7EA6;&#x675F;&#x3002;&#x8BE5;&#x7EA6;&#x675F;&#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x5BF9;&#x8868;&#x4E2D;&#x591A;&#x4E2A;&#x5217;&#x8BBE;&#x7F6E;&#x9650;&#x5B9A;&#x6761;&#x4EF6;&#x3002;</strong></font></p>
+<p><em>&#x521B;&#x5EFA;&#x8868;&#x65F6;&#x8BBE;&#x7F6E;&#x68C0;&#x67E5;&#x7EA6;&#x675F;&#x8BED;&#x6CD5;&#xFF1A;</em></p>
+<p><strong>CHECK&lt;&#x5E03;&#x5C14;&#x8868;&#x8FBE;&#x5F0F;&gt;</strong></p>
+<p><em>&#x5728;&#x4FEE;&#x6539;&#x8868;&#x65F6;&#x6DFB;&#x52A0;&#x68C0;&#x67E5;&#x7EA6;&#x675F;&#x8BED;&#x6CD5;&#xFF1A;</em></p>
+<p><strong>ALTER TABLR &lt;table_name&gt; ADD CONSTRAINT &lt;&#x68C0;&#x67E5;&#x7EA6;&#x675F;&#x540D;&gt; CHECK(&lt;&#x5E03;&#x5C14;&#x8868;&#x8FBE;&#x5F0F;&gt;)</strong></p>
+<p><font color="#900">&#x5728;&#x4FEE;&#x6539;&#x8868;&#x65F6;&#x6DFB;&#x52A0;&#x7684;&#x68C0;&#x67E5;&#x7EA6;&#x675F;&#x662F;&#x53EF;&#x4EE5;&#x9488;&#x5BF9;&#x8868;&#x4E2D;&#x591A;&#x4E2A;&#x5217;&#x8BBE;&#x7F6E;&#x9650;&#x5236;&#x6761;&#x4EF6;&#x7684;&#x3002;</font></p>
+<p><em>&#x5220;&#x9664;&#x68C0;&#x67E5;&#x7EA6;&#x675F;&#x8BED;&#x6CD5;&#xFF1A;</em></p>
+<p><strong>ALTER TABLE &lt;table_name&gt; DROP CONSTRAINT &lt;&#x68C0;&#x67E5;&#x7EA6;&#x675F;&#x540D;&gt;&#xFF1B;</strong></p>
+<pre data-role="codeBlock" data-info="MySQL" class="language-mysql"><code>mysql&gt; alter table test
+    -&gt; add  constraint k
+    -&gt; check(age&gt;10);
+Query OK, 1 row affected (0.11 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql&gt; insert into test(name,age,id_numbner) values(&apos;lizanyang&apos;,1,&apos;223&apos;);
+ERROR 1054 (42S22): Unknown column &apos;id_numbner&apos; in &apos;field list&apos;
+mysql&gt; insert into test(name,age,id_number) values(&apos;lzu&apos;,11,&apos;12313&apos;);
+Query OK, 1 row affected (0.02 sec)
+
+mysql&gt; select * from test;
++----+------+------+-----------+
+| id | name | age  | id_number |
++----+------+------+-----------+
+|  1 | li   |   18 | 11        |
+|  2 | lzu  |   11 | 12313     |
++----+------+------+-----------+
+2 rows in set (0.00 sec)
+</code></pre><p><font color="#900"></font></p>
+<hr>
+</li>
+<li>
+<p><strong>&#x975E;&#x7A7A;&#x7EA6;&#x675F;&#xFF1A;NOT NULL</strong></p>
+<p>&#x7528;&#x6765;&#x7EA6;&#x675F;&#x8868;&#x4E2D;&#x5B57;&#x6BB5;&#x4E0D;&#x80FD;&#x4E3A;&#x7A7A;&#x3002;</p>
+<p><em>&#x521B;&#x5EFA;&#x8868;&#x65F6;&#x8BBE;&#x7F6E;&#x975E;&#x7A7A;&#x7EA6;&#x675F;&#x8BED;&#x6CD5;&#xFF1A;</em></p>
+<p><strong>&lt;&#x5B57;&#x6BB5;&#x540D;&gt; &lt;&#x6570;&#x636E;&#x7C7B;&#x578B;&gt; NOT NULL</strong></p>
+<p><em>&#x5728;&#x4FEE;&#x6539;&#x8868;&#x65F6;&#x6DFB;&#x52A0;&#x975E;&#x7A7A;&#x7EA6;&#x675F;&#xFF1A;</em></p>
+<p><strong>ALTER TABLE &lt;&#x8868;&#x540D;&gt; CHANGE COLUMN &lt;&#x5B57;&#x6BB5;&#x540D;&gt; &lt;&#x5B57;&#x6BB5;&#x540D;&gt; &lt;&#x6570;&#x636E;&#x7C7B;&#x578B;&gt; NUT NULL</strong></p>
+<p><font color="#900"><strong>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#x8FD9;&#x91CC;&#x5728;&#x6DFB;&#x52A0;&#x8868;&#x65F6;&#x4F7F;&#x7528;&#x7684;&#x5173;&#x952E;&#x5B57;&#x4E0D;&#x662F;ADD&#x800C;&#x662F;CHANGE COLUMN&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x5B57;&#x6BB5;&#x540D;&#x548C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x586B;&#x5165;&#x9700;&#x8981;&#x548C;&#x672C;&#x8EAB;&#x7684;&#x7C7B;&#x578B;&#x4E00;&#x81F4;&#x3002;</strong></font></p>
+<p><em>&#x5220;&#x9664;&#x8868;&#x5B57;&#x6BB5;&#x975E;&#x7A7A;&#x7EA6;&#x675F;&#x8BED;&#x6CD5;&#xFF1A;</em></p>
+<p><strong>ALTER TABLE &lt;&#x8868;&#x540D;&gt; CHANGE COLUMN &lt;&#x5B57;&#x6BB5;&#x540D;&gt; &lt;&#x5B57;&#x6BB5;&#x540D;&gt; &lt;&#x6570;&#x636E;&#x7C7B;&#x578B;&gt; NULL</strong></p>
+<p><font color="#900">&#x5220;&#x9664;&#x975E;&#x7A7A;&#x7EA6;&#x675F;&#x548C;&#x5728;&#x4FEE;&#x6539;&#x8868;&#x65F6;&#x6DFB;&#x52A0;&#x975E;&#x7A7A;&#x7EA6;&#x675F;&#x5F88;&#x76F8;&#x4F3C;&#xFF0C;&#x4E5F;&#x662F;&#x4F7F;&#x7528;&#x7684;CHANGE&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x552F;&#x4E00;&#x4E0D;&#x540C;&#x7684;&#x662F;&#x5C06;NOT NULL&#x6362;&#x6210;NULL&#x5C31;&#x53EF;&#x4EE5;&#x5220;&#x9664;&#x5B57;&#x6BB5;&#x7684;&#x975E;&#x7A7A;&#x7EA6;&#x675F;&#x4E86;&#x3002;</font></p>
+<hr>
+</li>
+<li>
+<p><strong>&#x9ED8;&#x8BA4;&#x503C;&#x7EA6;&#x675F;&#xFF1A;Default Constraint</strong></p>
+<p>&#x9ED8;&#x8BA4;&#x503C;&#x7EA6;&#x675F;&#x53EF;&#x4EE5;&#x5728;&#x8F93;&#x5165;&#x5B57;&#x6BB5;&#x503C;&#x4E3A;&#x7A7A;&#x65F6;&#xFF0C;&#x81EA;&#x52A8;&#x6DFB;&#x52A0;&#x9ED8;&#x8BA4;&#x7684;&#x503C;&#x3002;</p>
+<p><code>&#x9ED8;&#x8BA4;&#x503C;&#x7EA6;&#x675F;&#x901A;&#x5E38;&#x7528;&#x5728;&#x5DF2;&#x7ECF;&#x8BBE;&#x7F6E;&#x4E86;&#x975E;&#x7A7A;&#x7EA6;&#x675F;&#x7684;&#x5217;&#xFF0C;&#x8FD9;&#x6837;&#x5AE9;&#x5DE9;&#x56FA;&#x9632;&#x6B62;&#x6570;&#x636E;&#x8868;&#x5728;&#x5F55;&#x5165;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;&#x51FA;&#x73B0;&#x9519;&#x8BEF;&#x3002;</code></p>
+<p><em>&#x5728;&#x521B;&#x5EFA;&#x8868;&#x65F6;&#x8BBE;&#x7F6E;&#x975E;&#x7A7A;&#x7EA6;&#x675F;&#x8BED;&#x6CD5;&#xFF1A;</em></p>
+<p><strong>&lt;&#x5B57;&#x6BB5;&#x540D;&gt; &lt;&#x6570;&#x636E;&#x7C7B;&#x578B;&gt; DEFAULT &lt;&#x9ED8;&#x8BA4;&#x503C;&gt;</strong></p>
+<p><em>&#x4FEE;&#x6539;&#x8868;&#x65F6;&#x6DFB;&#x52A0;&#x9ED8;&#x8BA4;&#x503C;&#x7EA6;&#x675F;&#xFF1A;</em></p>
+<p><strong>ALTER TABLE &lt;&#x8868;&#x540D;&gt; CHANGE COLUMN &lt;&#x5B57;&#x6BB5;&#x540D;&gt; &lt;&#x6570;&#x636E;&#x7C7B;&#x578B;&gt; DEFAULT &lt;&#x9ED8;&#x8BA4;&#x503C;&gt;</strong></p>
+<p><em>&#x5220;&#x9664;&#x9ED8;&#x8BA4;&#x503C;&#x7EA6;&#x675F;&#xFF1A;</em></p>
+<p><strong>ALTER TABLE &lt;&#x8868;&#x540D;&gt; CHANGE COLUMN &lt;&#x5B57;&#x6BB5;&#x540D;&gt; &lt;&#x5B57;&#x6BB5;&#x540D;&gt; &lt;&#x6570;&#x636E;&#x7C7B;&#x578B;&gt; DEFAULT NULL;</strong></p>
+<p><font color="#900">&#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x503C;&#x7EA6;&#x675F;&#x7684;&#x65B9;&#x6CD5;&#x7C7B;&#x4F3C;&#x4E8E;&#x8BBE;&#x7F6E;&#x975E;&#x7A7A;&#x7EA6;&#x675F;&#xFF0C;&#x4F7F;&#x7528;&#x7684;&#x90FD;&#x662F;CHANGE&#x5B50;&#x8BED;&#x53E5;&#xFF0C;&#x5220;&#x9664;&#x9ED8;&#x8BA4;&#x503C;&#x7684;&#x65B9;&#x6CD5;&#x4E5F;&#x662F;&#x5C06;&#x9ED8;&#x8BA4;&#x503C;&#x91CD;&#x65B0;&#x8BBE;&#x7F6E;&#x4E3A;NULL&#x7684;&#x8FC7;&#x7A0B;&#x3002;</font></p>
+</li>
+</ol>
+<hr>
+<h2 class="mume-header" id="mysql%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7">MySQL&#x8FD0;&#x7B97;&#x7B26;&#x4F18;&#x5148;&#x7EA7;</h2>
+
+<table>
+<thead>
+<tr>
+<th>&#x4F18;&#x5148;&#x7EA7;</th>
+<th>&#x8FD0;&#x7B97;&#x7B26;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>=(&#x590D;&#x5236;&#x8FD0;&#x7B97;)&#x3001;:=</td>
+</tr>
+<tr>
+<td>2</td>
+<td>||,OR</td>
+</tr>
+<tr>
+<td>3</td>
+<td>XOR</td>
+</tr>
+<tr>
+<td>4</td>
+<td>&amp;&amp;,AND</td>
+</tr>
+<tr>
+<td>5</td>
+<td>NOT</td>
+</tr>
+<tr>
+<td>6</td>
+<td>BETWEEN,CASE,WHERE,THEN,ELSE</td>
+</tr>
+<tr>
+<td>7</td>
+<td>=(&#x6BD4;&#x8F83;&#x8FD0;&#x7B97;),&lt;=&gt;,&gt;=,&gt;,&lt;=,&lt;,&lt;&gt;,!=,IS,LIKE,REGEXP,IN</td>
+</tr>
+<tr>
+<td>8</td>
+<td>|</td>
+</tr>
+<tr>
+<td>9</td>
+<td>&amp;</td>
+</tr>
+<tr>
+<td>10</td>
+<td>&lt;&lt;,&gt;&gt;</td>
+</tr>
+<tr>
+<td>11</td>
+<td>-(&#x51CF;&#x53F7;),+</td>
+</tr>
+<tr>
+<td>12</td>
+<td>*,/,%</td>
+</tr>
+<tr>
+<td>13</td>
+<td>^</td>
+</tr>
+<tr>
+<td>14</td>
+<td>-(&#x8D1F;&#x53F7;&#xFF09;&#x3001;&#x301C;&#xFF08;&#x4F4D;&#x53CD;&#x8F6C;&#xFF09;</td>
+</tr>
+<tr>
+<td>15</td>
+<td>&#xFF01;</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 class="mume-header" id="mysql%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4">MySQL&#x4F7F;&#x7528;&#x547D;&#x4EE4;</h2>
+
+<p><strong>&#x5E38;&#x7528;&#x6307;&#x4EE4;&#x94FE;&#x63A5;&#xFF1A;<a href="https://www.cnblogs.com/linjiqin/archive/2013/03/01/2939384.html">https://www.cnblogs.com/linjiqin/archive/2013/03/01/2939384.html</a></strong></p>
+<p>**SQL&#x8BED;&#x53E5;&#x6574;&#x4F53;&#x88AB;&#x5206;&#x4E3A;&#x56DB;&#x5927;&#x7C7B;&#xFF1A;**<a href="https://blog.csdn.net/weixin_32262089/article/details/113438567">https://blog.csdn.net/weixin_32262089/article/details/113438567</a></p>
+<ul>
+<li>
+<p>DDL&#xFF08;&#x6570;&#x636E;&#x5B9A;&#x4E49;&#x8BED;&#x8A00;&#xFF09;&#xFF1A;</p>
+<p>&#x6570;&#x636E;&#x5B9A;&#x4E49;&#x8BED;&#x8A00;&#x662F;&#x7528;&#x4E8E;&#x5B9A;&#x4E49;&#x6570;&#x636E;&#x5E93;&#x6A21;&#x5F0F;&#x7684;SQL&#x547D;&#x4EE4;&#xFF0C;&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x548C;&#x4FEE;&#x6539;&#xFF0C;&#x5220;&#x9664;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x5BF9;&#x8C61;&#x7684;&#x7ED3;&#x6784;&#x3002;</p>
+</li>
+<li>
+<p>DML&#xFF08;&#x6570;&#x636E;&#x64CD;&#x4F5C;&#x8BED;&#x8A00;&#xFF09;&#xFF1A;</p>
+<p>&#x6570;&#x636E;&#x64CD;&#x4F5C;&#x8BED;&#x8A00;&#x662F;&#x5904;&#x7406;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x5B58;&#x5728;&#x7684;&#x6570;&#x636E;&#x7684;SQL&#x547D;&#x4EE4;&#x3002;</p>
+</li>
+<li>
+<p>DCL&#xFF08;&#x6570;&#x636E;&#x63A7;&#x5236;&#x8BED;&#x8A00;&#xFF09;&#xFF1A;</p>
+<p>&#x6570;&#x636E;&#x63A7;&#x5236;&#x8BED;&#x8A00;&#x4E3B;&#x8981;&#x7528;&#x6765;&#x5904;&#x7406;&#x6570;&#x636E;&#x5E93;&#x7CFB;&#x7EDF;&#x7684;&#x6743;&#x9650;&#x548C;&#x5176;&#x4ED6;&#x63A7;&#x5236;&#x3002;</p>
+</li>
+<li>
+<p>TCL&#xFF08;&#x4E8B;&#x52A1;&#x63A7;&#x5236;&#x8BED;&#x8A00;&#xFF09;&#xFF1A;</p>
+<p>&#x4E8B;&#x52A1;&#x63A7;&#x5236;&#x8BED;&#x8A00;&#x4E3B;&#x8981;&#x7528;&#x6765;&#x5904;&#x7406;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x4E1A;&#x52A1;&#xFF0C;&#x6BD4;&#x5982;&#x63D0;&#x4EA4;&#x4EA4;&#x6613;&#xFF0C;&#x4E1A;&#x52A1;&#x56DE;&#x6EDA;&#x3002;</p>
+</li>
+</ul>
+<hr>
+<h3 class="mume-header" id="mysql%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4">MySQL&#x5E38;&#x7528;&#x6307;&#x4EE4;&#xFF1A;</h3>
+
+<ol>
+<li>
+<p><strong>flush privileges&#xFF1A;</strong></p>
+<p>&#x8FD9;&#x6761;&#x6307;&#x4EE4;&#x7684;&#x610F;&#x601D;&#x662F;&#x7ACB;&#x5373;&#x6267;&#x884C;&#x6743;&#x9650;&#x7684;&#x66F4;&#x6539;&#xFF0C;&#x6709;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x8FDB;&#x884C;user&#x6743;&#x9650;&#x7684;&#x66F4;&#x6539;&#xFF0C;MySQL&#x9ED8;&#x8BA4;&#x4E0D;&#x4F1A;&#x751F;&#x6548;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x5E93;&#x7684;&#x91CD;&#x542F;&#xFF08;&#x6709;&#x65F6;&#x5019;&#x4E0D;&#x7BA1;&#x7528;&#xFF09;&#xFF0C;&#x6216;&#x8005;&#x6267;&#x884C; flush privileges;&#x6307;&#x4EE4;&#x3002;</p>
+</li>
+<li>
+<p><strong>desc table_name&#xFF1A;</strong></p>
+<p>&#x8FD9;&#x6761;&#x547D;&#x4EE4;&#x7684;&#x610F;&#x601D;&#x662F;&#x67E5;&#x770B;&#x8868;&#x7ED3;&#x6784;&#xFF0C;&#x901A;&#x8FC7;&#x5173;&#x952E;&#x5B57;desc+&#x8868;&#x540D;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x6B64;&#x8868;&#x7684;&#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x4E0E;&#x7ED3;&#x6784;&#x3002;</p>
+</li>
+<li>
+<p><strong>system cls:</strong></p>
+<p>&#x8FD9;&#x6761;&#x547D;&#x4EE4;&#x53EF;&#x4EE5;&#x6E05;&#x7A7A;&#x6307;&#x4EE4;&#x3002;</p>
+</li>
+<li>
+<p><strong>create database database_name:</strong></p>
+<p>&#x6B64;&#x6307;&#x4EE4;&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x6570;&#x636E;&#x5E93;&#x3002;</p>
+</li>
+<li>
+<p><strong>drop databse:</strong></p>
+<p>&#x6B64;&#x6307;&#x4EE4;&#x7528;&#x4E8E;&#x5220;&#x9664;&#x6570;&#x636E;&#x5E93;&#x3002;</p>
+</li>
+<li>
+<p><strong>create table table_name(&#x5217;&#x540D; &#x7C7B;&#x578B;):</strong></p>
+<p>&#x6B64;&#x6307;&#x4EE4;&#x7528;&#x4E8E;&#x62C6;&#x521B;&#x5EFA;&#x8868;&#x3002;</p>
+</li>
+<li>
+<p><strong>drop table table_name:</strong></p>
+<p>&#x6B64;&#x6307;&#x4EE4;&#x7528;&#x4E8E;&#x5220;&#x9664;&#x8868;&#x3002;</p>
+</li>
+<li>
+<p><strong>use database:</strong></p>
+<p>&#x6B64;&#x6307;&#x4EE4;&#x7528;&#x4E8E;&#x8FDB;&#x5165;&#x6570;&#x636E;&#x5E93;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x521B;&#x5EFA;&#x65B0;&#x8868;&#x7684;&#x8BDD;&#xFF0C;&#x9996;&#x5148;&#x8981;&#x8FDB;&#x5165;&#x6570;&#x636E;&#x5E93;&#x3002;</p>
+</li>
+</ol>
+<h4 class="mume-header" id="%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E6%8C%87%E4%BB%A4">&#x64CD;&#x4F5C;&#x6570;&#x636E;&#x6307;&#x4EE4;</h4>
+
+<ul>
+<li>
+<p><strong>INSERT INTO&#xFF08;&#x6DFB;&#x52A0;&#xFF09;&#xFF1A;</strong></p>
+<p>**INSERT INTO &lt;table_name&gt; (column1,column2,......) VALAUES (value1,value2,......); **</p>
+<p>&#x5728;&#x4F7F;&#x7528;&#x6DFB;&#x52A0;&#x8BED;&#x53E5;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x5217;&#x540D;&#x548C;&#x6BCF;&#x5217;&#x5BF9;&#x5E94;&#x7684;&#x503C;&#x8981;&#x5BF9;&#x5E94;&#x4E00;&#x81F4;&#xFF0C;&#x6709;&#x4E9B;&#x81EA;&#x5E26;&#x9ED8;&#x8BA4;&#x503C;&#x7684;&#x53EF;&#x4EE5;&#x4E0D;&#x8FDB;&#x884C;&#x6DFB;&#x52A0;&#x3002;</p>
+<p>&#x6DFB;&#x52A0;&#x6307;&#x4EE4;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x7B80;&#x5199;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info class="language-"><code>INSERT INTO &lt;tablename&gt; VALUES(value1,value2,value3);
+</code></pre><p>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x8FD9;&#x6837;&#x5199;&#x9700;&#x8981;&#x5BF9;&#x5E94;&#x5217;&#x7684;&#x987A;&#x5E8F;&#x3002;</p>
+</li>
+<li>
+<p><strong>DELETE &#xFF08;&#x5220;&#x9664;&#xFF09;&#xFF1A;</strong></p>
+<p><strong>DELETE FROM &lt;teble_name&gt; WHERE [condition];</strong></p>
+<p>&#x5728;&#x4F7F;&#x7528;&#x5220;&#x9664;&#x8BED;&#x53E5;&#x7684;&#x65F6;&#x5019;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x4F7F;&#x7528;WHERE&#x7B5B;&#x9009;&#x6761;&#x4EF6;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x8FDB;&#x884C;&#x6307;&#x5B9A;&#x7684;&#x8BDD;&#x5C31;&#x4F1A;&#x5220;&#x9664;&#x8868;&#x4E2D;&#x6240;&#x6709;&#x7684;&#x5185;&#x5BB9;&#x3002;</p>
+</li>
+<li>
+<p><strong>UPDATE SET&#xFF08;&#x4FEE;&#x6539;&#xFF09;&#xFF1A;</strong></p>
+<p><strong>UPDATE &lt;table_name&gt; SET column1=value1,column1=value1,...... WHERE [condition];</strong></p>
+<p>&#x5728;&#x4F7F;&#x7528;&#x4FEE;&#x6539;&#x8BED;&#x53E5;&#x7684;&#x65F6;&#x5019;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x5BF9;&#x5E94;&#xFF0C;&#x4E0E;&#x5220;&#x9664;&#x64CD;&#x4F5C;&#x4E00;&#x6837;&#x5982;&#x679C;&#x4E0D;&#x9002;&#x7528;WHERE&#x7B5B;&#x9009;&#x6761;&#x4EF6;&#x5C31;&#x4F1A;&#x4FEE;&#x6539;&#x6240;&#x6709;&#x6570;&#x636E;&#x3002;</p>
+</li>
+<li>
+<p><strong>SELECT&#xFF08;&#x67E5;&#x8BE2;&#xFF09;&#xFF1A;</strong></p>
+<p><strong>SELECT column1,column2,...... FROM &lt;table_name&gt; WHERE [condition];</strong></p>
+<p>&#x5728;&#x4F7F;&#x7528;&#x67E5;&#x8BE2;&#x8BED;&#x53E5;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#x7684;&#x65F6;&#x5019;&#x5982;&#x679C;&#x60F3;&#x8981;&#x67E5;&#x8BE2;&#x8868;&#x5185;&#x6240;&#x6709;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;*&#x4EE3;&#x66FF;&#x6240;&#x6709;&#x5217;&#x3002;</p>
+</li>
+</ul>
+<h4 class="mume-header" id="where%E7%9A%84%E4%BD%BF%E7%94%A8">WHERE&#x7684;&#x4F7F;&#x7528;</h4>
+
+<p><strong>&#x6211;&#x4EEC;&#x5728;&#x4F7F;&#x7528;&#x67E5;&#x8BE2;&#x8BED;&#x53E5;&#x8FDB;&#x884C;&#x4FE1;&#x606F;&#x67E5;&#x8BE2;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x90FD;&#x4F1A;&#x7528;&#x5230;WHERE&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x4F46;&#x662F;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x7B5B;&#x9009;&#x6761;&#x4EF6;&#x5F88;&#x96BE;&#x6EE1;&#x8DB3;&#x6211;&#x4EEC;&#x5927;&#x90E8;&#x5206;&#x9700;&#x6C42;&#x3002;</strong></p>
+<p>**&#x591A;&#x6761;&#x4EF6;&#x67E5;&#x8BE2;&#x8BED;&#x53E5;&#xFF1A;**&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#x7684;&#x65F6;&#x5019;&#x4F7F;&#x7528;&#x903B;&#x8F91;&#x8FD0;&#x7B97;&#x7B26;&#x8FDB;&#x884C;&#x591A;&#x6761;&#x4EF6;&#x7B5B;&#x9009;&#x3002;</p>
+<ul>
+<li>AND&#xFF1A;&#x8BB0;&#x5F55;&#x6EE1;&#x8DB3;&#x6240;&#x6709;&#x67E5;&#x8BE2;&#x6761;&#x4EF6;&#x65F6;&#xFF0C;&#x624D;&#x4F1A;&#x88AB;&#x67E5;&#x8BE2;&#x51FA;&#x6765;&#x3002;</li>
+<li>OR&#xFF1A;&#x8BB0;&#x5F55;&#x6EE1;&#x8DB3;&#x4EFB;&#x610F;&#x4E00;&#x4E2A;&#x67E5;&#x8BE2;&#x6761;&#x4EF6;&#x65F6;&#xFF0C;&#x624D;&#x4F1A;&#x88AB;&#x67E5;&#x8BE2;&#x51FA;&#x6765;&#x3002;</li>
+<li>XOR&#xFF1A;&#x8BB0;&#x5F55;&#x6EE1;&#x8DB3;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x6761;&#x4EF6;&#xFF0C;&#x5E76;&#x4E14;&#x4E0D;&#x6EE1;&#x8DB3;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x6761;&#x4EF6;&#x65F6;&#xFF0C;&#x624D;&#x4F1A;&#x88AB;&#x67E5;&#x8BE2;&#x51FA;&#x6765;&#x3002;</li>
+</ul>
+<p><strong>&#x8FD9;&#x4E9B;&#x903B;&#x8F91;&#x8FD0;&#x7B97;&#x7B26;&#x53EF;&#x4EE5;&#x6DF7;&#x5408;&#x8D77;&#x6765;&#x4F7F;&#x7528;&#xFF0C;&#x4F46;&#x662F;&#x4E00;&#x5B9A;&#x8981;&#x6CE8;&#x610F;&#x8FD0;&#x7B97;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x3002;</strong></p>
+<hr>
+<h4 class="mume-header" id="like%E5%AD%90%E8%AF%AD%E5%8F%A5">LIKE&#x5B50;&#x8BED;&#x53E5;</h4>
+
+<p><strong>LIKE&#x5B50;&#x8BED;&#x53E5;&#x7528;&#x4E8E;&#x5728;WHERE&#x8BED;&#x53E5;&#x4E2D;&#x8FDB;&#x884C;&#x6A21;&#x7CCA;&#x5339;&#x914D;&#xFF0C;&#x4F1A;&#x5C06;&#x7ED9;&#x5B9A;&#x7684;&#x5339;&#x914D;&#x6A21;&#x5F0F;&#x548C;&#x5B57;&#x6BB5;&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#xFF0C;&#x5339;&#x914D;&#x6210;&#x529F;&#x5219;&#x9009;&#x53D6;&#xFF0C;&#x5426;&#x5219;&#x4E0D;&#x9009;&#x53D6;&#x3002;&#x4ED6;&#x7684;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x7C7B;&#x4F3C;&#x4E8E;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x3002;</strong></p>
+<p><strong>&#x5B50;&#x8BED;&#x53E5;&#x53EF;&#x4EE5;&#x548C;&#x901A;&#x914D;&#x7B26;&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#xFF1A;</strong></p>
+<table>
+<thead>
+<tr>
+<th>&#x901A;&#x914D;&#x7B26;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x767E;&#x5206;&#x53F7;&#xFF08;%&#xFF09;</td>
+<td>&#x4EE3;&#x8868;&#x96F6;&#x4E2A;&#xFF0C;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x4EFB;&#x610F;&#x5B57;&#x7B26;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x4E0B;&#x5212;&#x7EBF;&#xFF08;_&#xFF09;</td>
+<td>&#x4EE3;&#x8868;&#x5355;&#x4E2A;&#x5B57;&#x7B26;&#x6216;&#x8005;&#x6570;&#x5B57;&#x3002;</td>
+</tr>
+<tr>
+<td>[charlist]</td>
+<td>&#x5B57;&#x7B26;&#x5217;&#x8868;&#x4E2D;&#x7684;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8FDE;&#x63A5;&#x5B57;&#x7B26;(-)&#x6839;&#x636E;ASCLL&#x7F16;&#x7801;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x8303;&#x56F4;&#x3002;[0-9]&#x8868;&#x793A;0&#x5230;9&#x7684;&#x4EFB;&#x610F;&#x6570;&#x5B57;&#x3002; [a-z]&#x8868;&#x793A;&#x5C0F;&#x5199;&#x82F1;&#x6587;&#x5B57;&#x6BCD; &#x3002;[a-zA-Z] &#x8868;&#x793A;&#x5927;&#x5C0F;&#x5199;&#x7684;&#x82F1;&#x6587;&#x5B57;&#x6BCD;&#x3002;[a-zA-Z0-9]&#x8868;&#x793A;&#x82F1;&#x6587;&#x5B57;&#x6BCD;&#x548C;&#x963F;&#x62C9;&#x4F2F;&#x6570;&#x5B57;&#x3002;</td>
+</tr>
+<tr>
+<td>[^charlist]&#x6216;[!charlist]</td>
+<td>&#x4E0D;&#x5728;&#x5B57;&#x7B26;&#x5217;&#x8868;&#x4E2D;&#x7684;&#x4EFB;&#x4F55;&#x4E00;&#x7684;&#x4EFB;&#x4F55;&#x5355;&#x4E00;&#x5B57;&#x7B26;&#x3002;&#x540C;&#x4E0A;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8FDE;&#x5B57;&#x7B26;&#xFF08;-&#xFF09;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x8303;&#x56F4;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x901A;&#x8FC7;&#x4F7F;&#x7528;&#x6A21;&#x7CCA;&#x5339;&#x914D;&#x53EF;&#x4EE5;&#x66F4;&#x52A0;&#x51C6;&#x786E;&#x7684;&#x5339;&#x914D;&#x4E00;&#x4E9B;&#x5185;&#x5BB9;&#x3002;</p>
+<p>&#x4F7F;&#x7528;&#x6A21;&#x7CCA;&#x67E5;&#x8BE2;&#x7684;&#x8BED;&#x6CD5;&#x683C;&#x5F0F;&#xFF1A;</p>
+<pre data-role="codeBlock" data-info="mysql" class="language-mysql"><code>mysql&gt; select * from mb;/*&#x9996;&#x5148;&#x67E5;&#x770B;&#x8868;&#x7ED3;&#x6784;*/
++----+--------+
+| id | name   |
++----+--------+
+|  1 | lzy    |
+|  2 | &#x738B;     |
+|  4 | &#x5F20;&#x4E09;   |
+|  5 | &#x5F20;&#x4E09;   |
+|  7 | wang   |
+|  9 | zhang  |
+| 10 | zhang  |
++----+--------+
+7 rows in set (0.00 sec)
+mysql&gt; select * from mb where name like &apos;%a%&apos;;
+/*&#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x4E86;&#x6A21;&#x7CCA;&#x67E5;&#x8BE2;&#xFF0C;&#x67E5;&#x8BE2;&#x4E86;&#x59D3;&#x540D;&#x4E2D;&#x5E26;&#x6709;a&#x7684;&#x7528;&#x6237;*/
++----+-------+
+| id | name  |
++----+-------+
+|  7 | wang  |
+|  9 | zhang |
+| 10 | zhang |
++----+-------+
+3 rows in set (0.00 sec)
+mysql&gt; select * from mb where name not like &apos;%a%&apos;;
+/*&#x8FD9;&#x91CC;&#x662F;name&#x4E2D;&#x4E0D;&#x5305;&#x542B;a&#x7684;&#x6240;&#x6709;&#x5B57;&#x6BB5;*/
++----+--------+
+| id | name   |
++----+--------+
+|  1 | lzy    |
+|  2 | &#x738B;     |
+|  4 | &#x5F20;&#x4E09;   |
+|  5 | &#x5F20;&#x4E09;   |
++----+--------+
+4 rows in set (0.00 sec)
+</code></pre><h6 class="mume-header" id="%E4%BD%BF%E7%94%A8%E9%80%9A%E9%85%8D%E7%AC%A6%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><strong>&#x4F7F;&#x7528;&#x901A;&#x914D;&#x7B26;&#x7684;&#x6CE8;&#x610F;&#x4E8B;&#x9879;</strong></h6>
+
+<p>&#x4E0B;&#x9762;&#x662F;&#x4F7F;&#x7528;&#x901A;&#x914D;&#x7B26;&#x7684;&#x4E00;&#x4E9B;&#x6CE8;&#x610F;&#x4E8B;&#x9879;&#xFF1A;</p>
+<ul>
+<li><font color="#f00"><strong>&#x6CE8;&#x610F;&#x5927;&#x5C0F;&#x5199;</strong></font>&#x3002;MySQL &#x9ED8;&#x8BA4;&#x662F;&#x4E0D;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#x7684;&#x3002;&#x5982;&#x679C;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#xFF0C;&#x50CF;&#x201C;Tom&#x201D;&#x8FD9;&#x6837;&#x7684;&#x6570;&#x636E;&#x5C31;&#x4E0D;&#x80FD;&#x88AB;&#x201C;t%&#x201D;&#x6240;&#x5339;&#x914D;&#x5230;&#x3002;</li>
+<li><strong>&#x6CE8;&#x610F;&#x5C3E;&#x90E8;&#x7A7A;&#x683C;</strong>&#xFF0C;&#x5C3E;&#x90E8;&#x7A7A;&#x683C;&#x4F1A;&#x5E72;&#x6270;&#x901A;&#x914D;&#x7B26;&#x7684;&#x5339;&#x914D;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x201C;T% &#x201D;&#x5C31;&#x4E0D;&#x80FD;&#x5339;&#x914D;&#x5230;&#x201C;Tom&#x201D;&#x3002;</li>
+<li><strong>&#x6CE8;&#x610F; NULL</strong>&#x3002;&#x201C;%&#x201D;&#x901A;&#x914D;&#x7B26;&#x53EF;&#x4EE5;&#x5230;&#x5339;&#x914D;&#x4EFB;&#x610F;&#x5B57;&#x7B26;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x80FD;&#x5339;&#x914D; NULL&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4; &#x201C;%&#x201D;&#x5339;&#x914D;&#x4E0D;&#x5230; tb_students_info &#x6570;&#x636E;&#x8868;&#x4E2D;&#x503C;&#x4E3A; NULL &#x7684;&#x8BB0;&#x5F55;&#x3002;</li>
+</ul>
+<p>&#x4E0B;&#x9762;&#x662F;&#x4E00;&#x4E9B;&#x4F7F;&#x7528;&#x901A;&#x914D;&#x7B26;&#x8981;&#x8BB0;&#x4F4F;&#x7684;&#x6280;&#x5DE7;&#x3002;</p>
+<ul>
+<li>&#x4E0D;&#x8981;&#x8FC7;&#x5EA6;&#x4F7F;&#x7528;&#x901A;&#x914D;&#x7B26;&#xFF0C;&#x5982;&#x679C;&#x5176;&#x5B83;&#x64CD;&#x4F5C;&#x7B26;&#x80FD;&#x8FBE;&#x5230;&#x76F8;&#x540C;&#x7684;&#x76EE;&#x7684;&#xFF0C;&#x5E94;&#x8BE5;&#x4F7F;&#x7528;&#x5176;&#x5B83;&#x64CD;&#x4F5C;&#x7B26;&#x3002;&#x56E0;&#x4E3A; MySQL &#x5BF9;&#x901A;&#x914D;&#x7B26;&#x7684;&#x5904;&#x7406;&#x4E00;&#x822C;&#x4F1A;&#x6BD4;&#x5176;&#x4ED6;&#x64CD;&#x4F5C;&#x7B26;&#x82B1;&#x8D39;&#x66F4;&#x957F;&#x7684;&#x65F6;&#x95F4;&#x3002;</li>
+<li>&#x5728;&#x786E;&#x5B9A;&#x4F7F;&#x7528;&#x901A;&#x914D;&#x7B26;&#x540E;&#xFF0C;&#x9664;&#x975E;&#x7EDD;&#x5BF9;&#x6709;&#x5FC5;&#x8981;&#xFF0C;&#x5426;&#x5219;&#x4E0D;&#x8981;&#x628A;&#x5B83;&#x4EEC;&#x7528;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x5F00;&#x59CB;&#x5904;&#x3002;&#x628A;&#x901A;&#x914D;&#x7B26;&#x7F6E;&#x4E8E;&#x641C;&#x7D22;&#x6A21;&#x5F0F;&#x7684;&#x5F00;&#x59CB;&#x5904;&#xFF0C;&#x641C;&#x7D22;&#x8D77;&#x6765;&#x662F;&#x6700;&#x6162;&#x7684;&#x3002;</li>
+<li>&#x4ED4;&#x7EC6;&#x6CE8;&#x610F;&#x901A;&#x914D;&#x7B26;&#x7684;&#x4F4D;&#x7F6E;&#x3002;&#x5982;&#x679C;&#x653E;&#x9519;&#x5730;&#x65B9;&#xFF0C;&#x53EF;&#x80FD;&#x4E0D;&#x4F1A;&#x8FD4;&#x56DE;&#x60F3;&#x8981;&#x7684;&#x6570;&#x636E;&#x3002;</li>
+</ul>
+<hr>
+<h4 class="mume-header" id="%E4%BF%AE%E6%94%B9%E8%A1%A8%E5%AD%97%E6%AE%B5%E5%86%85%E5%AE%B9%E6%8C%87%E4%BB%A4alter">&#x4FEE;&#x6539;&#x8868;&#x5B57;&#x6BB5;&#x5185;&#x5BB9;&#x6307;&#x4EE4;ALTER</h4>
+
+<p><strong>&#x5728;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x8868;&#x5B57;&#x6BB5;&#x4FE1;&#x606F;&#x4FEE;&#x6539;&#x65F6;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;ALTER TABLE &#x547D;&#x4EE4;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#xFF0C;&#x4FEE;&#x6539;&#x5206;&#x4E3A;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#x3002;</strong></p>
+<ul>
+<li>
+<p><strong>&#x4FEE;&#x6539;&#x5B57;&#x6BB5;&#xFF1A;ALTER TABLE &lt;&#x8868;&#x540D;&gt; MODIFY &lt;&#x5B57;&#x6BB5;&#x540D;&gt; &lt;&#x6570;&#x636E;&#x7C7B;&#x578B;&gt; [&#x7EA6;&#x675F;&#x6761;&#x4EF6;]</strong></p>
+<p>&#x6267;&#x884C;&#x8FD9;&#x6BB5;&#x6307;&#x4EE4;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x7684;&#x5B57;&#x6BB5;&#x5185;&#x5BB9;&#x548C;&#x7EA6;&#x675F;&#x3002;</p>
+<p><strong>CHANGE</strong>&#x5173;&#x952E;&#x5B57;&#x4E5F;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x4FEE;&#x6539;&#x5B57;&#x6BB5;&#xFF0C;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;**ALTER TABLE &lt;&#x8868;&#x540D;&gt; CHANGE &lt;&#x65E7;&#x5B57;&#x6BB5;&#x540D;&gt; &lt;&#x65B0;&#x5B57;&#x6BB5;&#x540D;&gt; [&#x7EA6;&#x675F;&#x6761;&#x4EF6;]**CHANGE&#x5173;&#x952E;&#x5B57;&#x7684;&#x4F7F;&#x7528;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x5B57;&#x6BB5;&#x540D;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</p>
+</li>
+<li>
+<p><strong>&#x6DFB;&#x52A0;&#x5B57;&#x6BB5;&#xFF1A;ALTER TABLE &lt;&#x8868;&#x540D;&gt; ADD &lt;&#x65B0;&#x5B57;&#x6BB5;&#x540D;&gt; &lt;&#x6570;&#x636E;&#x7C7B;&#x578B;&gt; [&#x7EA6;&#x675F;&#x6761;&#x4EF6;]</strong></p>
+<p>&#x6267;&#x884C;&#x8FD9;&#x6BB5;&#x6307;&#x4EE4;&#x53EF;&#x4EE5;&#x5728;&#x8868;&#x5B57;&#x6BB5;&#x7684;&#x5C3E;&#x90E8;&#x6DFB;&#x52A0;&#x65B0;&#x7684;&#x5B57;&#x6BB5;&#xFF0C;&#x56E0;&#x4E3A;MySQL&#x9ED8;&#x8BA4;&#x662F;&#x5728;&#x6700;&#x540E;&#x6DFB;&#x52A0;&#x5B57;&#x6BB5;&#x3002;&#x5728;&#x5F00;&#x5934;&#x6DFB;&#x52A0;&#x5B57;&#x6BB5;&#x9700;&#x8981;&#x5728;&#x6700;&#x540E;&#x6DFB;&#x52A0;&#x5173;&#x952E;&#x5B57;<strong>FIRST</strong>&#x3002;</p>
+<p><em>&#x5728;&#x8868;&#x4E2D;&#x95F4;&#x6DFB;&#x52A0;&#x5B57;&#x6BB5;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x5173;&#x952E;&#x5B57;<strong>AFTER</strong></em> **ALTER TABLE &lt;&#x8868;&#x540D;&gt; ADD&lt;&#x65B0;&#x5B57;&#x6BB5;&#x540D;&gt; &lt;&#x6570;&#x636E;&#x7C7B;&#x578B;&gt; [&#x7EA6;&#x675F;&#x6761;&#x4EF6;] AFTER &lt;&#x5DF2;&#x5B58;&#x5728;&#x7684;&#x5B57;&#x6BB5;&#x540D;&gt;**&#x6267;&#x884C;&#x8BED;&#x53E5;&#x4E4B;&#x540E;&#x5C31;&#x4F1A;&#x5728;&#x65E7;&#x7684;&#x5B57;&#x6BB5;&#x540D;&#x4E4B;&#x540E;&#x6DFB;&#x52A0;&#x65B0;&#x7684;&#x5B57;&#x6BB5;&#x3002;</p>
+</li>
+<li>
+<p><strong>&#x4FEE;&#x6539;&#x8868;&#x540D;&#xFF1A;ALTER TABLE &lt;&#x65E7;&#x8868;&#x540D;&gt; RENAME &lt;&#x65B0;&#x8868;&#x540D;&gt;; RENAME TABLE &lt;&#x65E7;&#x8868;&#x540D;&gt; TO &lt;&#x65B0;&#x8868;&#x540D;&gt;;</strong></p>
+<p>&#x4EE5;&#x4E0A;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x90FD;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x8868;&#x540D;&#x7684;&#x4FEE;&#x6539;&#x3002;</p>
+</li>
+<li>
+<p><strong>&#x5220;&#x9664;&#x4E3B;&#x952E;&#x7EA6;&#x675F;&#xFF1A;ALTER TABLE &lt;&#x8868;&#x540D;&gt; DROP PRIMARY KEY;</strong></p>
+<p>&#x6267;&#x884C;&#x8FD9;&#x6BB5;&#x6307;&#x4EE4;&#x53EF;&#x4EE5;&#x5220;&#x9664;&#x6307;&#x5B9A;&#x8868;&#x4E2D;&#x7684;&#x4E3B;&#x952E;&#x7EA6;&#x675F;&#x3002;</p>
+</li>
+</ul>
+<p><strong>&#x5F53;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5BF9;&#x5B57;&#x6BB5;&#x6DFB;&#x52A0;&#x7EA6;&#x675F;&#x7684;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4FEE;&#x6539;&#x5B57;&#x6BB5;&#x7684;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x6DFB;&#x52A0;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6DFB;&#x52A0;&#x5B57;&#x6BB5;&#x7684;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x6DFB;&#x52A0;&#xFF0C;&#x4F7F;&#x7528;&#x6DFB;&#x52A0;&#x5B57;&#x6BB5;&#x7684;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x6DFB;&#x52A0;&#x7EA6;&#x675F;&#x7684;&#x8BED;&#x6CD5;&#x7C7B;&#x4F3C;&#x4E8E;&#x5728;&#x62C6;&#x529F;&#x80FD;&#x952E;&#x8868;&#x7684;&#x6700;&#x540E;&#x4E00;&#x884C;&#x6DFB;&#x52A0;&#x7EA6;&#x675F;&#x3002;</strong></p>
+<hr>
+<h2 class="mume-header" id="select-%E7%9A%84%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8%E6%93%8D%E4%BD%9C">SELECT &#x7684;&#x8FDB;&#x9636;&#x4F7F;&#x7528;&#x64CD;&#x4F5C;</h2>
+
+<h3 class="mume-header" id="%E5%AD%90%E8%AF%AD%E5%8F%A5%E7%9A%84%E4%BD%BF%E7%94%A8">&#x5B50;&#x8BED;&#x53E5;&#x7684;&#x4F7F;&#x7528;</h3>
+
+<h4 class="mume-header" id="%E8%B5%B7%E5%88%AB%E5%90%8D">&#x8D77;&#x522B;&#x540D;</h4>
+
+<h5 class="mume-header" id="%E4%B8%BA%E8%A1%A8%E8%B5%B7%E5%88%AB%E5%90%8D">&#x4E3A;&#x8868;&#x8D77;&#x522B;&#x540D;</h5>
+
+<p>&#x5728;&#x8FDB;&#x884C;&#x8868;&#x67E5;&#x8BE2;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5982;&#x679C;&#x8868;&#x540D;&#x662F;&#x5F88;&#x957F;&#x7684;&#x4E00;&#x4E32;&#x5355;&#x8BCD;&#xFF0C;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x64CD;&#x4F5C;&#xFF0C;&#x53EF;&#x4EE5;&#x4E3A;&#x8868;&#x8D77;&#x4E00;&#x4E2A;&#x522B;&#x540D;&#xFF0C;&#x7528;&#x8FD9;&#x4E2A;&#x522B;&#x540D;&#x4EE3;&#x66FF;&#x8868;&#x539F;&#x6765;&#x7684;&#x540D;&#x79F0;&#x3002;</p>
+<p><em>&#x4E3A;&#x8868;&#x8D77;&#x522B;&#x540D;&#x7684;&#x57FA;&#x672C;&#x4E0E;&#x8BED;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</em></p>
+<p><strong>&lt;&#x8868;&#x540D;&gt; [AS] &lt;&#x522B;&#x540D;&gt;</strong></p>
+<p>&#x5176;&#x4E2D;AS&#x5173;&#x952E;&#x5B57;&#x53EF;&#x4EE5;&#x7701;&#x7565;&#xFF0C;&#x7701;&#x7565;&#x540E;&#x9700;&#x8981;&#x5C06;&#x8868;&#x540D;&#x548C;&#x522B;&#x540D;&#x7528;&#x7A7A;&#x683C;&#x9694;&#x5F00;&#x3002;</p>
+<p><font color="#900">&#x8868;&#x7684;&#x522B;&#x540D;&#x4E0D;&#x80FD;&#x4E0E;&#x8BE5;&#x6570;&#x636E;&#x5E93;&#x7684;&#x5176;&#x4ED6;&#x8868;&#x540D;&#x540C;&#x540D;&#xFF0C;&#x5B57;&#x6BB5;&#x7684;&#x522B;&#x540D;&#x4E0D;&#x80FD;&#x4E0E;&#x8BE5;&#x8868;&#x4E2D;&#x7684;&#x5176;&#x4ED6;&#x5B57;&#x6BB5;&#x540C;&#x540D;&#x3002;<em>&#x5728;&#x6761;&#x4EF6;&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x5B57;&#x6BB5;&#x522B;&#x540D;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x51FA;&#x73B0;ERROR 1054 (42S22): Unknown column&#x201D;&#x8FD9;&#x6837;&#x7684;&#x9519;&#x8BEF;&#x63D0;&#x793A;&#x4FE1;&#x606F;&#x3002;</em> <strong>&#x5728;MySQL&#x4E2D;&#x7ED9;&#x8868;&#x8D77;&#x540D;&#x53EF;&#x4EE5;&#x5E26;&#x6570;&#x5B57;&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x5E26;&#x6709;&#x6570;&#x5B57;&#x7684;&#x8868;&#x5728;&#x8D77;&#x522B;&#x540D;&#x65F6;&#x4F1A;&#x62A5;&#x51FA;&#x201D;Unknown column &apos;<a href="http://t.name">t.name</a>&apos; in &apos;field list&apos;&#x201C;&#x9519;&#x8BEF;&#x3002;</strong></font></p>
+<pre data-role="codeBlock" data-info="MySQL" class="language-mysql"><code>mysql&gt; select s.name from tt  s;
++------+
+| name |
++------+
+| li   |
++------+
+1 row in set (0.00 sec)
+</code></pre><hr>
+<h5 class="mume-header" id="%E4%B8%BA%E5%AD%97%E6%AE%B5%E8%B5%B7%E5%88%AB%E5%90%8D">&#x4E3A;&#x5B57;&#x6BB5;&#x8D77;&#x522B;&#x540D;</h5>
+
+<p>&#x5728;&#x4F7F;&#x7528;SELECT&#x8BED;&#x53E5;&#x67E5;&#x8BE2;&#x6570;&#x636E;&#x65F6;&#xFF0C;MySQL&#x4F1A;&#x663E;&#x793A;&#x6BCF;&#x4E2A;SELECT&#x540E;&#x9762;&#x6307;&#x5B9A;&#x8F93;&#x51FA;&#x7684;&#x5B57;&#x6BB5;&#xFF0C;&#x5728;&#x8FDB;&#x884C;&#x67D0;&#x4E9B;&#x5B57;&#x6BB5;&#x8FD0;&#x7B97;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x67E5;&#x8BE2;&#x7C97;&#x6765;&#x7684;&#x4E34;&#x65F6;&#x8868;&#x5B57;&#x6BB5;&#x4F1A;&#x663E;&#x793A;&#x51FA;&#x5B57;&#x6BB5;&#x7684;&#x8FD0;&#x7B97;&#x8FC7;&#x7A0B;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7ED9;&#x8868;&#x5B57;&#x6BB5;&#x8D77;&#x522B;&#x540D;&#x6765;&#x63A9;&#x76D6;&#x3002;</p>
+<p><em>&#x4E3A;&#x8868;&#x8D77;&#x522B;&#x540D;&#x7684;&#x57FA;&#x672C;&#x4E0E;&#x8BED;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</em></p>
+<p><strong>&lt;&#x8868;&#x540D;&gt; [AS] &lt;&#x522B;&#x540D;&gt;</strong></p>
+<p>&#x5176;&#x4E2D;AS&#x5173;&#x952E;&#x5B57;&#x53EF;&#x4EE5;&#x7701;&#x7565;&#xFF0C;&#x7701;&#x7565;&#x540E;&#x9700;&#x8981;&#x5C06;&#x8868;&#x540D;&#x548C;&#x522B;&#x540D;&#x7528;&#x7A7A;&#x683C;&#x9694;&#x5F00;&#x3002;</p>
+<pre data-role="codeBlock" data-info="MySQL" class="language-mysql"><code>mysql&gt; select s.name n from tt s;
++------+
+| n    |
++------+
+| li   |
++------+
+1 row in set (0.00 sec)
+</code></pre><hr>
+<h4 class="mume-header" id="order-by%E5%AD%90%E8%AF%AD%E5%8F%A5%E6%8E%92%E5%BA%8F">ORDER BY&#x5B50;&#x8BED;&#x53E5;&#x6392;&#x5E8F;</h4>
+
+<p>ORDER BY&#x5B50;&#x8BED;&#x53E5;&#x7528;&#x4E8E;&#x6839;&#x636E;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x5B57;&#x6BB5;&#x5BF9;&#x67E5;&#x8BE2;&#x7ED3;&#x679C;&#xFF08;&#x7ED3;&#x679C;&#x96C6;&#xFF09;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#xFF0C;&#x5728;MySQL&#x4E2D;&#x9ED8;&#x8BA4;&#x662F;&#x5347;&#x5E8F;&#x3002;</p>
+<p>&#x4F7F;&#x7528;&#x8BED;&#x6CD5;&#xFF1A;**SELECT column_list FROM table_name [WHERE condition] [ORDER BY &lt;column1,column2,......&gt;] [ASC|DESC]**ASC&#x5173;&#x952E;&#x5B57;&#x8868;&#x793A;&#x5347;&#x5E8F;&#xFF0C;DESC&#x8868;&#x793A;&#x964D;&#x5E8F;&#x3002;</p>
+<p>&#x5728;&#x4F7F;&#x7528;ORDER BY&#x5B50;&#x8BED;&#x53E5;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x591A;&#x4E2A;&#x6392;&#x5E8F;&#x5B57;&#x6BB5;&#xFF0C;&#x4ED6;&#x5728;&#x6267;&#x884C;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x603B;&#x662F;&#x4F1A;&#x4F18;&#x5148;&#x8FDB;&#x884C;&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x6BB5;&#x7684;&#x6392;&#x5E8F;&#xFF0C;&#x5F53;&#x6709;&#x591A;&#x4E2A;&#x7B2C;&#x4E00;&#x5B57;&#x6BB5;&#x4E00;&#x6837;&#x65F6;&#xFF0C;&#x624D;&#x4F1A;&#x8FDB;&#x884C;&#x7B2C;&#x4E8C;&#x5B57;&#x6BB5;&#x7684;&#x6392;&#x5E8F;&#xFF0C;&#x4EE5;&#x6B64;&#x7C7B;&#x63A8;&#x3002;</p>
+<pre data-role="codeBlock" data-info="mysql" class="language-mysql"><code>+----+------+-----+------------+
+| id | name | age | id_number  |
++----+------+-----+------------+
+|  1 | li   |  18 | 1121233a   |
+|  2 | li   |  18 | 112sdafg3a |
+|  3 | sa   |  17 | 1          |
+|  4 | aa   |  19 | a          |
+|  5 | aaa  |  16 | 1a         |
+|  6 | li   |  17 | 1s         |
++----+------+-----+------------+
+6 rows in set (0.00 sec)
+
+mysql&gt; select * from class order by name,age;
++----+------+-----+------------+
+| id | name | age | id_number  |
++----+------+-----+------------+
+|  4 | aa   |  19 | a          |
+|  5 | aaa  |  16 | 1a         |
+|  6 | li   |  17 | 1s         |
+|  1 | li   |  18 | 1121233a   |
+|  2 | li   |  18 | 112sdafg3a |
+|  3 | sa   |  17 | 1          |
++----+------+-----+------------+
+6 rows in set (0.00 sec)
+</code></pre><p>&#x8FD9;&#x91CC;&#x6709;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;class&#x7684;&#x8868;&#xFF0C;&#x8FD9;&#x91CC;&#x4F7F;&#x7528;order by&#x901A;&#x8FC7;&#x59D3;&#x540D;&#x548C;&#x5E74;&#x9F84;&#x8FDB;&#x884C;&#x6392;&#x5E8F;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x9996;&#x5148;&#x6BD4;&#x8F83;&#x7684;&#x662F;&#x59D3;&#x540D;&#xFF0C;&#x5F53;&#x59D3;&#x540D;&#x76F8;&#x540C;&#x7684;&#x65F6;&#x5019;&#x624D;&#x4F1A;&#x8FDB;&#x884C;&#x5E74;&#x9F84;&#x7684;&#x6392;&#x5E8F;&#x3002;</p>
+<h4 class="mume-header" id="group-by%E5%AD%90%E8%AF%AD%E5%8F%A5%E5%88%86%E7%BB%84">GROUP BY&#x5B50;&#x8BED;&#x53E5;&#x5206;&#x7EC4;</h4>
+
+<p>GROUP BY&#x5B50;&#x8BED;&#x53E5;&#x7528;&#x6765;&#x6839;&#x636E;&#x6307;&#x5B9A;&#x7684;&#x5B57;&#x6BB5;&#x5BF9;&#x7ED3;&#x679C;&#x96C6;&#xFF08;&#x9009;&#x53D6;&#x7684;&#x6570;&#x636E;&#xFF09;&#x8FDB;&#x884C;&#x5206;&#x7EC4;&#xFF0C;<strong>GROUP BY&#x5173;&#x952E;&#x5B57;&#x540E;&#x9762;&#x6709;&#x51E0;&#x4E2A;&#x5B57;&#x6BB5;&#xFF0C;&#x5C31;&#x8868;&#x793A;&#x53EF;&#x4EE5;&#x5206;&#x6210;&#x51E0;&#x7EC4;</strong>&#x3002;</p>
+<p>&#x4F7F;&#x7528;&#x8BED;&#x6CD5;&#xFF1A;<strong>SELECT column_list FROM table_name [WHERE condition] [GROUP BY &lt; column1,column2 &gt; [HAVING] &lt; coditions &gt;]</strong></p>
+<pre data-role="codeBlock" data-info="mysql" class="language-mysql"><code>+----+------+--------+
+| id | name | gender |
++----+------+--------+
+|  1 | lzy  | &#x7537;     |
+|  2 | zz   | &#x7537;     |
+|  3 | gx   | &#x7537;     |
+|  4 | gx   | &#x5973;     |
+|  5 | jr   | &#x5973;     |
++----+------+--------+
+5 rows in set (0.00 sec)
+
+mysql&gt; select * from student group by gender;
++----+------+--------+
+| id | name | gender |
++----+------+--------+
+|  1 | lzy  | &#x7537;     |
+|  4 | gx   | &#x5973;     |
++----+------+--------+
+2 rows in set (0.00 sec)
+</code></pre><p>&#x5982;&#x4E0A;&#x6240;&#x793A;&#xFF0C;&#x5728;&#x4F7F;&#x7528;GROUP BY&#x5B50;&#x8BED;&#x53E5;&#x8FDB;&#x884C;&#x5206;&#x7EC4;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x5355;&#x72EC;&#x4F7F;&#x7528;GROUP BY&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x90A3;&#x4E48;&#x67E5;&#x8BE2;&#x7ED3;&#x679C;&#x53EA;&#x4F1A;&#x663E;&#x793A;&#x6BCF;&#x4E00;&#x4E2A;&#x5206;&#x7EC4;&#x7684;&#x7B2C;&#x4E00;&#x6761;&#x8BB0;&#x5F55;&#x3002;</p>
+<p><strong>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x5728;GROUP BY &#x540E;&#x8FB9;&#x52A0;&#x4E0A;&#x591A;&#x4E2A;&#x6761;&#x4EF6;&#x90A3;&#x4E48;&#x4ED6;&#x7684;&#x6548;&#x679C;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;</strong></p>
+<pre data-role="codeBlock" data-info="mysql" class="language-mysql"><code>+----+------+--------+
+| id | name | gender |
++----+------+--------+
+|  1 | lzy  | &#x7537;     |
+|  2 | zz   | &#x7537;     |
+|  3 | gx   | &#x7537;     |
+|  4 | gx   | &#x5973;     |
+|  5 | jr   | &#x5973;     |
+|  6 | lzu  | &#x5973;     |
+|  7 | lzy  | &#x5973;     |
+|  8 | lzy  | &#x7537;     |
++----+------+--------+
+mysql&gt; select group_concat(name) as &#x59D3;&#x540D;,group_concat(gender) as &#x6027;&#x522B; from student group by name,gender;
++---------+---------+
+| &#x59D3;&#x540D;    | &#x6027;&#x522B;    |
++---------+---------+
+| gx      | &#x5973;      |
+| gx      | &#x7537;      |
+| jr      | &#x5973;      |
+| lzu     | &#x5973;      |
+| lzy     | &#x5973;      |
+| lzy,lzy | &#x7537;,&#x7537;   |
+| zz      | &#x7537;      |
++---------+---------+
+7 rows in set (0.00 sec)
+</code></pre><p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x5206;&#x7EC4;&#x67E5;&#x8BE2;&#x5982;&#x679C;&#x7ED9;&#x51FA;&#x591A;&#x4E2A;&#x6761;&#x4EF6;&#x7684;&#x8BDD;&#xFF0C;&#x4ED6;&#x7684;&#x8FD0;&#x884C;&#x65B9;&#x5F0F;&#x662F;&#x548C;&#x6392;&#x5E8F;&#x7C7B;&#x4F3C;&#x7684;&#xFF0C;&#x4F1A;&#x5148;&#x8FDB;&#x884C;&#x7B2C;&#x4E00;&#x4E2A;&#x6761;&#x4EF6;&#x7684;&#x5206;&#x7EC4;&#xFF0C;&#x5728;&#x53C8;&#x591A;&#x4E2A;&#x5B57;&#x6BB5;&#x540C;&#x65F6;&#x6EE1;&#x8DB3;&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x6BB5;&#x7684;&#x6761;&#x4EF6;&#x65F6;&#xFF0C;&#x624D;&#x4F1A;&#x8FDB;&#x884C;&#x7B2C;&#x4E8C;&#x6761;&#x4EF6;&#x7684;&#x5206;&#x7EC4;&#x3002;</p>
+<h5 class="mume-header" id="group-by-%E5%92%8C-group_concat">GROUP BY &#x548C; GROUP_CONCAT()</h5>
+
+<p>GROUP BY &#x5173;&#x952E;&#x5B57;&#x53EF;&#x4EE5;&#x548C;GROUP_CONCAT()&#x51FD;&#x6570;&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#x3002;GROUP_CONCAT()&#x51FD;&#x6570;&#x4F1A;&#x628A;&#x5206;&#x7EC4;&#x7684;&#x6BCF;&#x4E2A;&#x5B57;&#x6BB5;&#x90FD;&#x663E;&#x793A;&#x51FA;&#x6765;&#x3002;</p>
+<pre data-role="codeBlock" data-info="mysql" class="language-mysql"><code>+----+------+--------+
+| id | name | gender |
++----+------+--------+
+|  1 | lzy  | &#x7537;     |
+|  2 | zz   | &#x7537;     |
+|  3 | gx   | &#x7537;     |
+|  4 | gx   | &#x5973;     |
+|  5 | jr   | &#x5973;     |
++----+------+--------+
+5 rows in set (0.00 sec)
+
+mysql&gt; select group_concat(name) from student group by gender;
++--------------------+
+| group_concat(name) |
++--------------------+
+| gx,jr              |
+| lzy,zz,gx          |
++--------------------+
+2 rows in set (0.00 sec)
+
+mysql&gt; select gender,group_concat(name) from student group by gender;
++--------+--------------------+
+| gender | group_concat(name) |
++--------+--------------------+
+| &#x5973;     | gx,jr              |
+| &#x7537;     | lzy,zz,gx          |
++--------+--------------------+
+2 rows in set (0.00 sec)
+</code></pre><hr>
+<h5 class="mume-header" id="group-by-%E4%B8%8E%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0">GROUP BY &#x4E0E;&#x805A;&#x5408;&#x51FD;&#x6570;</h5>
+
+<p><strong>&#x5728;&#x8FDB;&#x884C;&#x7EDF;&#x8BA1;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x4F7F;&#x7528;&#x805A;&#x5408;&#x51FD;&#x6570;&#x548C;GROUP BY&#x5173;&#x952E;&#x5B57;&#x4E00;&#x8D77;&#x4F7F;&#x7528;</strong></p>
+<table>
+<thead>
+<tr>
+<th>&#x51FD;&#x6570;&#x540D;&#x79F0;</th>
+<th>&#x4F5C;&#x7528;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MAX</td>
+<td>&#x67E5;&#x8BE2;&#x6307;&#x5B9A;&#x5217;&#x7684;&#x6700;&#x5927;&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td>MIN</td>
+<td>&#x67E5;&#x8BE2;&#x6307;&#x5B9A;&#x5217;&#x7684;&#x6700;&#x5C0F;&#x503C;</td>
+</tr>
+<tr>
+<td>COUNT</td>
+<td>&#x7EDF;&#x8BA1;&#x67E5;&#x8BE2;&#x7ED3;&#x679C;&#x7684;&#x884C;&#x6570;</td>
+</tr>
+<tr>
+<td>SUM</td>
+<td>&#x6C42;&#x548C;&#xFF0C;&#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x5217;&#x7684;&#x603B;&#x548C;</td>
+</tr>
+<tr>
+<td>AVG</td>
+<td>&#x6C42;&#x5E73;&#x5747;&#x503C;&#xFF0C;&#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x5217;&#x6570;&#x636E;&#x7684;&#x5E73;&#x5747;&#x503C;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x70B9;&#x6709;&#x805A;&#x5408;&#x51FD;&#x6570;&#x7684;&#x8FD0;&#x884C;&#x7279;&#x70B9;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x6CE8;&#x610F;&#x7684;&#x8BDD;&#x5C31;&#x4F1A;&#x5BFC;&#x81F4;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x4E0E;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x7ED3;&#x679C;&#x51FA;&#x73B0;&#x504F;&#x5DEE;&#x3002;</p>
+<p><strong>&#x6240;&#x6709;&#x805A;&#x5408;&#x51FD;&#x6570;&#x90FD;&#x4F1A;&#x5FFD;&#x7565;&#x5B57;&#x6BB5;&#x503C;&#x4E3A;&#x7A7A;(NULL)&#x7684;&#x884C;COUNT&#x51FD;&#x6570;&#x6709;&#x4E24;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x5728;&#x4F7F;&#x7528;COUNT(column)&#x5BF9;&#x7279;&#x5B9A;&#x8FDB;&#x884C;&#x6280;&#x672F;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F1A;&#x5FFD;&#x7565;NULL&#x503C;&#xFF0C;&#x5728;&#x4F7F;&#x7528;CONUNT(*)&#x5BF9;&#x8868;&#x4E2D;&#x884C;&#x76EE;&#x8FDB;&#x884C;&#x8BA1;&#x6570;&#x65F6;&#xFF0C;&#x4E0D;&#x7BA1;&#x5B57;&#x6BB5;&#x4E2D;&#x6570;&#x503C;&#x662F;&#x4EC0;&#x4E48;&#x90FD;&#x4F1A;&#x8BA1;&#x5165;&#x603B;&#x6570;&#x3002;</strong></p>
+<hr>
+<h5 class="mume-header" id="having%E7%AD%9B%E9%80%89">HAVING&#x7B5B;&#x9009;</h5>
+
+<p>HAVING&#x5173;&#x952E;&#x5B57;&#x7C7B;&#x4F3C;&#x4E0E;WHERE&#xFF0C;&#x4ED6;&#x662F;&#x9488;&#x5BF9;&#x4E8E;GROUP BY&#x7684;&#x6761;&#x4EF6;&#x7B5B;&#x9009;&#x5173;&#x952E;&#x5B57;&#x3002;&#x901A;&#x8FC7;HAVING&#x5173;&#x952E;&#x5B57;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;&#x9700;&#x8981;&#x5206;&#x7EC4;&#x7684;&#x6240;&#x6709;&#x5B57;&#x6BB5;&#x4E2D;&#x8FDB;&#x884C;&#x7B5B;&#x9009;&#xFF0C;&#x4ECE;&#x800C;&#x83B7;&#x5F97;&#x6211;&#x4EEC;&#x6240;&#x9700;&#x8981;&#x5B57;&#x6BB5;&#x7684;&#x5206;&#x7EC4;&#xFF1B;</p>
+<pre data-role="codeBlock" data-info="mysql" class="language-mysql"><code>+----+------+------+
+| id | age  | name |
++----+------+------+
+|  1 |    1 | NULL |
+|  2 |    2 | NULL |
+|  3 |    2 | NULL |
+|  4 |    3 | NULL |
+|  5 | NULL | lzy  |
++----+------+------+
+5 rows in set (0.05 sec)
+
+mysql&gt; select age,group_concat(id) as id from test group by age having age=2;
++------+------+
+| age  | id   |
++------+------+
+|    2 | 2,3  |
++------+------+
+1 row in set (0.00 sec)
+</code></pre><p>&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x5728;&#x8FDB;&#x884C;&#x5206;&#x7EC4;&#x67E5;&#x8BE2;test&#x8868;&#x65F6;&#x4F7F;&#x7528;&#x4E86;HAVING&#x7B5B;&#x9009;&#x51FA;&#x6240;&#x6709;age&#x4E3A;2&#x7684;&#x7684;id&#x4FE1;&#x606F;&#x3002;</p>
+<h4 class="mume-header" id="%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2">&#x8FDE;&#x63A5;&#x67E5;&#x8BE2;</h4>
+
+<p><strong>&#x5728;&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#xFF0C;&#x8868;&#x4E8E;&#x8868;&#x4E4B;&#x95F4;&#x662F;&#x6709;&#x8054;&#x7CFB;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#x7ECF;&#x5E38;&#x4F7F;&#x7528;&#x591A;&#x8868;&#x67E5;&#x8BE2;&#x3002;&#x591A;&#x8868;&#x67E5;&#x8BE2;&#x5C31;&#x662F;&#x540C;&#x65F6;&#x67E5;&#x8BE2;&#x4E24;&#x4E2A;&#x6216;&#x4E24;&#x4E2A;&#x4EE5;&#x4E0A;&#x7684;&#x8868;&#x3002;</strong></p>
+<ul>
+<li>
+<p>&#x8FDE;&#x63A5;&#x67E5;&#x8BE2;&#x662F;&#x6307;&#x57FA;&#x4E8E;&#x4E24;&#x4E2A;&#x6216;&#x4E24;&#x4E2A;&#x4EE5;&#x4E0A;&#x7684;&#x57FA;&#x672C;&#x8868;&#x6216;&#x89C6;&#x56FE;&#x7684;&#x67E5;&#x8BE2;&#x3002;</p>
+</li>
+<li>
+<p>&#x8FDE;&#x63A5;&#x65B9;&#x5F0F;&#x4E3B;&#x8981;&#x6709;&#xFF1A;&#x5185;&#x8FDE;&#x63A5;&#xFF0C;&#x5916;&#x8FDE;&#x63A5;&#x548C;&#x5B8C;&#x5168;&#x8FDE;&#x63A5;&#x3002;</p>
+</li>
+<li>
+<p>&#x8FDE;&#x63A5;&#x67E5;&#x8BE2;&#x7684;&#x8BED;&#x6CD5;&#x89C4;&#x5219;&#xFF1A;<strong>SELECT cloumn1,column2</strong></p>
+<p><strong>FROM table1 [INNER|LEFT|RIGHT|FULL|CROSS] JOIN table2</strong></p>
+<p>**NO condition(column1=column2) [WHERE condition] **</p>
+<hr>
+</li>
+</ul>
+<h5 class="mume-header" id="%E4%BA%A4%E5%8F%89%E8%BF%9E%E6%8E%A5cross-join">&#x4EA4;&#x53C9;&#x8FDE;&#x63A5;&#xFF08;CROSS JOIN&#xFF09;&#xFF1A;</h5>
+
+<p><font color="#900"><strong>&#x4EA4;&#x53C9;&#x8FDE;&#x63A5;&#x53C8;&#x53EB;&#x201D;&#x7B1B;&#x5361;&#x5C14;&#x79EF;&#x201C;&#x5B83;&#x662F;&#x6307;&#x4E0D;&#x9002;&#x7528;&#x4EFB;&#x4F55;&#x6761;&#x4EF6;&#xFF0C;&#x76F4;&#x63A5;&#x5C06;&#x4E00;&#x4E2A;&#x8868;&#x7684;&#x6240;&#x6709;&#x8BB0;&#x5F55;&#x548C;&#x53E6;&#x4E00;&#x4E2A;&#x8868;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x8BB0;&#x5F55;&#x4E00;&#x4E00;&#x5339;&#x914D;&#x3002;</strong></font></p>
+<p>&#x4EA4;&#x53C9;&#x8FDE;&#x63A5;&#x4E00;&#x822C;&#x7528;&#x6765;&#x8FD4;&#x56DE;&#x8FDE;&#x63A5;&#x8868;&#x7684;&#x7B1B;&#x5361;&#x5C14;&#x79EF;&#x3002;</p>
+<p><em>&#x4EA4;&#x53C9;&#x8FDE;&#x63A5;&#x7684;&#x4F7F;&#x7528;&#x8BED;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</em></p>
+<p><strong>SELECT &lt;&#x8868;&#x540D;&gt; FORM &lt;&#x8868;1&gt; CROSS JOIN &lt;&#x8868;2&gt; [WHERE&#x5B57;&#x53E5;]</strong></p>
+<p><strong>&#x6216;SELECT &lt;&#x5B57;&#x6BB5;&#x540D;&gt; FROM &lt;&#x8868;1&gt;,&lt;&#x8868;2&gt; [WHERE&#x5B50;&#x8BED;&#x53E5;]</strong></p>
+<p><strong>&#x8BED;&#x6CD5;&#x8BF4;&#x660E;&#x4E3A;&#x4E0B;&#xFF1A;</strong></p>
+<ul>
+<li>&#x5B57;&#x6BB5;&#x540D;&#xFF1A;&#x9700;&#x8981;&#x67E5;&#x8BE2;&#x7684;&#x5B57;&#x6BB5;&#x540D;&#x79F0;&#x3002;</li>
+<li>&lt;&#x8868;1&gt; &lt;&#x8868;2&gt;&#xFF1A;&#x9700;&#x8981;&#x4EA4;&#x53C9;&#x8FDE;&#x63A5;&#x7684;&#x8868;&#x540D;&#x3002;</li>
+<li>WHERE&#x5B50;&#x8BED;&#x53E5;&#xFF1A;&#x7528;&#x6765;&#x8BBE;&#x7F6E;&#x4EA4;&#x53C9;&#x8FDE;&#x63A5;&#x7684;&#x67E5;&#x8BE2;&#x6761;&#x4EF6;&#x3002;</li>
+</ul>
+<p><font color="#900">&#x9700;&#x8981;&#x591A;&#x4E2A;&#x8868;&#x4EA4;&#x53C9;&#x8FDE;&#x63A5;&#x65F6;&#xFF0C;&#x5728;FROM&#x540E;&#x8FDE;&#x7EED;&#x4F7F;&#x7528;CROSS JOIN&#x6216;<code>&#xFF0C;</code>&#x5373;&#x53EF;&#x3002;&#x4EE5;&#x4E0A;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x7684;&#x7ED3;&#x679C;&#x90FD;&#x662F;&#x76F8;&#x540C;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x7B2C;&#x4E00;&#x79CD;&#x8BED;&#x6CD5;&#x624D;&#x662F;&#x5B98;&#x65B9;&#x5EFA;&#x8BAE;&#x7684;&#x6807;&#x51C6;&#x5199;&#x6CD5;&#x3002;</font></p>
+<pre data-role="codeBlock" data-info="MySQL" class="language-mysql"><code>mysql&gt; select * from t1 cross join t2;
++----+-------+------+----+---------+-----------+
+| id | name  | age  | id | address | id_number |
++----+-------+------+----+---------+-----------+
+|  3 | wang  |   18 |  1 | &#x9655;&#x897F;    | 123123123 |
+|  2 | zhang |   18 |  1 | &#x9655;&#x897F;    | 123123123 |
+|  1 | li    |   18 |  1 | &#x9655;&#x897F;    | 123123123 |
+|  3 | wang  |   18 |  2 | &#x6C5F;&#x897F;    | 123123123 |
+|  2 | zhang |   18 |  2 | &#x6C5F;&#x897F;    | 123123123 |
+|  1 | li    |   18 |  2 | &#x6C5F;&#x897F;    | 123123123 |
+|  3 | wang  |   18 |  3 | &#x4E91;&#x5357;    | 123123123 |
+|  2 | zhang |   18 |  3 | &#x4E91;&#x5357;    | 123123123 |
+|  1 | li    |   18 |  3 | &#x4E91;&#x5357;    | 123123123 |
++----+-------+------+----+---------+-----------+
+9 rows in set (0.00 sec)
+
+mysql&gt; select * from t1,t2;
++----+-------+------+----+---------+-----------+
+| id | name  | age  | id | address | id_number |
++----+-------+------+----+---------+-----------+
+|  3 | wang  |   18 |  1 | &#x9655;&#x897F;    | 123123123 |
+|  2 | zhang |   18 |  1 | &#x9655;&#x897F;    | 123123123 |
+|  1 | li    |   18 |  1 | &#x9655;&#x897F;    | 123123123 |
+|  3 | wang  |   18 |  2 | &#x6C5F;&#x897F;    | 123123123 |
+|  2 | zhang |   18 |  2 | &#x6C5F;&#x897F;    | 123123123 |
+|  1 | li    |   18 |  2 | &#x6C5F;&#x897F;    | 123123123 |
+|  3 | wang  |   18 |  3 | &#x4E91;&#x5357;    | 123123123 |
+|  2 | zhang |   18 |  3 | &#x4E91;&#x5357;    | 123123123 |
+|  1 | li    |   18 |  3 | &#x4E91;&#x5357;    | 123123123 |
++----+-------+------+----+---------+-----------+
+9 rows in set (0.00 sec)
+</code></pre><p><font color="#900"><strong>&#x4F7F;&#x7528;&#x4EA4;&#x53C9;&#x67E5;&#x8BE2;&#x4F1A;&#x67E5;&#x8BE2;&#x51FA;&#x4E24;&#x4E2A;&#x8868;&#x7684;&#x7B1B;&#x5361;&#x5C14;&#x79EF;&#x6240;&#x4EE5;&#x5728;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x8F83;&#x591A;&#x8868;&#x4E4B;&#x95F4;&#x7684;&#x8FDE;&#x63A5;&#x65F6;&#xFF0C;&#x4F1A;&#x4EA7;&#x51FA;&#x5F88;&#x591A;&#x6211;&#x4EEC;&#x4E0D;&#x9700;&#x8981;&#x7684;&#x591A;&#x4F59;&#x6570;&#x636E;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;WHERE&#x5B50;&#x8BED;&#x53E5;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x7684;&#x7B5B;&#x9009;&#x3002;</strong></font></p>
+<pre data-role="codeBlock" data-info="MySQL" class="language-mysql"><code>mysql&gt; select * from t1 cross join t2 where t1.id=t2.id;
++----+-------+------+----+---------+-----------+
+| id | name  | age  | id | address | id_number |
++----+-------+------+----+---------+-----------+
+|  1 | li    |   18 |  1 | &#x9655;&#x897F;    | 123123123 |
+|  2 | zhang |   18 |  2 | &#x6C5F;&#x897F;    | 123123123 |
+|  3 | wang  |   18 |  3 | &#x4E91;&#x5357;    | 123123123 |
++----+-------+------+----+---------+-----------+
+3 rows in set (0.00 sec)
+</code></pre><p><font color="#900"><strong>&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x5728;&#x4F7F;&#x7528;CROSS JOIN&#x4EA4;&#x53C9;&#x8FDE;&#x63A5;&#x4E2D;&#x4F7F;&#x7528;WHERE&#x5B50;&#x8BED;&#x53E5;&#x65F6;&#xFF0C;MySQL&#x4F1A;&#x5148;&#x751F;&#x6210;&#x4E24;&#x4E2A;&#x8868;&#x7684;&#x7B1B;&#x5361;&#x5C14;&#x79EF;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x9009;&#x62E9;&#x6EE1;&#x8DB3;WHERE&#x6761;&#x4EF6;&#x7684;&#x8BB0;&#x5F55;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x5728;&#x8868;&#x6570;&#x91CF;&#x89D2;&#x5EA6;&#x65F6;&#xFF0C;&#x4EA4;&#x53C9;&#x8FDE;&#x63A5;&#x4F1A;&#x975E;&#x5E38;&#x7F13;&#x6162;&#x3002;</strong></font></p>
+<hr>
+<h6 class="mume-header" id="%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF">&#x7B1B;&#x5361;&#x5C14;&#x79EF;</h6>
+
+<p><strong>&#x7B1B;&#x5361;&#x5C14;&#x79EF;(Cartesian product)&#x662F;&#x6307;&#x4E24;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x96C6;&#x5408;&#x7684;&#x4E58;&#x79EF;&#x3002;</strong></p>
+<p>&#x4F8B;&#x5982;&#x73B0;&#x5728;&#x6709;&#x4E24;&#x4E2A;&#x96C6;&#x5408;A&#x548C;B&#x4ED6;&#x4EEC;&#x7684;&#x503C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><code>A={1,2},B={1,2,3}</code></p>
+<p>&#x96C6;&#x5408;A&#xD7;B&#x548C;B&#xD7;A&#x7684;&#x7ED3;&#x679C;&#x96C6;&#x5206;&#x522B;&#x8868;&#x793A;&#x4E3A;</p>
+<p><code>A&#xD7;B={(1,3), (1,4), (1,5), (2,3), (2,4), (2,5) };</code><br>
+<code>B&#xD7;A={(3,1), (3,2), (4,1), (4,2), (5,1), (5,2) };</code></p>
+<p>&#x4EE5;&#x4E0A;A&#xD7;B&#x548C;B&#xD7;A&#x7684;&#x7ED3;&#x679C;&#x5C31;&#x53EB;&#x505A;&#x4E24;&#x4E2A;&#x96C6;&#x5408;&#x7684;&#x7B1B;&#x5361;&#x5C14;&#x79EF;&#x3002;</p>
+<p>&#x5E76;&#x4E14;&#xFF0C;&#x4ECE;&#x4EE5;&#x4E0A;&#x7ED3;&#x679C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF1A;</p>
+<ul>
+<li>&#x4E24;&#x4E2A;&#x96C6;&#x5408;&#x76F8;&#x4E58;&#xFF0C;&#x4E0D;&#x6EE1;&#x8DB3;&#x4EA4;&#x6362;&#x7387;&#xFF0C;&#x5373; A&#xD7;B&#x2260;B&#xD7;A&#x3002;</li>
+<li>A &#x96C6;&#x5408;&#x548C; B &#x96C6;&#x5408;&#x7684;&#x7B1B;&#x5361;&#x5C14;&#x79EF;&#x662F; A &#x96C6;&#x5408;&#x7684;&#x5143;&#x7D20;&#x4E2A;&#x6570; &#xD7; B &#x96C6;&#x5408;&#x7684;&#x5143;&#x7D20;&#x4E2A;&#x6570;&#x3002;</li>
+</ul>
+<p><font color="#900">&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#xFF0C;&#x4E24;&#x8868;&#x7684;&#x7B1B;&#x5361;&#x5C14;&#x79EF;&#x5C31;&#x662F;&#x4E24;&#x4E2A;&#x8868;&#x7684;&#x6240;&#x6709;&#x5B57;&#x6BB5;&#x7684;&#x4E58;&#x79EF;&#xFF0C;&#x5728;&#x6570;&#x636E;&#x8F83;&#x591A;&#x7684;&#x65F6;&#x5019;&#x8FD9;&#x4F1A;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x5927;&#x7684;&#x91CF;&#xFF0C;&#x6240;&#x4EE5;&#x4E00;&#x822C;&#x4E0D;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#x4EA4;&#x53C9;&#x67E5;&#x8BE2;&#x3002;</font></p>
+<hr>
+<h5 class="mume-header" id="%E5%86%85%E8%BF%9E%E6%8E%A5inner-join">&#x5185;&#x8FDE;&#x63A5;&#xFF08;INNER JOIN&#xFF09;</h5>
+
+<p>&#x5185;&#x8FDE;&#x63A5;&#xFF08;INNER JOIN&#xFF09;&#x4E3B;&#x8981;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x8FDE;&#x63A5;&#x6761;&#x4EF6;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x6765;&#x79FB;&#x9664;&#x67E5;&#x8BE2;&#x7ED3;&#x679C;&#x4E2D;&#x67D0;&#x4E9B;&#x6570;&#x636E;&#x884C;&#x7684;&#x4EA4;&#x53C9;&#x8FDE;&#x63A5;&#x3002;&#x7B80;&#x5355;&#x6765;&#x8BF4;&#x5C31;&#x662F;&#x5229;&#x7528;&#x6761;&#x4EF6;&#x8868;&#x8FBE;&#x5F0F;&#x6765;&#x6D88;&#x9664;&#x4EA4;&#x53C9;&#x8FDE;&#x63A5;&#x7684;&#x67D0;&#x4E9B;&#x6570;&#x636E;&#x884C;&#x3002;</p>
+<p><em>&#x5185;&#x8FDE;&#x63A5;&#x7684;&#x8BED;&#x6CD5;&#x683C;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;</em></p>
+<p><strong>SELECT &lt;&#x5B57;&#x6BB5;&#x540D;&gt; FROM &lt;&#x8868;1&gt; INNER JOIN &lt;&#x8868;2&gt; [ON&#x5B50;&#x53E5;]</strong></p>
+<p><em>&#x8BED;&#x6CD5;&#x8BF4;&#x660E;&#x5982;&#x4E0B;&#xFF1A;</em></p>
+<ul>
+<li>&#x5B57;&#x6BB5;&#x540D;&#xFF1A;&#x9700;&#x8981;&#x67E5;&#x8BE2;&#x7684;&#x5B57;&#x6BB5;&#x540D;&#x79F0;&#x3002;</li>
+<li>&lt;&#x8868;1&gt;&lt;&#x8868;2&gt;&#xFF1A;&#x9700;&#x8981;&#x5185;&#x8FDE;&#x63A5;&#x7684;&#x8868;&#x540D;&#x3002;</li>
+<li>INNER JOIN &#xFF1A;&#x5185;&#x8FDE;&#x63A5;&#x4E2D;&#x53EF;&#x4EE5;&#x7701;&#x7565; INNER &#x5173;&#x952E;&#x5B57;&#xFF0C;&#x53EA;&#x7528;&#x5173;&#x952E;&#x5B57; JOIN&#x3002;</li>
+<li>ON &#x5B50;&#x53E5;&#xFF1A;&#x7528;&#x6765;&#x8BBE;&#x7F6E;&#x5185;&#x8FDE;&#x63A5;&#x7684;&#x8FDE;&#x63A5;&#x6761;&#x4EF6;&#x3002;</li>
+</ul>
+<p><font color="#900">INNER JOIN &#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; WHERE &#x5B50;&#x53E5;&#x6307;&#x5B9A;&#x8FDE;&#x63A5;&#x6761;&#x4EF6;&#xFF0C;&#x4F46;&#x662F; INNER JOIN ... ON &#x8BED;&#x6CD5;&#x662F;&#x5B98;&#x65B9;&#x7684;&#x6807;&#x51C6;&#x5199;&#x6CD5;&#xFF0C;&#x800C;&#x4E14; WHERE &#x5B50;&#x53E5;&#x5728;&#x67D0;&#x4E9B;&#x65F6;&#x5019;&#x4F1A;&#x5F71;&#x54CD;&#x67E5;&#x8BE2;&#x7684;&#x6027;&#x80FD;&#x3002;</font></p>
+<hr>
+<h5 class="mume-header" id="%E5%A4%96%E8%BF%9E%E6%8E%A5">&#x5916;&#x8FDE;&#x63A5;</h5>
+
+<p>&#x5185;&#x8FDE;&#x63A5;&#x7684;&#x67E5;&#x8BE2;&#x7ED3;&#x679C;&#x90FD;&#x662F;&#x7B26;&#x5408;&#x8FDE;&#x63A5;&#x6761;&#x4EF6;&#x7684;&#x8BB0;&#x5F55;&#xFF0C;&#x800C;&#x5916;&#x8FDE;&#x63A5;&#x4F1A;&#x5148;&#x5C06;&#x8FDE;&#x63A5;&#x7684;&#x8868;&#x5206;&#x4E3A;&#x57FA;&#x8868;&#x548C;&#x53C2;&#x8003;&#x8868;&#xFF0C;&#x518D;&#x4EE5;&#x57FA;&#x8868;&#x4E3A;&#x4F9D;&#x636E;&#x8FD4;&#x56DE;&#x6EE1;&#x8DB3;&#x548C;&#x4E0D;&#x6EE1;&#x8DB3;&#x6761;&#x4EF6;&#x7684;&#x8BB0;&#x5F55;&#x3002;</p>
+<p>&#x5916;&#x8FDE;&#x63A5;&#x53EF;&#x4EE5;&#x4E3A;&#x5206;&#x4E3A;&#x5DE6;&#x5916;&#x8FDE;&#x63A5;&#x548C;&#x53F3;&#x5916;&#x8FDE;&#x63A5;&#x3002;</p>
+<h6 class="mume-header" id="%E5%B7%A6%E8%BF%9E%E6%8E%A5">&#x5DE6;&#x8FDE;&#x63A5;</h6>
+
+<p>&#x5DE6;&#x5916;&#x8FDE;&#x63A5;&#x53C8;&#x79F0;&#x4E3A;&#x5DE6;&#x8FDE;&#x63A5;&#xFF0C;&#x4F7F;&#x7528; <strong>LEFT OUTER JOIN</strong> &#x5173;&#x952E;&#x5B57;&#x8FDE;&#x63A5;&#x4E24;&#x4E2A;&#x8868;&#xFF0C;&#x5E76;&#x4F7F;&#x7528; ON &#x5B50;&#x53E5;&#x6765;&#x8BBE;&#x7F6E;&#x8FDE;&#x63A5;&#x6761;&#x4EF6;&#x3002;</p>
+<p><em>&#x5DE6;&#x8FDE;&#x63A5;&#x7684;&#x8BED;&#x6CD5;&#x683C;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;</em></p>
+<p><strong>SELECT &lt;&#x5B57;&#x6BB5;&#x540D;&gt; FROM &lt;&#x8868;1&gt; LEFT OUTER JOIN &lt;&#x8868;2&gt; &lt;ON&#x5B50;&#x53E5;&gt;</strong></p>
+<p><em>&#x8BED;&#x6CD5;&#x8BF4;&#x660E;&#x5982;&#x4E0B;:</em></p>
+<ul>
+<li>&#x5B57;&#x6BB5;&#x540D;&#xFF1A;&#x9700;&#x8981;&#x67E5;&#x8BE2;&#x7684;&#x5B57;&#x6BB5;&#x540D;&#x79F0;&#x3002;</li>
+<li>&lt;&#x8868;1&gt;&lt;&#x8868;2&gt;&#xFF1A;&#x9700;&#x8981;&#x5DE6;&#x8FDE;&#x63A5;&#x7684;&#x8868;&#x540D;&#x3002;</li>
+<li>LEFT OUTER JOIN&#xFF1A;&#x5DE6;&#x8FDE;&#x63A5;&#x4E2D;&#x53EF;&#x4EE5;&#x7701;&#x7565; OUTER &#x5173;&#x952E;&#x5B57;&#xFF0C;&#x53EA;&#x4F7F;&#x7528;&#x5173;&#x952E;&#x5B57; LEFT JOIN&#x3002;</li>
+<li><font color="#900">ON &#x5B50;&#x53E5;&#xFF1A;&#x7528;&#x6765;&#x8BBE;&#x7F6E;&#x5DE6;&#x8FDE;&#x63A5;&#x7684;&#x8FDE;&#x63A5;&#x6761;&#x4EF6;&#xFF0C;&#x4E0D;&#x80FD;&#x7701;&#x7565;</font></li>
+</ul>
+<p>&#x4E0A;&#x8FF0;&#x8BED;&#x6CD5;&#x4E2D;&#xFF0C;&#x201C;&#x8868;1&#x201D;&#x4E3A;&#x57FA;&#x8868;&#xFF0C;&#x201C;&#x8868;2&#x201D;&#x4E3A;&#x53C2;&#x8003;&#x8868;&#x3002;&#x5DE6;&#x8FDE;&#x63A5;&#x67E5;&#x8BE2;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x67E5;&#x8BE2;&#x51FA;&#x201C;&#x8868;1&#x201D;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x8BB0;&#x5F55;&#x548C;&#x201C;&#x8868;2&#x201D;&#x4E2D;&#x5339;&#x914D;&#x8FDE;&#x63A5;&#x6761;&#x4EF6;&#x7684;&#x8BB0;&#x5F55;&#x3002;&#x5982;&#x679C;&#x201C;&#x8868;1&#x201D;&#x7684;&#x67D0;&#x884C;&#x5728;&#x201C;&#x8868;2&#x201D;&#x4E2D;&#x6CA1;&#x6709;&#x5339;&#x914D;&#x884C;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x4E2D;&#xFF0C;&#x201C;&#x8868;2&#x201D;&#x7684;&#x5B57;&#x6BB5;&#x503C;&#x5747;&#x4E3A;&#x7A7A;&#x503C;&#xFF08;NULL&#xFF09;&#x3002;</p>
+<pre data-role="codeBlock" data-info="MySQL" class="language-mysql"><code>mysql&gt; select * from t2;
++----+---------+-----------+
+| id | address | id_number |
++----+---------+-----------+
+|  1 | &#x9655;&#x897F;    | 123123123 |
+|  2 | &#x6C5F;&#x897F;    | 123123123 |
+|  3 | &#x4E91;&#x5357;    | 123123123 |
++----+---------+-----------+
+mysql&gt; select * from t1;
++----+-------+------+
+| id | name  | age  |
++----+-------+------+
+|  1 | li    |   18 |
+|  2 | zhang |   18 |
+|  3 | wang  |   18 |
+|  4 | guo   |   19 |
++----+-------+------+
+4 rows in set (0.00 sec)
+mysql&gt; select t1.id,t1.name,t2.address from t1 left outer join t2 on t1.id=t2.id;
++----+-------+---------+
+| id | name  | address |
++----+-------+---------+
+|  1 | li    | &#x9655;&#x897F;    |
+|  2 | zhang | &#x6C5F;&#x897F;    |
+|  3 | wang  | &#x4E91;&#x5357;    |
+|  4 | guo   | NULL    |
++----+-------+---------+
+4 rows in set (0.00 sec)
+</code></pre><p><font color="#900"><strong>&#x8FD9;&#x91CC;&#x6709;&#x4E24;&#x4E2A;&#x8868;t1,t2&#x4F7F;&#x7528;&#x5DE6;&#x5916;&#x8FDE;&#x63A5;&#x4E4B;&#x540E;&#x53EF;&#x4EE5;&#x770B;&#x89C1;&#x53C2;&#x8003;&#x8868;&#x4E2D;&#x6CA1;&#x6709;id&#x4E3A;4&#x7684;&#x6570;&#x636E;&#xFF0C;&#x6240;&#x4EE5;&#x5728;address&#x5B57;&#x6BB5;&#x5C31;&#x4F1A;&#x6709;&#x51FA;&#x73B0;&#x7A7A;&#x503C;&#x3002;</strong></font></p>
+<hr>
+<h6 class="mume-header" id="%E5%8F%B3%E8%BF%9E%E6%8E%A5">&#x53F3;&#x8FDE;&#x63A5;</h6>
+
+<p>&#x53F3;&#x5916;&#x8FDE;&#x63A5;&#x53C8;&#x79F0;&#x4E3A;&#x53F3;&#x8FDE;&#x63A5;&#xFF0C;&#x53F3;&#x8FDE;&#x63A5;&#x662F;&#x5DE6;&#x8FDE;&#x63A5;&#x7684;&#x53CD;&#x5411;&#x8FDE;&#x63A5;&#x3002;&#x4F7F;&#x7528; <strong>RIGHT OUTER JOIN</strong> &#x5173;&#x952E;&#x5B57;&#x8FDE;&#x63A5;&#x4E24;&#x4E2A;&#x8868;&#xFF0C;&#x5E76;&#x4F7F;&#x7528; ON &#x5B50;&#x53E5;&#x6765;&#x8BBE;&#x7F6E;&#x8FDE;&#x63A5;&#x6761;&#x4EF6;&#x3002;</p>
+<p><em>&#x53F3;&#x8FDE;&#x63A5;&#x7684;&#x8BED;&#x6CD5;&#x683C;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;</em></p>
+<p><strong>SELECT &lt;&#x5B57;&#x6BB5;&#x540D;&gt; FROM &lt;&#x8868;1&gt; RIGHT OUTER JOIN &lt;&#x8868;2&gt; &lt;ON&#x5B50;&#x53E5;&gt;</strong></p>
+<p>&#x8BED;&#x6CD5;&#x8BF4;&#x660E;&#x5982;&#x4E0B;&#x3002;</p>
+<ul>
+<li>&#x5B57;&#x6BB5;&#x540D;&#xFF1A;&#x9700;&#x8981;&#x67E5;&#x8BE2;&#x7684;&#x5B57;&#x6BB5;&#x540D;&#x79F0;&#x3002;</li>
+<li>&lt;&#x8868;1&gt;&lt;&#x8868;2&gt;&#xFF1A;&#x9700;&#x8981;&#x53F3;&#x8FDE;&#x63A5;&#x7684;&#x8868;&#x540D;&#x3002;</li>
+<li>RIGHT OUTER JOIN&#xFF1A;&#x53F3;&#x8FDE;&#x63A5;&#x4E2D;&#x53EF;&#x4EE5;&#x7701;&#x7565; OUTER &#x5173;&#x952E;&#x5B57;&#xFF0C;&#x53EA;&#x4F7F;&#x7528;&#x5173;&#x952E;&#x5B57; RIGHT JOIN&#x3002;</li>
+<li><font color="#900">ON &#x5B50;&#x53E5;&#xFF1A;&#x7528;&#x6765;&#x8BBE;&#x7F6E;&#x53F3;&#x8FDE;&#x63A5;&#x7684;&#x8FDE;&#x63A5;&#x6761;&#x4EF6;&#xFF0C;&#x4E0D;&#x80FD;&#x7701;&#x7565;&#x3002;</font></li>
+</ul>
+<p>&#x4E0E;&#x5DE6;&#x8FDE;&#x63A5;&#x76F8;&#x53CD;&#xFF0C;&#x53F3;&#x8FDE;&#x63A5;&#x4EE5;&#x201C;&#x8868;2&#x201D;&#x4E3A;&#x57FA;&#x8868;&#xFF0C;&#x201C;&#x8868;1&#x201D;&#x4E3A;&#x53C2;&#x8003;&#x8868;&#x3002;&#x53F3;&#x8FDE;&#x63A5;&#x67E5;&#x8BE2;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x67E5;&#x8BE2;&#x51FA;&#x201C;&#x8868;2&#x201D;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x8BB0;&#x5F55;&#x548C;&#x201C;&#x8868;1&#x201D;&#x4E2D;&#x5339;&#x914D;&#x8FDE;&#x63A5;&#x6761;&#x4EF6;&#x7684;&#x8BB0;&#x5F55;&#x3002;&#x5982;&#x679C;&#x201C;&#x8868;2&#x201D;&#x7684;&#x67D0;&#x884C;&#x5728;&#x201C;&#x8868;1&#x201D;&#x4E2D;&#x6CA1;&#x6709;&#x5339;&#x914D;&#x884C;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x4E2D;&#xFF0C;&#x201C;&#x8868;1&#x201D;&#x7684;&#x5B57;&#x6BB5;&#x503C;&#x5747;&#x4E3A;&#x7A7A;&#x503C;&#xFF08;NULL&#xFF09;&#x3002;</p>
+<pre data-role="codeBlock" data-info="MySQL" class="language-mysql"><code>mysql&gt; select * from t2;
++----+---------+-----------+
+| id | address | id_number |
++----+---------+-----------+
+|  1 | &#x9655;&#x897F;    | 123123123 |
+|  2 | &#x6C5F;&#x897F;    | 123123123 |
+|  3 | &#x4E91;&#x5357;    | 123123123 |
+|  4 | &#x9999;&#x6E2F;    | 326146    |
+|  5 | &#x53F0;&#x6E7E;    | 326146    |
++----+---------+-----------+
+5 rows in set (0.00 sec)
+mysql&gt; select * from t1;
++----+-------+------+
+| id | name  | age  |
++----+-------+------+
+|  1 | li    |   18 |
+|  2 | zhang |   18 |
+|  3 | wang  |   18 |
+|  4 | guo   |   19 |
++----+-------+------+
+mysql&gt; select t1.id,t1.name,t2.address from t1 right outer join t2 on t1.id=t2.id;
++------+-------+---------+
+| id   | name  | address |
++------+-------+---------+
+|    1 | li    | &#x9655;&#x897F;    |
+|    2 | zhang | &#x6C5F;&#x897F;    |
+|    3 | wang  | &#x4E91;&#x5357;    |
+|    4 | guo   | &#x9999;&#x6E2F;    |
+| NULL | NULL  | &#x53F0;&#x6E7E;    |
++------+-------+---------+
+5 rows in set (0.00 sec)
+</code></pre><p><font color="#900"><strong>&#x8FD9;&#x91CC;&#x6709;&#x4E24;&#x4E2A;&#x8868;t1,t2&#x4F7F;&#x7528;&#x53F3;&#x5916;&#x8FDE;&#x63A5;&#x4E4B;&#x540E;&#x53EF;&#x4EE5;&#x770B;&#x89C1;&#x53C2;&#x8003;&#x8868;&#x4E2D;&#x6CA1;&#x6709;id&#x4E3A;5&#x7684;&#x6570;&#x636E;&#xFF0C;&#x6240;&#x4EE5;&#x5728;id&#x548C;name&#x5B57;&#x6BB5;&#x5C31;&#x4F1A;&#x6709;&#x51FA;&#x73B0;&#x7A7A;&#x503C;&#x3002;</strong></font></p>
+<hr>
+<h4 class="mume-header" id="%E5%AD%90%E6%9F%A5%E8%AF%A2%E5%86%85%E9%83%A8%E6%9F%A5%E8%AF%A2">&#x5B50;&#x67E5;&#x8BE2;(&#x5185;&#x90E8;&#x67E5;&#x8BE2;)</h4>
+
+<hr>
+<h2 class="mume-header" id="%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%A9%A2like">&#x6A21;&#x7CCA;&#x67E5;&#x8A62;&#xFF08;LIKE&#xFF09;</h2>
+
+<p>&#x5728;&#x65E5;&#x5E38;&#x4F7F;&#x7528;&#x548C;&#x5DE5;&#x4F5C;&#x4E1A;&#x52A1;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x4F1A;&#x7ECF;&#x5E38;&#x4F7F;&#x7528;&#x6A21;&#x7CCA;&#x67E5;&#x8BE2;&#x6765;&#x901A;&#x8FC7;&#x67D0;&#x4E2A;&#x5B57;&#x6BB5;&#x548C;&#x6761;&#x4EF6;&#x6765;&#x8FDB;&#x884C;&#x4FE1;&#x606F;&#x7684;&#x67E5;&#x627E;&#x3002;</p>
+<p><strong>&#x8BED;&#x6CD5;&#x7ED3;&#x6784;&#xFF1A;</strong></p>
+<p><strong>SELECT * FROM &lt; tablename &gt; WHERE name LIKE &quot;%value%&quot;</strong></p>
+<p>LIKE&#x7684;&#x7528;&#x6CD5;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x4EE3;&#x66FF;&#x4E86;=&#x800C;&#x5B58;&#x5728;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;LIKE&#x5173;&#x952E;&#x5B57;&#x7684;&#x65F6;&#x5019;&#x8FD8;&#x9700;&#x8981;&#x914D;&#x5408;&#x901A;&#x914D;&#x7B26;&#x6765;&#x4F7F;&#x7528;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th>&#x901A;&#x914D;&#x7B26;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x767E;&#x5206;&#x53F7;&#xFF08;%&#xFF09;</td>
+<td>&#x4EE3;&#x8868;&#x96F6;&#x6216;&#x591A;&#x4E2A;&#x4EFB;&#x610F;&#x7684;&#x5B57;&#x7B26;&#x3002;</td>
+</tr>
+<tr>
+<td>&#x4E0B;&#x5212;&#x7EBF;&#xFF08;_&#xFF09;</td>
+<td>&#x4EE3;&#x8868;&#x5355;&#x4E2A;&#x5B57;&#x7B26;&#x6216;&#x6570;&#x5B57;</td>
+</tr>
+<tr>
+<td>[charlist]</td>
+<td>&#x5B57;&#x7B26;&#x5217;&#x8868;&#x4E2D;&#x7684;&#x4EFB;&#x4F55;&#x5355;&#x4E00;&#x5B57;&#x7B26;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8FDE;&#x5B57;&#x7B26;&#xFF08;-&#xFF09;&#x6839;&#x636E; ASCII &#x7F16;&#x7801;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x8303;&#x56F4;&#xFF0C;&#x4F8B;&#x5982; :[0-9] &#x8868;&#x793A;&#x4ECE; 0 &#x5230; 9 &#x7684;&#x4EFB;&#x4E00;&#x6570;&#x5B57;&#xFF1B; [a-z] &#x8868;&#x793A;&#x5C0F;&#x5199;&#x82F1;&#x6587;&#x5B57;&#x6BCD;&#xFF1B; [a-zA-Z] &#x8868;&#x793A;&#x82F1;&#x6587;&#x5B57;&#x6BCD;&#xFF0C;&#x4E0D;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#xFF1B; [a-zA-Z0-9] &#x8868;&#x793A;&#x82F1;&#x6587;&#x5B57;&#x6BCD;&#x548C;&#x963F;&#x62C9;&#x4F2F;&#x6570;&#x5B57;&#x3002;</td>
+</tr>
+<tr>
+<td>[^charlist] &#x6216;[!charlist]</td>
+<td>&#x4E0D;&#x5728;&#x5B57;&#x7B26;&#x5217;&#x8868;&#x4E2D;&#x7684;&#x4EFB;&#x4F55;&#x5355;&#x4E00;&#x5B57;&#x7B26;&#x3002;&#x540C;&#x4E0A;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8FDE;&#x5B57;&#x7B26;&#xFF08;-&#xFF09;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x8303;&#x56F4;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x5B9E;&#x9645;&#x4EE3;&#x7801;&#xFF1A;</strong></p>
+<pre data-role="codeBlock" data-info="mysql" class="language-mysql"><code>mysql&gt; select * from mb;
++----+--------+
+| id | name   |
++----+--------+
+|  1 | lzy    |
+|  2 | &#x738B;     |
+|  4 | &#x5F20;&#x4E09;   |
+|  5 | &#x5F20;&#x4E09;   |
+|  7 | wang   |
+|  9 | zhang  |
+| 10 | zhang  |
+| 11 | zhang  |
++----+--------+
+8 rows in set (0.01 sec)
+mysql&gt; SELECT * FROM mb WHERE name LIKE &quot;%z%&quot;;
++----+-------+
+| id | name  |
++----+-------+
+|  1 | lzy   |
+|  9 | zhang |
+| 10 | zhang |
+| 11 | zhang |
++----+-------+
+4 rows in set (0.00 sec)
+</code></pre><p>&#x8FD9;&#x91CC;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6211;&#x4EEC;&#x67E5;&#x627E;&#x4E86;&#x59D3;&#x540D;&#x5B57;&#x6BB5;&#x4E2D;&#x5E26;&#x6709;z&#x5B57;&#x7B26;&#x7684;&#x6240;&#x6709;&#x7528;&#x6237;&#x4FE1;&#x606F;&#x3002;</p>
+<h2 class="mume-header" id="%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE%E5%88%86%E9%A1%B5%E6%93%8D%E4%BD%9C">&#x67E5;&#x8BE2;&#x6570;&#x636E;&#x5206;&#x9875;&#x64CD;&#x4F5C;</h2>
+
+<p>&#x5728;&#x771F;&#x6B63;&#x7684;&#x9879;&#x76EE;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x67E5;&#x8BE2;&#x6570;&#x636E;&#x4E0D;&#x53EF;&#x80FD;&#x6BCF;&#x6B21;&#x90FD;&#x662F;&#x5C06;&#x6240;&#x6709;&#x7684;&#x6570;&#x636E;&#x67E5;&#x8BE2;&#x51FA;&#x6765;&#xFF0C;&#x800C;&#x662F;&#x4E4B;&#x53EA;&#x67E5;&#x8BE2;&#x9664;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x5F53;&#x6709;&#x9700;&#x8981;&#x7684;&#x65F6;&#x5019;&#x5728;&#x8FDB;&#x884C;&#x5176;&#x4F59;&#x6570;&#x636E;&#x7684;&#x67E5;&#x8BE2;&#x3002;</p>
+<p><strong>&#x5173;&#x952E;&#x5B57;</strong></p>
+<p><font color="#F00"><strong>LIMIT</strong></font></p>
+<p><strong>&#x8BED;&#x6CD5;&#x7ED3;&#x6784;&#xFF1A;</strong></p>
+<p><strong><code>SELECT * FROM tablename WHERE conlumn=condition LIMIT last,number;</code></strong></p>
+<ul>
+<li>
+<p><strong>last&#xFF1A;</strong></p>
+<p>&#x8FD4;&#x56DE;&#x67E5;&#x8BE2;&#x51FA;&#x6240;&#x6709;&#x5185;&#x5BB9;&#x7684;&#x7ED3;&#x679C;&#x96C6;&#xFF0C;&#x4ECE;&#x4E2D;&#x6307;&#x5B9A;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x4F4D;&#x7F6E;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x4E0B;&#x6807;&#x4ECE;0&#x5F00;&#x59CB;&#x3002;</p>
+</li>
+<li>
+<p><strong>number&#xFF1A;</strong></p>
+<p>&#x6700;&#x7EC8;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x96C6;&#x7684;&#x603B;&#x5B57;&#x6BB5;&#x4FE1;&#x606F;&#x6761;&#x6570;&#x3002;</p>
+</li>
+</ul>
+<p><strong>&#x5B9E;&#x9645;&#x4EE3;&#x7801;&#x6F14;&#x793A;</strong></p>
+<pre data-role="codeBlock" data-info="mysql" class="language-mysql"><code>mysql&gt; select * from t
+    -&gt; ;
++----+------+-----+
+| id | name | age |
++----+------+-----+
+|  1 | li1  |  18 |
+|  2 | li2  |  18 |
+|  3 | li3  |  18 |
+|  4 | li4  |  18 |
+|  5 | li5  |  18 |
+|  6 | li6  |  18 |
+|  7 | li7  |  18 |
+|  8 | li8  |  18 |
+|  9 | li9  |  18 |
+| 10 | li10 |  18 |
+| 11 | li11 |  18 |
+| 12 | li12 |  18 |
+| 13 | li13 |  18 |
+| 14 | li14 |  18 |
+| 15 | li15 |  18 |
+| 16 | li16 |  18 |
+| 17 | li17 |  18 |
+| 18 | li18 |  18 |
+| 19 | li19 |  18 |
++----+------+-----+
+mysql&gt; SELECT * FROM t WHERE age=18 LIMIT 9,8;
++----+------+-----+
+| id | name | age |
++----+------+-----+
+| 10 | li10 |  18 |
+| 11 | li11 |  18 |
+| 12 | li12 |  18 |
+| 13 | li13 |  18 |
+| 14 | li14 |  18 |
+| 15 | li15 |  18 |
+| 16 | li16 |  18 |
+| 17 | li17 |  18 |
++----+------+-----+
+8 rows in set (0.00 sec)
+</code></pre><p><strong>LIMIT</strong>&#x9AD8;&#x6548;&#x7387;&#x7684;&#x539F;&#x7406;&#x662F;&#xFF1A;&#x907F;&#x514D;&#x5168;&#x8868;&#x626B;&#x63CF;&#xFF0C;&#x63D0;&#x9AD8;&#x67E5;&#x8BE2;&#x6548;&#x7387;&#x3002;</p>
+<h2 class="mume-header" id="%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1">&#x6570;&#x636E;&#x5E93;&#x8BBE;&#x8BA1;</h2>
+
+<h3 class="mume-header" id="e-r%E6%A8%A1%E5%9E%8B">E-R&#x6A21;&#x578B;</h3>
+
+<p><strong>E-R&#x6A21;&#x578B;&#x4E5F;&#x53EB;&#x505A;&#x5B9E;&#x4F53;&#x5173;&#x7CFB;&#x56FE;&#xFF0C;&#x662F;&#x63CF;&#x8FF0;&#x5B9E;&#x4F53;&#x548C;&#x5B9E;&#x4F53;&#x5173;&#x7CFB;&#x7684;&#x56FE;&#xFF0C;&#x662F;uml&#x56FE;&#x7684;&#x4E00;&#x79CD;&#x3002;</strong></p>
+<p>&#x6211;&#x4EEC;&#x5728;&#x753B;E-R&#x6A21;&#x578B;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x65B9;&#x5757;&#x4EE3;&#x8868;&#x5B9E;&#x4F53;&#xFF0C;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x4E00;&#x4E2A;&#x7684;&#x8868;&#xFF0C;&#x692D;&#x5706;&#x4EE3;&#x8868;&#x7740;&#x5C5E;&#x6027;&#xFF0C;&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x5C31;&#x662F;&#x5B57;&#x6BB5;&#xFF0C;&#x83F1;&#x5F62;&#x4EE3;&#x8868;&#x7740;&#x8868;&#x548C;&#x8868;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#x3002;</p>
+<p>&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#xFF0C;&#x8868;&#x548C;&#x8868;&#x4E4B;&#x95F4;&#x90FD;&#x6709;&#x4E09;&#x79CD;&#x5173;&#x7CFB;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x4E00;&#x5BF9;&#x4E00;&#x5173;&#x7CFB;(1:1)&#xFF0C;&#x4E00;&#x5BF9;&#x591A;&#x5173;&#x7CFB;(1:n)&#xFF0C;&#x591A;&#x5BF9;&#x591A;&#x5173;&#x7CFB;(n:m)&#x3002;</p>
+<ul>
+<li>&#x4E00;&#x5BF9;&#x4E00;&#x5173;&#x7CFB;&#xFF1A;&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x8868;&#x4E4B;&#x95F4;&#x662F;&#x4E00;&#x5BF9;&#x4E00;&#x5173;&#x7CFB;&#x7684;&#x8BDD;&#xFF0C;&#x4ED6;&#x4EEC;&#x4E24;&#x4E2A;&#x4E4B;&#x95F4;&#x662F;&#x6CA1;&#x6709;&#x5173;&#x7CFB;&#x7684;&#x3002;<strong>&#x4E00;&#x5BF9;&#x4E00;&#x5173;&#x7CFB;&#x5C31;&#x50CF;&#x662F;&#x5B66;&#x6821;&#x548C;&#x6821;&#x957F;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x4E00;&#x4E2A;&#x5B66;&#x6821;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A;&#x6821;&#x957F;&#xFF0C;&#x4E00;&#x4E2A;&#x6821;&#x957F;&#x53EA;&#x80FD;&#x7BA1;&#x7406;&#x4E00;&#x4E2A;&#x5B66;&#x6821;&#x3002;</strong></li>
+<li>&#x4E00;&#x5BF9;&#x591A;&#x5173;&#x7CFB;&#xFF1A;&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x5982;&#x679C;&#x53C8;&#x4E24;&#x4E2A;&#x8868;&#x4E4B;&#x95F4;&#x662F;&#x4E00;&#x5BF9;&#x591A;&#x5173;&#x7CFB;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x4EE3;&#x8868;&#x4E24;&#x4E2A;&#x8868;&#x4E2D;&#x4E00;&#x4E2A;&#x8868;&#x7684;&#x4E3B;&#x952E;&#x662F;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x8868;&#x7684;&#x5916;&#x952E;&#xFF0C;&#x62E5;&#x6709;&#x5916;&#x952E;&#x7684;&#x8868;&#x5C31;&#x662F;&#x591A;&#x7684;&#x90A3;&#x4E2A;&#x8868;&#x3002;<strong>&#x4E00;&#x5BF9;&#x591A;&#x5173;&#x7CFB;&#x5C31;&#x50CF;&#x662F;&#x5B66;&#x751F;&#x548C;&#x6559;&#x5BA4;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x4E00;&#x4E2A;&#x6559;&#x5BA4;&#x91CC;&#x53EF;&#x4EE5;&#x6709;&#x5F88;&#x591A;&#x5B66;&#x751F;&#xFF0C;&#x4F46;&#x662F;&#x4E00;&#x4E2A;&#x5B66;&#x751F;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A;&#x6559;&#x5BA4;&#x3002;</strong></li>
+<li>&#x591A;&#x5BF9;&#x591A;&#x5173;&#x7CFB;&#xFF1A;&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x4E24;&#x4E2A;&#x8868;&#x4E4B;&#x95F4;&#x5982;&#x679C;&#x662F;&#x591A;&#x5BF9;&#x591A;&#x5173;&#x7CFB;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x9700;&#x8981;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x8868;&#xFF0C;&#x5206;&#x522B;&#x4EE5;&#x4E00;&#x5BF9;&#x591A;&#x7684;&#x5F62;&#x5F0F;&#x94FE;&#x63A5;&#x4E24;&#x4E2A;&#x8868;&#x3002;<strong>&#x591A;&#x5BF9;&#x591A;&#x5173;&#x7CFB;&#x5C31;&#x50CF;&#x662F;&#x5B66;&#x751F;&#x548C;&#x9009;&#x4FEE;&#x8BFE;&#x7A0B;&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x4E00;&#x4E2A;&#x5B66;&#x751F;&#x53EF;&#x4EE5;&#x9009;&#x4FEE;&#x591A;&#x95E8;&#x53EF;&#x8BFE;&#x7A0B;&#xFF0C;&#x4E00;&#x4E2A;&#x8BFE;&#x7A0B;&#x4E5F;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;&#x5B66;&#x751F;&#x9009;&#x4FEE;&#x3002;</strong></li>
+</ul>
+<hr>
+<h3 class="mume-header" id="%E8%8C%83%E5%BC%8F">&#x8303;&#x5F0F;</h3>
+
+<p><strong>&#x6570;&#x636E;&#x5E93;&#x76EE;&#x524D;&#x53C8;&#x516D;&#x79CD;&#x8303;&#x5F0F;&#xFF0C;&#x8303;&#x5F0F;&#x53EF;&#x4EE5;&#x63D0;&#x9AD8;&#x6570;&#x636E;&#x5E93;&#x7684;&#x5408;&#x7406;&#x6027;&#xFF1A;&#x7B2C;&#x4E00;&#x8303;&#x5F0F;(1NF),&#x7B2C;&#x4E8C;&#x8303;&#x5F0F;(2NF),&#x7B2C;&#x4E09;&#x8303;&#x5F0F;(3NF)&#xFF0C;&#x5DF4;&#x65AF;-&#x79D1;&#x5FB7;&#x8303;&#x5F0F;(BCNF)&#xFF0C;&#x7B2C;&#x56DB;&#x8303;&#x5F0F;(4NF)&#xFF0C;&#x7B2C;&#x4E94;&#x8303;&#x5F0F;(5NF)&#x5B8C;&#x7F8E;&#x8303;&#x5F0F;&#x3002;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x65E5;&#x5E38;&#x4F7F;&#x7528;&#x4E2D;&#xFF0C;&#x53EA;&#x8981;&#x8FBE;&#x5230;&#x4E09;&#x8303;&#x5F0F;&#x7684;&#x6807;&#x51C6;&#x5C31;&#x5DF2;&#x7ECF;&#x7EF0;&#x7EF0;&#x6709;&#x4F59;&#x4E86;&#x3002;</strong></p>
+<ul>
+<li>
+<p>**&#x7B2C;&#x4E00;&#x8303;&#x5F0F;&#xFF1A;**&#x7B2C;&#x4E00;&#x8303;&#x5F0F;&#x7684;&#x5B9A;&#x4E49;&#x662F;&#x5C5E;&#x6027;&#x8981;&#x5177;&#x6709;&#x539F;&#x5B50;&#x6027;&#x3002;</p>
+<p>&#x610F;&#x601D;&#x5C31;&#x662F;&#x6240;&#x6709;&#x5B57;&#x6BB5;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x9879;&#x4E0D;&#x53EF;&#x4EE5;&#x5728;&#x8FDB;&#x884C;&#x5206;&#x89E3;&#x3002;&#x7B80;&#x5355;&#x7684;&#x8BF4;&#x5C31;&#x662F;&#x6BCF;&#x4E2A;&#x5B57;&#x6BB5;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x5185;&#x5BB9;&#x90FD;&#x662F;&#x5355;&#x72EC;&#x7684;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#xFF0C;&#x4E0D;&#x5B58;&#x5728;&#x591A;&#x79CD;&#x6570;&#x636E;&#x62FC;&#x63A5;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x4F8B;&#x5982;&#x5730;&#x5740;&#xFF0C;&#x5730;&#x5740;&#x5C31;&#x4E0D;&#x5177;&#x5907;&#x539F;&#x5B50;&#x6027;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x57CE;&#x5E02;&#x7701;&#x533A;&#x56DB;&#x4E2A;&#x5B57;&#x6BB5;&#x3002;</p>
+</li>
+<li>
+<p>**&#x7B2C;&#x4E8C;&#x8303;&#x5F0F;&#xFF1A;**&#x5728;&#x7B2C;&#x4E00;&#x8303;&#x5F0F;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x7B2C;&#x4E8C;&#x8303;&#x5F0F;&#x7684;&#x5B9A;&#x4E49;&#x662F;&#x5B9E;&#x4F53;&#x5C5E;&#x6027;&#x5B8C;&#x5168;&#x4F9D;&#x8D56;&#x4E3B;&#x5173;&#x952E;&#x5B57;&#x3002;</p>
+<p>&#x610F;&#x601D;&#x662F;&#x5728;&#x4E00;&#x4E2A;&#x8868;&#x4E2D;&#xFF0C;&#x8868;&#x4E2D;&#x5B57;&#x6BB5;&#x5B8C;&#x5168;&#x4F9D;&#x8D56;&#x8868;&#x540D;&#x5B58;&#x5728;&#xFF0C;&#x4F8B;&#x5982;&#x7B14;&#x8BB0;&#x672C;&#x7535;&#x8111;&#x8868;&#x4E2D;&#x5305;&#x542B;cpu&#x5F88;&#x5408;&#x7406;&#xFF0C;&#x4F46;&#x662F;&#x5305;&#x542B;&#x9F20;&#x6807;&#x5C31;&#x4F1A;&#x5B58;&#x5728;&#x95EE;&#x9898;&#x4E86;&#xFF0C;&#x7B80;&#x5355;&#x6765;&#x8BF4;&#x5C31;&#x662F;&#x6BCF;&#x4E2A;&#x8868;&#x53EA;&#x505A;&#x4E00;&#x4EF6;&#x4E8B;&#x60C5;&#x3002;</p>
+</li>
+<li>
+<p>**&#x7B2C;&#x4E09;&#x8303;&#x5F0F;&#xFF1A;**&#x5728;&#x7B26;&#x5408;&#x7B2C;&#x4E8C;&#x8303;&#x5F0F;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x6D88;&#x9664;&#x4F20;&#x9012;&#x4F9D;&#x8D56;&#x3002;</p>
+<p>&#x610F;&#x601D;&#x5C31;&#x662F;&#x6BCF;&#x5F20;&#x8868;&#x4E2D;&#x7684;&#x9664;&#x4E3B;&#x952E;&#x4EE5;&#x5916;&#x7684;&#x5176;&#x4ED6;&#x5B57;&#x6BB5;&#x5C5E;&#x6027;&#xFF0C;&#x4E0D;&#x5BF9;&#x975E;&#x4E3B;&#x952E;&#x5B57;&#x6BB5;&#x5C5E;&#x6027;&#x4EA7;&#x751F;&#x4F9D;&#x8D56;&#xFF0C;&#x4E14;&#x8981;&#x6C42;&#x6570;&#x636E;&#x5E93;&#x8868;&#x4E2D;&#x4E0D;&#x5305;&#x542B;&#x5DF2;&#x5728;&#x5176;&#x5B83;&#x8868;&#x4E2D; &#x5305;&#x542B;&#x7684;&#x975E;&#x4E3B;&#x5173;&#x952E;&#x5B57;&#x4FE1;&#x606F;&#x3002;&#x4F8B;&#x5982;&#x7B14;&#x8BB0;&#x672C;&#x7535;&#x8111;&#x7684;&#x578B;&#x53F7;&#xFF0C;cup&#xFF0C;&#x6838;&#x663E;&#x5728;&#x4E00;&#x4E2A;&#x8868;&#x4E2D;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x6838;&#x663E;&#x4F9D;&#x8D56;cpu&#x5B58;&#x5728;&#xFF0C;cpu&#x4F9D;&#x8D56;&#x7535;&#x8111;&#x578B;&#x53F7;&#x5B58;&#x5728;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x5C31;&#x4E0D;&#x7B26;&#x5408;&#x7B2C;&#x4E09;&#x8303;&#x5F0F;&#x3002;&#x5E94;&#x8BE5;&#x5355;&#x72EC;&#x5217;&#x51FA;&#x4E00;&#x4E2A;&#x4E3B;&#x952E;&#x4E3A;&#x7535;&#x8111;&#x578B;&#x53F7;&#xFF0C;&#x5B57;&#x6BB5;&#x4E3A;&#x6838;&#x663E;&#x7684;&#x8868;&#x3002;&#x8FD9;&#x6837;&#x5728;&#x4FEE;&#x6539;&#x548C;&#x6DFB;&#x52A0;&#x8868;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x7684;&#x51CF;&#x5C11;&#x4FEE;&#x6539;&#x548C;&#x5220;&#x9664;&#x5F02;&#x5E38;&#x3002;</p>
+</li>
+</ul>
+<h2 class="mume-header" id="mysql%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0">MySql&#x5E38;&#x7528;&#x51FD;&#x6570;</h2>
+
+<h2 class="mume-header" id="%E9%94%99%E8%AF%AF%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F">&#x9519;&#x8BEF;&#x95EE;&#x9898;&#x4EE5;&#x53CA;&#x89E3;&#x51B3;&#x65B9;&#x5F0F;</h2>
+
+<h3 class="mume-header" id="navicat15%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81">navicat15&#x4E2D;&#x6587;&#x4E71;&#x7801;&#xFF1A;</h3>
+
+<p><strong>&#x9996;&#x5148;&#x6392;&#x9664;&#x6389;&#x662F;&#x6570;&#x636E;&#x5E93;&#x548C;Java&#x7A0B;&#x5E8F;&#x4E2D;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x786E;&#x5B9A;&#x662F;navicat&#x5B58;&#x5728;&#x95EE;&#x9898;&#x3002;</strong></p>
+<p>&#x8FD9;&#x91CC;&#x53EA;&#x9700;&#x8981;&#x5C06;&#x6570;&#x636E;&#x5E93;&#x8FDE;&#x63A5;&#x7684;&#x7F16;&#x7801;&#x683C;&#x5F0F;&#x8BBE;&#x7F6E;&#x4E3A;&#x81EA;&#x52A8;&#x5C31;&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x4E2D;&#x6587;&#x4E71;&#x7801;&#x7684;&#x95EE;&#x9898;&#x4E86;&#x3002;</p>
+<p><img src="C:%5CUsers%5CSaoLinSiDaShiXiong%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220328110005907.png" alt="image-20220328110005907"></p>
+<p><img src="C:%5CUsers%5CSaoLinSiDaShiXiong%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220328110030334.png" alt="image-20220328110030334"></p>
+<hr>
+<h3 class="mume-header" id="before-start-of-result-set%E6%8A%A5%E9%94%99">Before start of result set&#x62A5;&#x9519;&#xFF1A;</h3>
+
+<p>&#x8FD9;&#x91CC;&#x662F;&#x56E0;&#x4E3A;&#x6CA1;&#x6709;&#x6DFB;&#x52A0;**rs.next()**&#x65B9;&#x6CD5;&#x3002;</p>
+<p><strong>&#x56E0;&#x4E3A;ResultSet&#x662F;&#x4E00;&#x4E2A;&#x7ED3;&#x679C;&#x96C6;&#xFF0C;&#x60F3;&#x8981;&#x8BFB;&#x51FA;&#x6765;&#x5FC5;&#x987B;&#x4F7F;&#x7528;next&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x8BFB;&#x53D6;&#x3002;</strong></p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

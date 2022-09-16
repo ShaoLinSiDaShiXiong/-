@@ -88,3 +88,6 @@ Jackson最常用的API就是基于“对象绑定”的ObjectMapper：
 </dependenc
 
 ```
+
+
+#### ajax请求Json数据undefined

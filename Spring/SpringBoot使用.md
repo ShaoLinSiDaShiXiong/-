@@ -159,7 +159,7 @@ RequestMapping注解主要用于对浏览器的请求地址的拦截。
     ```
   - preHandle:
       **该方法在执行器方法之前执行。** 返回值为Boolean类型，如果返回false,表示拦截器不再向下执行；如果返回true,表示放行，程序向下执行(如果后边没有其他Interceptor,就会执行Controller方法)。所以，此方法可对方法进行判断，决定程序是否继续执行，或者进行一些初始化操作及对请求进行预处理。
-    
+
   - postHandle:
     **该方法在执行控制器方法调用之后，且在返回ModelAndView之前执行。** 由于该方法会在DispatcherServlet进行返回视图渲染之前被调用，所以此方法多被用于处理返回的视图，可通过此方法多被用于处理返回的视图，可通过此方法对请求域中的模型和视图做进一步的修改
 
@@ -303,6 +303,22 @@ RequestMapping注解主要用于对浏览器的请求地址的拦截。
     ```
 
     只要链接中的参数和实体类中的参数对应，spring就会自动通过属性名进行装配，如果属性名不一致，那么该属性的值就是null。
+
+
+
+#### 响中文乱码
+
+在对前端页面响应中文时乱码，通过HttpServletResponse进行字符设置也无效。
+
+```
+@RequestMapping(
+    method = RequestMethod.GET,
+    path = "/check_login",
+    produces = "text/html;charset=UTF-8"
+    )
+```
+在注解中添加设置编码格式的属性就可以解决了。
+
 ---
 
 ## SpringBoot整合MyBatis
